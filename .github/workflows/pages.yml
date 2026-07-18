@@ -26,7 +26,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Build static GDD from last known-good payload
+      - name: Build and validate static GDD
         shell: bash
         run: |
           set -euo pipefail
@@ -36,10 +36,13 @@ jobs:
             | base64 --decode \
             | gzip --decompress \
             > /tmp/gdd-build/source.html
+          python3 -m py_compile scripts/build_gdd.py
           python3 scripts/build_gdd.py /tmp/gdd-build/source.html _site/index.html
           test -s _site/index.html
-          grep -q 'Game Design Document · v8' _site/index.html
-          grep -q 'nove espécies' _site/index.html
+          grep -q 'Game Design Document · v9' _site/index.html
+          grep -q 'O nível libera sistemas. O mapa libera conteúdo. O VIP aumenta eficiência, capacidade e conforto.' _site/index.html
+          grep -q '5. Progressão individual do Bud e do Jardineiro' _site/index.html
+          ! grep -q 'Ainda precisa ser decidido se a conta terá um nível próprio de Jardineiro' _site/index.html
           touch _site/.nojekyll
 
       - name: Configure GitHub Pages

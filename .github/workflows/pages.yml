@@ -40,11 +40,13 @@ jobs:
           python3 -m py_compile \
             scripts/build_gdd.py \
             scripts/patch_point5_gardener.py \
-            scripts/patch_point6_battle.py
+            scripts/patch_point6_battle.py \
+            scripts/finalize_point6.py
 
           python3 scripts/build_gdd.py /tmp/gdd-build/source.html _site/index.html
           python3 scripts/patch_point5_gardener.py _site/index.html
           python3 scripts/patch_point6_battle.py _site/index.html
+          python3 scripts/finalize_point6.py _site/index.html
           test -s _site/index.html
 
           python3 - <<'PY'
@@ -60,10 +62,12 @@ jobs:
               '24 Pontos Inatos de Batalha',
               '24 Pontos Inatos de Cultivo',
               '100 pontos distribuíveis',
+              '124 pontos-base',
               'Não existem equipamentos adicionais',
               'Chance final = Base + (Teto − Base) × Score ÷ (Score + K)',
               'P(A vencer) = 4% + 92% × R⁴ ÷ (1 + R⁴)',
               'CP = C × √(Impacto Esperado × Sobrevivência Efetiva)',
+              '59% contra 41%',
               'CP e Poder de Confronto',
               '<strong>Balanceamento de combate:</strong>',
           ]

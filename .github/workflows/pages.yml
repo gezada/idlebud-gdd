@@ -26,13 +26,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Build static GDD
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p _site
+          cat payload-v8/*.txt \
+            | tr -d '\n\r\t ' \
+            | base64 --decode \
+            | gzip --decompress \
+            > _site/index.html
+          test -s _site/index.html
+          touch _site/.nojekyll
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
       - name: Upload static site
         uses: actions/upload-pages-artifact@v4
         with:
-          path: .
+          path: _site
 
       - name: Deploy
         id: deployment

@@ -44,7 +44,8 @@ jobs:
             scripts/finalize_point6.py \
             scripts/patch_point7_farming.py \
             scripts/finalize_point7.py \
-            scripts/patch_point8_pve.py
+            scripts/patch_point8_pve.py \
+            scripts/finalize_point8.py
 
           python3 scripts/build_gdd.py /tmp/gdd-build/source.html _site/index.html
           python3 scripts/patch_point5_gardener.py _site/index.html
@@ -53,6 +54,7 @@ jobs:
           python3 scripts/patch_point7_farming.py _site/index.html
           python3 scripts/finalize_point7.py _site/index.html
           python3 scripts/patch_point8_pve.py _site/index.html
+          python3 scripts/finalize_point8.py _site/index.html
           test -s _site/index.html
 
           python3 - <<'PY'
@@ -61,9 +63,11 @@ jobs:
 
           html = Path('_site/index.html').read_text(encoding='utf-8')
           required_global = [
-              'Game Design Document · v14',
+              'Game Design Document · v15',
               '5.7 Progressão do Jardineiro',
               'O nível libera sistemas. O mapa libera conteúdo. O VIP aumenta eficiência, capacidade e conforto.',
+              'controle opcional de simulação PvE em 2×, alternável em tempo real',
+              'posições canônicas 1–7',
               '6. Battle Level, Atributos de Batalha e Poder de Combate',
               '24 Pontos Inatos de Batalha',
               '24 Pontos Inatos de Cultivo',
@@ -86,7 +90,6 @@ jobs:
           battle_match = re.search(r'<section id="battle-level">.*?</section>', html, re.S)
           assert battle_match, 'Seção battle-level não encontrada.'
           battle = battle_match.group(0)
-
           required_battle = [
               '6.1 Battle XP, Farm XP e pontos por nível',
               '6.2 Pontos Inatos de nascimento',
@@ -100,143 +103,128 @@ jobs:
               '6.10 Probabilidade competitiva entre 4% e 96%',
               '6.11 Poder de Batalha (CP) e Poder de Confronto',
               '6.12 Autoridade, precisão e balanceamento restante',
-              '1,1025×',
-              'Battle Level 1',
-              'Farm Level 1',
-              'Potência de Controle',
-              'ativações probabilísticas elegíveis',
+              '1,1025×', 'Battle Level 1', 'Farm Level 1',
+              'Potência de Controle', 'ativações probabilísticas elegíveis',
               'dano crítico começa fixado em <strong>150%</strong>',
           ]
           for item in required_battle:
               assert item in battle, f'Conteúdo do Ponto 6 ausente: {item}'
-
-          stale_battle = [
-              'review-state rs-provisional',
-              'geração de energia',
-              'execução de skills',
-              'procs raros',
-              'bônus provisório',
+          for item in [
+              'review-state rs-provisional', 'geração de energia', 'execução de skills',
+              'procs raros', 'bônus provisório',
               'Ainda precisa ser decidido se a conta terá um nível próprio de Jardineiro',
-          ]
-          for item in stale_battle:
+          ]:
               assert item not in battle, f'Texto obsoleto no Ponto 6: {item}'
-
-          assert battle.count('<h3>6.') == 12, 'Quantidade inesperada de subseções no Ponto 6.'
-          assert html.count('<section id="battle-level">') == 1, 'Seção battle-level duplicada.'
+          assert battle.count('<h3>6.') == 12
+          assert html.count('<section id="battle-level">') == 1
 
           farm_match = re.search(r'<section id="farm-level">.*?</section>', html, re.S)
           assert farm_match, 'Seção farm-level não encontrada.'
           farm = farm_match.group(0)
-
           required_farm = [
               '7.1 Farm Level, pontos e identidade de Cultivo',
               '7.2 Função dos seis Atributos de Cultivo',
               '7.3 Fichas separadas e influência dos attachments',
-              '7.4 Três Processos do Plot',
-              '7.5 Germinação em três etapas',
-              '7.6 Planos e Ciclos de Cultivo',
-              '7.7 Afinidade dos Plots',
-              '7.8 Matemática de ADA',
-              '7.9 Fórmulas dos Atributos de Cultivo',
-              '7.10 Economia de Stamina e Recuperação',
-              '7.11 Fertilizantes',
+              '7.4 Três Processos do Plot', '7.5 Germinação em três etapas',
+              '7.6 Planos e Ciclos de Cultivo', '7.7 Afinidade dos Plots',
+              '7.8 Matemática de ADA', '7.9 Fórmulas dos Atributos de Cultivo',
+              '7.10 Economia de Stamina e Recuperação', '7.11 Fertilizantes',
               '7.12 Operação manual e benefícios VIP',
               '7.13 Rotação automática Batalha → Recuperação → Batalha',
               '7.14 FP — Farming Power / Poder de Cultivo',
               '7.15 Ordem de cálculo contextual',
               '7.16 Princípio de interface e estado do sistema',
-              'Germinação 1/3: Enraizamento',
-              'Germinação 2/3: Bloom',
+              'Germinação 1/3: Enraizamento', 'Germinação 2/3: Bloom',
               'Germinação 3/3: Nascimento e Revelação do Bud',
-              'Cultivo Básico',
-              'Cultivo Elemental',
-              'Cultivo Regional',
+              'Cultivo Básico', 'Cultivo Elemental', 'Cultivo Regional',
               'Mesmo elemento</td><td><strong>2,00×',
-              'Muito Fraco</td><td><strong>0,50×',
-              'Plot Simples',
+              'Muito Fraco</td><td><strong>0,50×', 'Plot Simples',
               'Mitigação = 60% × Curva de ADA',
               'Amplificação = 20% × Curva de ADA',
               'Bônus de Qualidade = 40 pontos percentuais × Curva',
               'Stamina-base: <strong>100</strong>',
               'recuperar de 0 a 100 leva no máximo <strong>60 minutos</strong>',
-              'PvE normal</td><td>10',
-              'Boss</td><td>25',
+              'PvE normal</td><td>10', 'Boss</td><td>25',
               'Defesa PvP assíncrona</td><td>0',
-              'um Fertilizante por checkpoint',
-              'dois por processo completo',
-              '10% de velocidade adicional',
-              'Tempo VIP = Tempo final ÷ 1,10',
+              'um Fertilizante por checkpoint', 'dois por processo completo',
+              '10% de velocidade adicional', 'Tempo VIP = Tempo final ÷ 1,10',
               'R$ 9,99',
               'FP = C × (25% Produção + 20% Qualidade + 20% Velocidade',
               'O Ponto 7 está estruturalmente definido.',
           ]
           for item in required_farm:
               assert item in farm, f'Conteúdo do Ponto 7 ausente: {item}'
-
-          stale_farm = [
-              'review-state rs-validation',
-              'review-state rs-provisional',
-              'Quantidade ainda não definida',
-              'percentual a definir',
-              'proposta em validação',
-              'Sprays de Cuidado',
-              'cultivo consome Stamina',
-              '7.1 Arquétipos possíveis',
+          for item in [
+              'review-state rs-validation', 'review-state rs-provisional',
+              'Quantidade ainda não definida', 'percentual a definir',
+              'proposta em validação', 'Sprays de Cuidado',
+              'cultivo consome Stamina', '7.1 Arquétipos possíveis',
               'Bloom nem Ciclo de Cultivo automaticamente, salvo configuração futura específica',
-          ]
-          for item in stale_farm:
+          ]:
               assert item not in farm, f'Texto obsoleto no Ponto 7: {item}'
-
-          assert farm.count('<h3>7.') == 16, 'Quantidade inesperada de subseções no Ponto 7.'
-          assert html.count('<section id="farm-level">') == 1, 'Seção farm-level duplicada.'
+          assert farm.count('<h3>7.') == 16
+          assert html.count('<section id="farm-level">') == 1
 
           pve_match = re.search(r'<section id="pve-training">.*?</section>', html, re.S)
           assert pve_match, 'Seção pve-training não encontrada.'
           pve = pve_match.group(0)
-
           required_pve = [
-              '8.1 Quem recebe Battle XP',
-              '8.2 XP fixa por inimigo',
+              'review-state rs-defined">Definido',
+              '8.1 Quem recebe Battle XP', '8.2 XP fixa por inimigo',
               '8.3 Peso de XP por diferença de nível',
               '8.4 Distribuição dinâmica da pool',
-              '8.5 Snapshot de entrada e level up no encerramento',
-              '8.6 Repetição, treinamento e carry',
-              '8.7 Desconto individual de Stamina no PvE',
-              '8.8 Stamina paga na entrada',
-              '8.9 Derrota temporária e retorno no PvE',
-              '8.10 Condição de derrota da fase',
-              '8.11 Tempo de Retorno',
-              '8.12 Passivas de Núcleo e Totem',
-              '8.13 Fronteira entre PvE e PvP',
+              '8.5 Frações e prioridade determinística do excedente',
+              '8.6 Snapshot de entrada e level up no encerramento',
+              '8.7 Repetição, treinamento e carry',
+              '8.8 Formação canônica, posições e bloqueio durante a tentativa',
+              '8.9 Desconto individual de Stamina no PvE',
+              '8.10 Stamina paga na entrada',
+              '8.11 Derrota temporária e retorno no PvE',
+              '8.12 Condição de derrota e ordem de eventos',
+              '8.13 Tempo de Retorno e passivas',
+              '8.14 XP, drops e recompensas por tipo de encerramento',
+              '8.15 Invocações e bosses com múltiplas fases',
+              '8.16 Frenesi e limites de duração',
+              '8.17 VIP e velocidade de simulação 1× / 2×',
+              '8.18 Continuidade offline, autoridade e idempotência',
+              '8.19 Bud no Battle Level máximo',
+              '8.20 Fronteira PvE/PvP e documentação de itemização',
               'XP do Bud = XP do inimigo × Peso do Bud ÷ Soma dos pesos positivos elegíveis',
+              '7 → 5 → 6 → 4 → 2 → 3 → 1',
+              'Posição 7', 'Posição 5', 'Posição 6', 'Posição 4',
+              'Posição 2', 'Posição 3', 'Posição 1',
               'Menor que −15</td><td><strong>0%',
               '+15 ou mais</td><td><strong>0%',
               '+23 ou mais</td><td><strong>10%',
-              'custo mínimo é 1 Stamina',
-              'débito é atômico',
-              'continua elegível para receber sua parte da XP',
-              'todos os Buds estiverem derrotados simultaneamente',
-              'valor inicial de protótipo: <strong>60 segundos</strong>',
-              'redução máxima acumulada: <strong>50%</strong>',
-              'retorno mínimo é <strong>30 segundos</strong>',
-              'Primeira leva do Ponto 8 registrada.',
+              'custo mínimo é 1 Stamina', 'débito é atômico',
+              'Bud morto no encerramento recebe sua XP normalmente',
+              'Abandono manual', 'Derrota com todos mortos', 'Timeout',
+              'Fase normal</td><td><strong>4 minutos',
+              'Fase elite</td><td><strong>6 minutos',
+              'Boss</td><td><strong>8 minutos',
+              '+15% de dano', '+10% de Penetração',
+              'o relógio nunca pausa', 'não existe respawn genérico',
+              'derrotado definitivamente',
+              '2× é um recurso exclusivo do VIP e começa desativado',
+              'alternar entre 1× e 2× durante a própria tentativa',
+              'timeScale', 'simulação retorna imediatamente e suavemente para 1×',
+              'encerramento é atômico e idempotente',
+              'Idle Bud — Itemization, Drops &amp; Crafting Bible',
+              'O Ponto 8 está estruturalmente definido.',
           ]
           for item in required_pve:
               assert item in pve, f'Conteúdo do Ponto 8 ausente: {item}'
-
-          premature_pve = [
-              'XP somente na vitória',
-              'XP parcial na derrota',
-              'Enrage',
-              'inimigos invocados',
+          for item in [
+              'review-state rs-validation', 'review-state rs-provisional',
+              'Primeira leva do Ponto 8 registrada.', 'XP somente na vitória',
+              'a mudança vale para a próxima', 'relógio deve pausar',
               'substituição manual durante a fase',
-          ]
-          for item in premature_pve:
-              assert item not in pve, f'Decisão não aprovada apareceu no Ponto 8: {item}'
-
-          assert pve.count('<h3>8.') == 13, 'Quantidade inesperada de subseções no Ponto 8.'
-          assert html.count('<section id="pve-training">') == 1, 'Seção pve-training duplicada.'
-          assert html.count('<h2>8.') == 1, 'Mais de uma seção numerada como Ponto 8.'
+          ]:
+              assert item not in pve, f'Texto obsoleto no Ponto 8: {item}'
+          assert 'carry e penalidade de overlevel' not in html
+          assert pve.count('<h3>8.') == 20
+          assert html.count('<section id="pve-training">') == 1
+          assert html.count('<h2>8.') == 1
           PY
 
           touch _site/.nojekyll

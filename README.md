@@ -6,13 +6,13 @@ Este repositório mantém a documentação interna viva e oficial de **Idle Bud*
 
 O conteúdo é publicado pelo GitHub Pages a partir do workflow em `.github/workflows/pages.yml`.
 
-Após a renomeação do repositório, o endereço será:
+Endereço permanente:
 
 `https://gezada.github.io/idlebud-internaldocs/`
 
 O portal centraliza:
 
-- **Game Design Document** — documento vivo atualmente disponível em `/gdd/`;
+- **Game Design Document** — documento vivo disponível em `/gdd/`;
 - **Economy** — TBD;
 - **Enemies, Drops & Craft** — TBD;
 - **Technology Guidelines** — TBD.

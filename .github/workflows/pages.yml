@@ -41,12 +41,14 @@ jobs:
             scripts/build_gdd.py \
             scripts/patch_point5_gardener.py \
             scripts/patch_point6_battle.py \
-            scripts/finalize_point6.py
+            scripts/finalize_point6.py \
+            scripts/patch_point7_farming.py
 
           python3 scripts/build_gdd.py /tmp/gdd-build/source.html _site/index.html
           python3 scripts/patch_point5_gardener.py _site/index.html
           python3 scripts/patch_point6_battle.py _site/index.html
           python3 scripts/finalize_point6.py _site/index.html
+          python3 scripts/patch_point7_farming.py _site/index.html
           test -s _site/index.html
 
           python3 - <<'PY'
@@ -55,7 +57,7 @@ jobs:
 
           html = Path('_site/index.html').read_text(encoding='utf-8')
           required_global = [
-              'Game Design Document · v11',
+              'Game Design Document · v12',
               '5.7 Progressão do Jardineiro',
               'O nível libera sistemas. O mapa libera conteúdo. O VIP aumenta eficiência, capacidade e conforto.',
               '6. Battle Level, Atributos de Batalha e Poder de Combate',
@@ -69,6 +71,14 @@ jobs:
               'CP = C × √(Impacto Esperado × Sobrevivência Efetiva)',
               '59% contra 41%',
               'CP e Poder de Confronto',
+              '7. Farm Level, Cultivo e Processos do Plot',
+              'Germinação 1/3: Enraizamento',
+              'Germinação 2/3: Bloom',
+              'Germinação 3/3: Nascimento e Revelação do Bud',
+              'Fertilizante de Raridade',
+              'Fertilizante de Vigor',
+              'Quantidade ainda não definida',
+              'Fácil de entender, difícil de masterizar.',
               '<strong>Balanceamento de combate:</strong>',
           ]
           for item in required_global:
@@ -101,7 +111,7 @@ jobs:
           for item in required_battle:
               assert item in battle, f'Conteúdo do Ponto 6 ausente: {item}'
 
-          stale = [
+          stale_battle = [
               'review-state rs-provisional',
               'geração de energia',
               'execução de skills',
@@ -109,11 +119,55 @@ jobs:
               'bônus provisório',
               'Ainda precisa ser decidido se a conta terá um nível próprio de Jardineiro',
           ]
-          for item in stale:
+          for item in stale_battle:
               assert item not in battle, f'Texto obsoleto no Ponto 6: {item}'
 
           assert battle.count('<h3>6.') == 12, 'Quantidade inesperada de subseções no Ponto 6.'
           assert html.count('<section id="battle-level">') == 1, 'Seção battle-level duplicada.'
+
+          farm_match = re.search(r'<section id="farm-level">.*?</section>', html, re.S)
+          assert farm_match, 'Seção farm-level não encontrada.'
+          farm = farm_match.group(0)
+
+          required_farm = [
+              '7.1 Pontos, experiência e identidade de Cultivo',
+              '7.2 Função dos seis Atributos de Cultivo',
+              '7.3 Ficha de Cultivo e influência dos attachments',
+              '7.4 Três Processos do Plot',
+              '7.5 Germinação em três etapas',
+              '7.6 Plano e Ciclo de Cultivo',
+              '7.7 Stamina e Recuperação',
+              '7.8 Operação manual e automação VIP',
+              '7.9 Rotação automática Batalha → Recuperação → Batalha',
+              '7.10 Fertilizantes',
+              '7.11 Princípio de interface',
+              '7.12 O que ainda permanece em validação',
+              'cultivar não consome Stamina',
+              'passivas condicionais',
+              'Somente batalhas consomem Stamina',
+              'um processo ativo por vez',
+              'uso automático de fertilizantes previamente autorizados',
+              'FP — Farm Power / Poder de Cultivo',
+          ]
+          for item in required_farm:
+              assert item in farm, f'Conteúdo do Ponto 7 ausente: {item}'
+
+          stale_farm = [
+              'vida, energia, fadiga e condições negativas',
+              '7.1 Arquétipos possíveis',
+              'Colhedora',
+              'Operária',
+              'Curadora',
+              'Nômade',
+              'Experimental',
+              'Sprays de Cuidado',
+              'cultivo consome Stamina',
+          ]
+          for item in stale_farm:
+              assert item not in farm, f'Texto obsoleto no Ponto 7: {item}'
+
+          assert farm.count('<h3>7.') == 12, 'Quantidade inesperada de subseções no Ponto 7.'
+          assert html.count('<section id="farm-level">') == 1, 'Seção farm-level duplicada.'
           PY
 
           touch _site/.nojekyll

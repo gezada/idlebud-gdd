@@ -42,13 +42,15 @@ jobs:
             scripts/patch_point5_gardener.py \
             scripts/patch_point6_battle.py \
             scripts/finalize_point6.py \
-            scripts/patch_point7_farming.py
+            scripts/patch_point7_farming.py \
+            scripts/finalize_point7.py
 
           python3 scripts/build_gdd.py /tmp/gdd-build/source.html _site/index.html
           python3 scripts/patch_point5_gardener.py _site/index.html
           python3 scripts/patch_point6_battle.py _site/index.html
           python3 scripts/finalize_point6.py _site/index.html
           python3 scripts/patch_point7_farming.py _site/index.html
+          python3 scripts/finalize_point7.py _site/index.html
           test -s _site/index.html
 
           python3 - <<'PY'
@@ -57,7 +59,7 @@ jobs:
 
           html = Path('_site/index.html').read_text(encoding='utf-8')
           required_global = [
-              'Game Design Document · v12',
+              'Game Design Document · v13',
               '5.7 Progressão do Jardineiro',
               'O nível libera sistemas. O mapa libera conteúdo. O VIP aumenta eficiência, capacidade e conforto.',
               '6. Battle Level, Atributos de Batalha e Poder de Combate',
@@ -71,13 +73,7 @@ jobs:
               'CP = C × √(Impacto Esperado × Sobrevivência Efetiva)',
               '59% contra 41%',
               'CP e Poder de Confronto',
-              '7. Farm Level, Cultivo e Processos do Plot',
-              'Germinação 1/3: Enraizamento',
-              'Germinação 2/3: Bloom',
-              'Germinação 3/3: Nascimento e Revelação do Bud',
-              'Fertilizante de Raridade',
-              'Fertilizante de Vigor',
-              'Quantidade ainda não definida',
+              '7. Farm Level, Cultivo, Stamina e Processos do Plot',
               'Fácil de entender, difícil de masterizar.',
               '<strong>Balanceamento de combate:</strong>',
           ]
@@ -130,43 +126,65 @@ jobs:
           farm = farm_match.group(0)
 
           required_farm = [
-              '7.1 Pontos, experiência e identidade de Cultivo',
+              '7.1 Farm Level, pontos e identidade de Cultivo',
               '7.2 Função dos seis Atributos de Cultivo',
-              '7.3 Ficha de Cultivo e influência dos attachments',
+              '7.3 Fichas separadas e influência dos attachments',
               '7.4 Três Processos do Plot',
               '7.5 Germinação em três etapas',
-              '7.6 Plano e Ciclo de Cultivo',
-              '7.7 Stamina e Recuperação',
-              '7.8 Operação manual e automação VIP',
-              '7.9 Rotação automática Batalha → Recuperação → Batalha',
-              '7.10 Fertilizantes',
-              '7.11 Princípio de interface',
-              '7.12 O que ainda permanece em validação',
-              'cultivar não consome Stamina',
-              'passivas condicionais',
-              'somente batalhas consomem Stamina',
-              'um processo ativo por vez',
-              'uso automático de fertilizantes previamente autorizados',
-              'FP — Farm Power / Poder de Cultivo',
+              '7.6 Planos e Ciclos de Cultivo',
+              '7.7 Afinidade dos Plots',
+              '7.8 Matemática de ADA',
+              '7.9 Fórmulas dos Atributos de Cultivo',
+              '7.10 Economia de Stamina e Recuperação',
+              '7.11 Fertilizantes',
+              '7.12 Operação manual e benefícios VIP',
+              '7.13 Rotação automática Batalha → Recuperação → Batalha',
+              '7.14 FP — Farming Power / Poder de Cultivo',
+              '7.15 Ordem de cálculo contextual',
+              '7.16 Princípio de interface e estado do sistema',
+              'Germinação 1/3: Enraizamento',
+              'Germinação 2/3: Bloom',
+              'Germinação 3/3: Nascimento e Revelação do Bud',
+              'Cultivo Básico',
+              'Cultivo Elemental',
+              'Cultivo Regional',
+              'Mesmo elemento</td><td><strong>2,00×',
+              'Muito Fraco</td><td><strong>0,50×',
+              'Plot Simples',
+              'Mitigação = 60% × Curva de ADA',
+              'Amplificação = 20% × Curva de ADA',
+              'Bônus de Qualidade = 40 pontos percentuais × Curva',
+              'Stamina-base: <strong>100</strong>',
+              'recuperar de 0 a 100 leva no máximo <strong>60 minutos</strong>',
+              'PvE normal</td><td>10',
+              'Boss</td><td>25',
+              'Defesa PvP assíncrona</td><td>0',
+              'um Fertilizante por checkpoint',
+              'dois por processo completo',
+              '10% de velocidade adicional',
+              'Tempo VIP = Tempo final ÷ 1,10',
+              'R$ 9,99',
+              'FP = C × (25% Produção + 20% Qualidade + 20% Velocidade',
+              'O Ponto 7 está estruturalmente definido.',
           ]
           for item in required_farm:
               assert item in farm, f'Conteúdo do Ponto 7 ausente: {item}'
 
           stale_farm = [
-              'vida, energia, fadiga e condições negativas',
-              '7.1 Arquétipos possíveis',
-              'Colhedora',
-              'Operária',
-              'Curadora',
-              'Nômade',
-              'Experimental',
+              'review-state rs-validation',
+              'review-state rs-provisional',
+              'Quantidade ainda não definida',
+              'percentual a definir',
+              'proposta em validação',
               'Sprays de Cuidado',
               'cultivo consome Stamina',
+              '7.1 Arquétipos possíveis',
+              'Bloom nem Ciclo de Cultivo automaticamente, salvo configuração futura específica',
           ]
           for item in stale_farm:
               assert item not in farm, f'Texto obsoleto no Ponto 7: {item}'
 
-          assert farm.count('<h3>7.') == 12, 'Quantidade inesperada de subseções no Ponto 7.'
+          assert farm.count('<h3>7.') == 16, 'Quantidade inesperada de subseções no Ponto 7.'
           assert html.count('<section id="farm-level">') == 1, 'Seção farm-level duplicada.'
           PY
 

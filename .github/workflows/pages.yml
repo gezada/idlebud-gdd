@@ -1,4 +1,4 @@
-name: Deploy GDD to GitHub Pages
+name: Deploy Internal Docs to GitHub Pages
 
 on:
   push:
@@ -26,11 +26,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Build and validate static GDD
+      - name: Build and validate internal docs
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p _site /tmp/gdd-build
+          mkdir -p _site/gdd /tmp/gdd-build
           cat payload/*.txt \
             | tr -d '\n\r\t ' \
             | base64 --decode \
@@ -45,23 +45,30 @@ jobs:
             scripts/patch_point7_farming.py \
             scripts/finalize_point7.py \
             scripts/patch_point8_pve.py \
-            scripts/finalize_point8.py
+            scripts/finalize_point8.py \
+            scripts/build_docs_portal.py
 
-          python3 scripts/build_gdd.py /tmp/gdd-build/source.html _site/index.html
-          python3 scripts/patch_point5_gardener.py _site/index.html
-          python3 scripts/patch_point6_battle.py _site/index.html
-          python3 scripts/finalize_point6.py _site/index.html
-          python3 scripts/patch_point7_farming.py _site/index.html
-          python3 scripts/finalize_point7.py _site/index.html
-          python3 scripts/patch_point8_pve.py _site/index.html
-          python3 scripts/finalize_point8.py _site/index.html
+          python3 scripts/build_gdd.py /tmp/gdd-build/source.html _site/gdd/index.html
+          python3 scripts/patch_point5_gardener.py _site/gdd/index.html
+          python3 scripts/patch_point6_battle.py _site/gdd/index.html
+          python3 scripts/finalize_point6.py _site/gdd/index.html
+          python3 scripts/patch_point7_farming.py _site/gdd/index.html
+          python3 scripts/finalize_point7.py _site/gdd/index.html
+          python3 scripts/patch_point8_pve.py _site/gdd/index.html
+          python3 scripts/finalize_point8.py _site/gdd/index.html
+          test -s _site/gdd/index.html
+
+          python3 scripts/build_docs_portal.py _site _site/gdd/index.html
           test -s _site/index.html
+          test -s _site/economy/index.html
+          test -s _site/enemies-drops-craft/index.html
+          test -s _site/technology-guidelines/index.html
 
           python3 - <<'PY'
           from pathlib import Path
           import re
 
-          html = Path('_site/index.html').read_text(encoding='utf-8')
+          html = Path('_site/gdd/index.html').read_text(encoding='utf-8')
           required_global = [
               'Game Design Document · v15',
               '5.7 Progressão do Jardineiro',
@@ -83,6 +90,7 @@ jobs:
               'Fácil de entender, difícil de masterizar.',
               '8. Carry, Treinamento e Progressão PvE',
               '<strong>Balanceamento de combate:</strong>',
+              'Back to Idle Bud Internal Docs',
           ]
           for item in required_global:
               assert item in html, f'Conteúdo obrigatório ausente: {item}'
@@ -225,6 +233,33 @@ jobs:
           assert pve.count('<h3>8.') == 20
           assert html.count('<section id="pve-training">') == 1
           assert html.count('<h2>8.') == 1
+
+          portal = Path('_site/index.html').read_text(encoding='utf-8')
+          required_portal = [
+              'Idle Bud Internal Documentation',
+              'Game Design Document',
+              'Available · v15',
+              './gdd/',
+              'Economy',
+              './economy/',
+              'Enemies, Drops &amp; Craft',
+              './enemies-drops-craft/',
+              'Technology Guidelines',
+              './technology-guidelines/',
+          ]
+          for item in required_portal:
+              assert item in portal, f'Entrada obrigatória ausente no portal: {item}'
+          assert portal.count('>TBD<') == 3
+
+          for path, title in [
+              ('_site/economy/index.html', 'Economy'),
+              ('_site/enemies-drops-craft/index.html', 'Enemies, Drops &amp; Craft'),
+              ('_site/technology-guidelines/index.html', 'Technology Guidelines'),
+          ]:
+              placeholder = Path(path).read_text(encoding='utf-8')
+              assert title in placeholder
+              assert '>TBD<' in placeholder
+              assert 'Back to Internal Docs' in placeholder
           PY
 
           touch _site/.nojekyll

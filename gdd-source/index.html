@@ -614,6 +614,7 @@
 <ul>
 <li>filas adicionais de germinação, recuperação, pesquisa ou Forja;</li>
 <li>mais presets de esquadrão e automações avançadas;</li><li>controle opcional de simulação PvE em 2×, alternável em tempo real enquanto o VIP estiver ativo;</li>
+<li>progresso PvE offline por até <strong>8 horas</strong>, com resumo ao retornar;</li>
 <li>mais slots simultâneos de venda no marketplace;</li>
 <li>filtros, organização e ferramentas avançadas de gestão;</li>
 <li>resets de Atributos de Batalha e de Cultivo após o direito gratuito de cada grupo;</li>
@@ -636,6 +637,7 @@
 <ul>
 <li>regiões principais, espécies jogáveis e receitas essenciais não ficam disponíveis somente para VIP;</li>
 <li>o jogador gratuito pode acessar o loop principal, avançar, produzir, batalhar, negociar e competir;</li>
+<li>os quatro modos de expedição PvE — Estável, Avançar, Recuar e Adaptativo — são base gratuita desde a primeira fase;</li>
 <li>VIP não concede Battle Level, Farm Level ou atributos diretamente aos Buds;</li>
 <li>VIP não substitui exploração, materiais, requisitos de mapa ou domínio dos sistemas;</li>
 <li>a vantagem deve ser forte e perceptível, mas concentrada em eficiência, paralelismo, automação e conforto.</li>
@@ -1045,8 +1047,8 @@
 
 <h3>7.12 Operação manual e benefícios VIP</h3>
 <div class="grid">
-<div class="card"><h4>Jogador gratuito</h4><ul><li>inicia cada processo;</li><li>realiza os dois cuidados;</li><li>conclui nascimento, colheita ou recuperação;</li><li>inicia manualmente o próximo processo;</li><li>se não retornar, o processo apenas aguarda e nada é perdido.</li></ul></div>
-<div class="card good"><h4>Jogador VIP</h4><ul><li>cuidados automáticos, inclusive offline;</li><li>nascimento e revelação automáticos, quando habilitados;</li><li>colheita automática e repetição do mesmo Plano;</li><li>conclusão automática da Recuperação;</li><li>uso automático de Fertilizantes previamente autorizados e disponíveis;</li><li>rotação Batalha → Recuperação → Batalha com Plot reservado;</li><li><strong>10% de velocidade adicional</strong> em Germinação, Cultivo e Recuperação.</li></ul></div>
+<div class="card"><h4>Jogador gratuito</h4><ul><li>inicia cada processo;</li><li>realiza os dois cuidados;</li><li>conclui nascimento, colheita ou recuperação;</li><li>inicia manualmente o próximo processo;</li><li>um processo de fazenda já iniciado continua seu tempo mesmo com a sessão fechada; em um checkpoint que exige ação manual, ele apenas aguarda e nada é perdido.</li></ul></div>
+<div class="card good"><h4>Jogador VIP</h4><ul><li>cuidados automáticos, inclusive offline;</li><li>nascimento e revelação automáticos, quando habilitados;</li><li>colheita automática e repetição do mesmo Plano;</li><li>conclusão automática da Recuperação;</li><li>uso automático de Fertilizantes previamente autorizados e disponíveis;</li><li>rotação PvE → Recuperação → PvE com Plot reservado;</li><li><strong>10% de velocidade adicional</strong> em Germinação, Cultivo e Recuperação.</li></ul></div>
 </div>
 <div class="formula">Tempo VIP = Tempo final ÷ 1,10</div>
 <ul>
@@ -1059,6 +1061,7 @@
 </ul>
 
 <h3>7.13 Rotação automática Batalha → Recuperação → Batalha</h3>
+<p>Esta rotação é exclusiva do VIP e existe apenas para uma política PvE ativa. Ela não altera a continuidade offline normal do Farm para jogadores gratuitos.</p>
 <div class="formula">Batalhar → Stamina insuficiente → Finalizar a atividade atual → Retornar ao Plot reservado → Recuperar → Voltar à atividade compatível</div>
 <ul>
 <li>o Plot precisa estar reservado, livre e vinculado ao Bud;</li>
@@ -1066,7 +1069,7 @@
 <li>o Bud não abandona batalha em andamento;</li>
 <li>se o Plot ficar indisponível, a automação pausa;</li>
 <li>o jogador pode desativar o retorno e deixar o Bud no Plot;</li>
-<li>depois de recuperar, o Bud retorna à batalha configurada; ele não inicia Bloom ou Ciclo de Cultivo;</li>
+<li>depois de recuperar, o Bud retorna à política PvE configurada; ele não inicia Bloom ou Ciclo de Cultivo;</li>
 <li>a interface resume o sistema em três escolhas: recuperação automática, Plot reservado e retorno à atividade.</li>
 </ul>
 
@@ -1619,7 +1622,12 @@
 <li>ao perder o benefício, a apresentação retorna imediatamente e suavemente para 1×.</li>
 </ul>
 <h3>9.18 Continuidade offline, autoridade e idempotência</h3>
-<ul><li>fechar o jogo, atualizar a página ou perder conexão não abandona a tentativa;</li><li>a simulação continua no servidor e o jogador recebe o estado atual ou o resultado ao retornar;</li><li>abandono exige ação manual explícita;</li><li>cada tentativa possui ID único;</li><li>Stamina, XP, drops, mortes, retornos e level ups são autoritativos pelo servidor;</li><li>o encerramento é atômico e idempotente;</li><li>reconexão ou repetição de requisição não duplica cobrança, XP, drops ou level ups.</li></ul>
+<p>Esta regra se aplica somente ao <strong>PvE</strong>. O Farm possui sua própria continuidade no Ponto 7 e nunca exige que um jogador gratuito mantenha a sessão aberta.</p>
+<div class="grid">
+<div class="card"><h4>PvE gratuito: sessão online</h4><p>A expedição opera enquanto houver sessão ativa. Fechar a aba, desligar o PC ou perder conexão não conta como abandono: após uma pequena margem técnica, a tentativa ou política pausa com segurança no último estado válido.</p></div>
+<div class="card good"><h4>PvE VIP: expedição offline</h4><p>A política PvE continua autoritativamente no servidor por até <strong>8 horas</strong> mesmo com a sessão fechada. Ao retornar, o jogador recebe um resumo de fases, vitórias, derrotas, XP, drops, Stamina e eventuais desbloqueios.</p></div>
+</div>
+<ul><li>pausar por desconexão, limite offline ou Stamina insuficiente nunca concede derrota, não consome recursos adicionais e não apaga progresso já registrado;</li><li>ao atingir o limite offline VIP, a política pausa com segurança e pode ser retomada pelo jogador;</li><li>abandono exige ação manual explícita;</li><li>cada tentativa possui ID único;</li><li>Stamina, XP, drops, mortes, retornos e level ups são autoritativos pelo servidor;</li><li>o encerramento é atômico e idempotente;</li><li>reconexão ou repetição de requisição não duplica cobrança, XP, drops ou level ups.</li></ul>
 
 <h3>9.19 Bud no Battle Level máximo</h3>
 <ul><li>um Bud no cap continua podendo lutar, carregar outros Buds e obter materiais;</li><li>se possuir peso positivo contra o inimigo, continua participando da divisão da pool;</li><li>a XP destinada a ele é descartada;</li><li>não existe armazenamento de XP excedente no cap;</li><li>usar um Bud no cap não cria uma exceção que aumente artificialmente a XP dos demais.</li></ul>
@@ -1632,26 +1640,39 @@
 
 <section id="pve">
 <span class="tag">Campanha que nunca para</span>
-<span class="review-state rs-provisional">Provisório</span>
+<span class="review-state rs-defined">Definido</span>
 <h2>10. PvE totalmente idle desde a primeira fase</h2>
-<p>Toda fase deve ser repetível, automatizável e capaz de produzir progresso desde o primeiro contato. O mapa não é uma sequência descartável de vitórias únicas: cada fase pode virar local de treino, farm, teste de composição ou avanço automático.</p>
+<p>Toda fase é repetível, automatizável e capaz de produzir progresso desde o primeiro contato. O mapa não é uma sequência descartável de vitórias únicas: cada fase pode virar local de treino, farm, teste de composição ou avanço automático.</p>
+<div class="statement"><strong>O jogador escolhe a intenção da expedição; o jogo executa com honestidade.</strong> A profundidade vem de escolher fase, elenco, formação, elementos e política corretos — não de programar uma árvore de condições.</div>
 <table>
 <thead><tr><th>Modo</th><th>Ao vencer</th><th>Ao perder</th><th>Uso</th></tr></thead>
 <tbody>
-<tr><td><strong>Raiz Firme</strong></td><td>Permanece</td><td>Permanece</td><td>Farm estável de uma fase escolhida.</td></tr>
-<tr><td><strong>Broto em Marcha</strong></td><td>Avança</td><td>Permanece</td><td>Push seguro até encontrar uma parede.</td></tr>
-<tr><td><strong>Recuo Inteligente</strong></td><td>Permanece</td><td>Recua</td><td>Encontra automaticamente uma faixa sustentável.</td></tr>
-<tr><td><strong>Escalada Viva</strong></td><td>Avança</td><td>Recua</td><td>Oscila em torno do limite real da formação.</td></tr>
+<tr><td><strong>Estável</strong></td><td>Repete a fase</td><td>Pausa</td><td>Farm seguro de uma fase escolhida.</td></tr>
+<tr><td><strong>Avançar</strong></td><td>Avança uma fase</td><td>Pausa</td><td>Progresso seguro até encontrar o limite da formação.</td></tr>
+<tr><td><strong>Recuar</strong></td><td>Repete a fase</td><td>Recua uma fase</td><td>Encontra e mantém uma faixa sustentável.</td></tr>
+<tr><td><strong>Adaptativo</strong></td><td>Avança uma fase</td><td>Recua uma fase</td><td>Oscila em torno do limite real da formação.</td></tr>
 </tbody>
 </table>
-<h3>10.1 Regras necessárias</h3>
+<h3>10.1 Regras da política</h3>
 <ul>
-<li>derrota pode conceder progresso menor, evitando tempo completamente perdido;</li>
-<li>recompensas precisam considerar duração, risco e taxa real de vitória;</li>
-<li>o jogador escolhe facilmente quando parar, repetir, subir ou recuar;</li>
-<li>a interface mostra ganho por hora, taxa de vitória e previsão de fadiga;</li>
-<li>fases vencidas continuam úteis para carry e materiais específicos.</li>
+<li>as quatro políticas são gratuitas e disponíveis desde a primeira fase;</li>
+<li>Estável e Avançar pausam na primeira derrota: não desperdiçam Stamina repetindo uma parede já encontrada;</li>
+<li>Recuar e Adaptativo continuam depois de descer, respeitando os limites do mapa;</li>
+<li>na primeira fase, uma derrota que não pode recuar pausa a expedição; no fim absoluto da campanha, uma vitória sem próxima fase disponível pausa como objetivo concluído;</li>
+<li>bosses e novas regiões não criam pausa obrigatória: Avançar e Adaptativo atravessam esses marcos normalmente. O desbloqueio aparece no relatório, sem interromper o idle;</li>
+<li>quando a Stamina de um Bud não basta para a próxima tentativa, a política gratuita pausa. Com VIP e Plot de Recuperação reservado, aplica-se a rotação definida no Ponto 7.</li>
 </ul>
+<h3>10.2 Recompensas e leitura de eficiência</h3>
+<ul>
+<li>derrota, timeout ou abandono seguem integralmente o Ponto 9: XP e drops dos inimigos definitivamente derrotados são preservados; recompensas de conclusão exigem vitória;</li>
+<li>não existe multiplicador oculto de risco, taxa de vitória ou duração;</li>
+<li>a interface exibe resultado real recente: vitórias, derrotas, Stamina gasta, XP por hora, materiais por hora e tempo até a próxima tentativa;</li>
+<li>Stamina substitui qualquer ideia de fadiga. Não existe barra, penalidade ou condição persistente adicional.</li>
+</ul>
+<h3>10.3 Sessão, offline e VIP</h3>
+<p>O PvE gratuito é idle <strong>enquanto online</strong>. O PvE VIP é idle <strong>também offline</strong>, por até 8 horas, com resumo completo no retorno. O 2× VIP acelera somente a apresentação da simulação; regras, consumo, XP, drops e resultados permanecem idênticos.</p>
+<p>O Farm não segue essa restrição: processos agrícolas já iniciados continuam offline para todos, conforme o Ponto 7.</p>
+<div class="statement"><strong>Fácil de começar:</strong> escolha uma fase e um modo. <strong>Difícil de masterizar:</strong> encontre a melhor combinação entre composição, formação, counter, Stamina e eficiência real.</div>
 </section>
 <section id="mapas">
 <span class="tag">Campanha por regiões</span>
@@ -1668,6 +1689,7 @@
 <h3>11.1 Sem proibição de tipos</h3>
 <p>Nenhuma planta será impedida de entrar em uma fase por causa de seu tipo. Um time desfavorável ainda pode vencer por level, itemização, formação ou sinergia. O mapa influencia eficiência; não cria paredes artificiais.</p>
 <div class="statement">O jogador troca a equipe porque a próxima região pede outra resposta — não porque uma tela bloqueou suas plantas.</div>
+<p>Bosses e novas regiões são marcos de descoberta, não bloqueios de automação. Uma política PvE que avança continua atravessando-os; o relatório posterior destaca os desbloqueios para que o jogador avalie o novo ecossistema quando quiser.</p>
 <h3>11.2 Expansão de mapas, caminhos, ligas e materiais</h3>
 <p>A estrutura final de mapas, ligas, caminhos alternativos e tiers ainda será desenhada em um brainstorming próprio. Entretanto, o jogo já deve nascer preparado para se expandir nessas quatro direções:</p>
 <ul>
@@ -2205,6 +2227,8 @@
 </table>
 <p>Custos, limites, escalada de preço, obtenção dos materiais de gameplay e combinações permitidas da Calibração serão fechados no brainstorming específico de itemização e loja de Cash. As regras completas de Síntese, Fusão, Ascensão, pesquisa e desmontagem também permanecem para essa etapa.</p>
 <p>Quais ativos serão negociáveis por moeda local, quais poderão alcançar mercado de valor real e em que momento isso será liberado continuam sujeitos às regras do Documento de Fundação e à validação gradual do MVP.</p>
+<h3>21.3 Transparência da expedição</h3>
+<p>XP por hora, materiais por hora, Stamina gasta e taxa de vitória são leituras de resultado real recente, não multiplicadores ocultos de recompensa. A economia remunera inimigos definitivamente derrotados e conclusões de fase conforme o Ponto 9; a política PvE apenas decide a próxima tentativa.</p>
 </section>
 <section id="mvp">
 <span class="tag">Primeira prova jogável</span>
@@ -2212,7 +2236,7 @@
 <h2>22. O que o protótipo precisa provar</h2>
 <p>O protótipo não precisa conter toda a profundidade do Codex. Ele precisa comprovar que as decisões principais são divertidas antes de multiplicarmos conteúdo.</p>
 <div class="grid">
-<div class="card good"><h3>Entrar cedo</h3><ul><li>formação de sete em 1–2–1–2–1;</li><li>combate automático determinístico;</li><li>Battle Level e Farm Level estruturados para cap 100;</li><li>Battle Level com seis atributos;</li><li>Farm Level com seis atributos;</li><li>separação entre atributos distribuíveis e status derivados;</li><li>raridade e Vigor fixo de 50 a 500;</li><li>dois ou três jardins simples;</li><li>plots elementais;</li><li>planta com vaso visual integrado, Núcleo e Totem;</li><li>nove espécies no Alpha, uma por elemento;</li><li>Basic Attack e Power Move fixos por espécie;</li><li>RNG controlado de Power Move e Desvio Perfeito;</li><li>nove tipos e matriz completa;</li><li>fases idle com quatro comportamentos.</li><li>sementes elementais com resultado individual resolvido apenas no brotar e pool de espécies atual;</li><li>plantio em plots comuns e elementais;</li><li>um conjunto mínimo de água e adubo alterando probabilidades;</li><li>criação do Bud autoritativa e idempotente no servidor durante o brotar;</li></ul></div>
+<div class="card good"><h3>Entrar cedo</h3><ul><li>formação de sete em 1–2–1–2–1;</li><li>combate automático determinístico;</li><li>Battle Level e Farm Level estruturados para cap 100;</li><li>Battle Level com seis atributos;</li><li>Farm Level com seis atributos;</li><li>separação entre atributos distribuíveis e status derivados;</li><li>raridade e Vigor fixo de 50 a 500;</li><li>dois ou três jardins simples;</li><li>plots elementais;</li><li>planta com vaso visual integrado, Núcleo e Totem;</li><li>nove espécies no Alpha, uma por elemento;</li><li>Basic Attack e Power Move fixos por espécie;</li><li>RNG controlado de Power Move e Desvio Perfeito;</li><li>nove tipos e matriz completa;</li><li>políticas PvE Estável, Avançar, Recuar e Adaptativo;</li><li>sessão online gratuita, expedição offline VIP e rotação PvE → Recuperação → PvE com Plot reservado;</li><li>sementes elementais com resultado individual resolvido apenas no brotar e pool de espécies atual;</li><li>plantio em plots comuns e elementais;</li><li>um conjunto mínimo de água e adubo alterando probabilidades;</li><li>criação do Bud autoritativa e idempotente no servidor durante o brotar;</li></ul></div>
 <div class="card danger"><h3>Entrar depois</h3><ul><li>mercado RMT aberto;</li><li>breeding ou genética;</li><li>guildas complexas;</li><li>PvP em tempo real;</li><li>dezenas de mapas;</li><li>múltiplos sistemas de vizinhança;</li><li>cadeia completa de Síntese, Calibração, Fusão e Ascensão;</li><li>toda a ferramenta premium de Calibração;</li><li>todos os assets finais.</li></ul></div>
 </div>
 <h3>22.1 Métricas de verdade</h3>
@@ -2224,6 +2248,8 @@
 <li>sete plantas continuam visualmente legíveis;</li>
 <li>a alocação entre time e jardim gera decisão, não irritação;</li>
 <li>o sistema de tipos é aprendido sem depender de decorar uma planilha.</li>
+<li>o jogador entende os quatro modos PvE sem tutorial longo e reconhece quando encontrou uma fase sustentável;</li>
+<li>o relatório de expedição explica ganhos reais por hora sem esconder multiplicadores de recompensa;</li>
 <li>o plantio cria decisão real sobre plot e insumos sem transformar a melhor receita em escolha automática;</li><li>a revelação do Bud gera expectativa sem parecer manipulada ou opaca;</li><li>jogadores compreendem que bônus alteram probabilidades, mas não garantem resultados;</li></ul>
 </section>
 <section id="decisoes">
@@ -2259,7 +2285,7 @@
 <div class="decision"><div><strong>Planos de Cultivo</strong><p>Alpha parte de Cultivo Básico, Elemental e Regional, com durações de 1h30, 6h e 12h e pools progressivas ligadas ao PvE.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Stamina</strong><p>Somente batalhas consomem Stamina; base 100, custos previsíveis por atividade e recuperação total em até 60 minutos antes de REC e VIP.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Fertilizantes</strong><p>Um por checkpoint e dois por processo; são opcionais, especializados, não garantem resultados e podem ter uso automatizado pelo VIP.</p></div><span class="status s-defined">Definido</span></div>
-<div class="decision"><div><strong>VIP de Cultivo</strong><p>Automatiza etapas offline, Fertilizantes autorizados e rotação de recuperação, além de acelerar os processos em 10%.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Farm offline</strong><p>Processos agrícolas já iniciados continuam offline para todos; o Free realiza cuidados e próximos processos manualmente, enquanto o VIP automatiza etapas, Fertilizantes autorizados e ciclos de Recuperação.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>FP — Farming Power</strong><p>Poder de Cultivo resume produção, qualidade, velocidade, economia, adaptação, recuperação e Stamina sem considerar VIP ou efeitos temporários.</p></div><span class="status s-defined">Definido</span></div>
 
 <div class="decision"><div><strong>Campo canônico e formação</strong><p>Sete posições em 1–2–1–2–1, ocupação livre, corredores e adjacência fixos, sem movimento ou reposicionamento lógico.</p></div><span class="status s-defined">Definido</span></div>
@@ -2277,10 +2303,11 @@
 <div class="decision"><div><strong>Invocações e bosses multifase</strong><p>Invocações não dão XP ou drops; bosses e minibosses só concedem suas recompensas após a derrota definitiva da última fase.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Frenesi e duração PvE</strong><p>Tetos: Normal 4/6 min, Elite 6/8 min e Boss 8/10 min; após o Frenesi, inimigos acumulam +15% dano e +10% Penetração a cada 30 s.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>VIP 2× em tempo real</strong><p>Começa desativado, pode ser alternado durante a batalha e persiste entre tentativas até desativação ou expiração do VIP, sem alterar resultados.</p></div><span class="status s-defined">Definido</span></div>
-<div class="decision"><div><strong>Autoridade da tentativa</strong><p>A batalha continua offline no servidor; cobrança e resultado são atômicos, idempotentes e protegidos contra duplicação.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Sessão e autoridade PvE</strong><p>Free joga PvE enquanto online e pausa com segurança ao desconectar; VIP continua no servidor por até 8 horas. Cobrança e resultado são atômicos, idempotentes e protegidos contra duplicação.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Fronteira PvP</strong><p>Retorno e Rebrota existem somente no PvE; no PvP, Bud derrotado permanece fora até o encerramento.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Formação</strong><p>Sete plantas no desenho 1–2–1–2–1.</p></div><span class="status s-defined">Definido</span></div>
-<div class="decision"><div><strong>PvE</strong><p>Todas as fases são idle, repetíveis e automatizáveis.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Políticas PvE</strong><p>Estável, Avançar, Recuar e Adaptativo são gratuitos desde a primeira fase; a política define somente a próxima fase, enquanto derrota, XP, drops e encerramento seguem o Ponto 9.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Autonomia VIP no PvE</strong><p>Com Plot de Recuperação reservado, o VIP pode executar PvE → Recuperação → PvE automaticamente e usar 2× visual sem alterar resultados.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Mapas</strong><p>Predominâncias elementais incentivam troca sem proibir plantas.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Carry</strong><p>Plantas veteranas podem elevar plantas atrasadas em fases anteriores.</p></div><span class="status s-rule">Regra-base</span></div>
 <div class="decision"><div><strong>Jardins</strong><p>Múltiplos jardins; capacidade de plots cresce com upgrade.</p></div><span class="status s-defined">Definido</span></div>

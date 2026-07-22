@@ -433,7 +433,7 @@
 </div>
 <div class="grid three">
 <div class="card"><h4>Alocar</h4><p>O Jardineiro decide quais Buds entram no esquadrão, quais ocupam plots e quais ficam em recuperação, treinamento ou outras atividades futuras.</p></div>
-<div class="card"><h4>Produzir e batalhar</h4><p>Jardins produzem e recuperam enquanto o esquadrão percorre fases idle e participa do PvP assíncrono. Um mesmo Bud não atua nos dois lados ao mesmo tempo.</p></div>
+<div class="card"><h4>Produzir e batalhar</h4><p>Jardins produzem e recuperam enquanto o esquadrão percorre fases idle. Farm e PvE usam alocação exclusiva; o PvP assíncrono utiliza snapshots e não interrompe essas atividades.</p></div>
 <div class="card"><h4>Coletar</h4><p>O jogador recebe XP, materiais, sementes, insumos, conhecimento, progresso de mapas e resultados competitivos.</p></div>
 <div class="card"><h4>Avaliar</h4><p>Ele identifica gargalos: time travado, Bud atrasado, falta de recurso, plot inadequado, semente promissora ou item que deve ser usado, vendido, guardado ou destruído.</p></div>
 <div class="card"><h4>Desenvolver</h4><p>O valor coletado retorna ao sistema por níveis, atributos, jardins, plots, pesquisa e Forja.</p></div>
@@ -619,7 +619,7 @@
 <h4>5.7.1 Três trilhas complementares</h4>
 <p>A progressão global mistura três fontes de desbloqueio. Elas podem trabalhar em conjunto, mas cumprem papéis diferentes e não devem ser tratadas como substitutas umas das outras.</p>
 <div class="grid">
-<div class="card good"><h4>Nível do Jardineiro</h4><p><strong>Libera estrutura e complexidade.</strong></p><ul><li>novos jardins e aumento de capacidade operacional;</li><li>acesso gradual às operações da Forja;</li><li>mais funções e limites-base do mercado;</li><li>novos tipos de atividade e gestão;</li><li>ferramentas de organização e qualidade de vida.</li></ul></div>
+<div class="card good"><h4>Nível do Jardineiro</h4><p><strong>Libera estrutura e complexidade.</strong></p><ul><li>novas vagas de Plot e melhorias de Infraestrutura de Cultivo;</li><li>acesso gradual às operações da Forja;</li><li>mais funções e limites-base do mercado;</li><li>novos tipos de atividade e gestão;</li><li>ferramentas de organização e qualidade de vida.</li></ul></div>
 <div class="card"><h4>Progressão nos mapas</h4><p><strong>Libera conteúdo do mundo.</strong></p><ul><li>novas regiões, fases e atividades;</li><li>materiais, sementes e ingredientes regionais;</li><li>tipos de plots e recursos avançados;</li><li>famílias de receitas e linhas de pesquisa;</li><li>bosses, minibosses e recompensas específicas.</li></ul></div>
 <div class="card"><h4>VIP</h4><p><strong>Amplia eficiência, capacidade e conforto.</strong></p><ul><li>mais processos simultâneos;</li><li>automações, presets e ferramentas avançadas;</li><li>maior aproveitamento do tempo offline;</li><li>resets adicionais e redução de atrito operacional;</li><li>acelerações controladas sobre sistemas já desbloqueados.</li></ul></div>
 </div>
@@ -628,7 +628,7 @@
 <table>
 <thead><tr><th>Fonte</th><th>Responsabilidade</th><th>Exemplo prático</th></tr></thead>
 <tbody>
-<tr><td><strong>Nível do Jardineiro</strong></td><td>Libera o sistema ou sua capacidade estrutural.</td><td>O nível permite usar Fusão, abrir outro jardim ou ampliar um limite-base.</td></tr>
+<tr><td><strong>Nível do Jardineiro</strong></td><td>Libera o sistema ou sua capacidade estrutural.</td><td>O nível permite usar Fusão, abrir novas vagas de Plot ou ampliar um limite-base.</td></tr>
 <tr><td><strong>Mapas</strong></td><td>Libera o conteúdo que alimenta o sistema.</td><td>Uma região ou boss libera materiais e uma família específica de Núcleos.</td></tr>
 <tr><td><strong>VIP</strong></td><td>Melhora a operação do que já foi liberado.</td><td>Adiciona uma fila, um preset ou reduz o tempo de um processo acessível.</td></tr>
 </tbody>
@@ -640,7 +640,7 @@
 <p>Alguns recursos podem permanecer exclusivos do VIP porque ampliam a operação sem remover do jogador gratuito o acesso ao conteúdo principal:</p>
 <ul>
 <li>filas adicionais de germinação, recuperação, pesquisa ou Forja;</li>
-<li>mais presets de esquadrão e automações avançadas;</li><li>controle opcional de simulação PvE em 2×, alternável em tempo real enquanto o VIP estiver ativo;</li>
+<li>sete presets PvE e sete snapshots PvP salvos, contra três de cada para o jogador gratuito;</li><li>controle opcional de simulação PvE em 2×, alternável em tempo real enquanto o VIP estiver ativo;</li>
 <li>progresso PvE offline por até <strong>8 horas</strong>, com resumo ao retornar;</li>
 <li>mais slots simultâneos de venda no marketplace;</li>
 <li>filtros, organização e ferramentas avançadas de gestão;</li>
@@ -672,7 +672,7 @@
 <div class="statement"><strong>Sem VIP, o jogo funciona por inteiro. Com VIP, a operação fica significativamente mais rápida, ampla e confortável.</strong></div>
 
 <h4>5.7.6 O que permanece para balanceamento</h4>
-<p>A estrutura está definida. Permanecem em aberto apenas os números e a distribuição concreta: curva e fontes de XP, cap do Nível do Jardineiro, ordem exata dos desbloqueios, quantidade de filas e presets, duração offline, percentuais de aceleração e eventuais variações por temporada.</p>
+<p>A estrutura está definida. Permanecem em aberto apenas os números e a distribuição concreta: curva e fontes de XP, cap do Nível do Jardineiro, ordem exata dos desbloqueios, quantidade de filas, duração offline, percentuais de aceleração e eventuais variações por temporada.</p>
 </section>
 <section id="battle-level">
 <span class="tag red">Battle Level</span>
@@ -1090,17 +1090,19 @@
 <li>a combinação foi desenhada para um VIP de baixo preço, com teto comercial atualmente desejado de <strong>R$ 9,99</strong>.</li>
 </ul>
 
-<h3>7.13 Rotação automática Batalha → Recuperação → Batalha</h3>
-<p>Esta rotação é exclusiva do VIP e existe apenas para uma política PvE ativa. Ela não altera a continuidade offline normal do Farm para jogadores gratuitos.</p>
-<div class="formula">Batalhar → Stamina insuficiente → Finalizar a atividade atual → Retornar ao Plot reservado → Recuperar → Voltar à atividade compatível</div>
+<h3>7.13 Presets, reserva de Plot e retorno do PvE</h3>
+<p>Presets PvE são composições salvas, não alocações. O jogador gratuito possui três; o VIP possui sete. Um mesmo Bud pode constar em vários presets, e salvar ou editar um preset não bloqueia Bud, Plot ou Stamina.</p>
+<div class="formula">Selecionar time PvE → Validar 1–7 Buds e seus Plots vinculados → Reservar Plots → Batalhar → Retornar → Recuperar</div>
 <ul>
-<li>o Plot precisa estar reservado, livre e vinculado ao Bud;</li>
-<li>um Plot reservado não pode germinar, cultivar ou receber outro Bud;</li>
-<li>o Bud não abandona batalha em andamento;</li>
-<li>se o Plot ficar indisponível, a automação pausa;</li>
-<li>o jogador pode desativar o retorno e deixar o Bud no Plot;</li>
-<li>depois de recuperar, o Bud retorna à política PvE configurada; ele não inicia Bloom ou Ciclo de Cultivo;</li>
-<li>a interface resume o sistema em três escolhas: recuperação automática, Plot reservado e retorno à atividade.</li>
+<li>somente o time PvE selecionado se torna ativo e aplica alocação exclusiva;</li>
+<li>cada Bud ativo precisa estar vinculado a um Plot livre; um time de um a sete Buds reserva a mesma quantidade de Plots enquanto permanecer em atividade PvE;</li>
+<li>um processo já ativo precisa terminar ou ser cancelado por sua regra antes que o Plot possa ser reservado;</li>
+<li>Plot reservado não pode Germinar, Cultivar, Recuperar outro Bud nem ser movido;</li>
+<li>integrantes e posições podem ser trocados livremente entre tentativas, nunca durante uma batalha em andamento;</li>
+<li>no Free, pausa, troca ou Stamina insuficiente exigem a ação manual <strong>Retornar e Recuperar</strong> para enviar os Buds aos Plots e iniciar Recuperação;</li>
+<li>no VIP, a rotação PvE → Recuperação → PvE pode executar retorno, cuidados, conclusão e retomada automaticamente quando habilitada;</li>
+<li>o Bud não abandona batalha em andamento; falha de vínculo, Plot ocupado ou configuração inválida pausa a automação com diagnóstico claro;</li>
+<li>PvP usa snapshots separados e nunca cria, remove ou altera essa reserva de Plot.</li>
 </ul>
 
 <h3>7.14 FP — Farming Power / Poder de Cultivo</h3>
@@ -1762,7 +1764,7 @@
 <li>Recuar e Adaptativo continuam depois de descer, respeitando os limites do mapa;</li>
 <li>na primeira fase, uma derrota que não pode recuar pausa a expedição; no fim absoluto da campanha, uma vitória sem próxima fase disponível pausa como objetivo concluído;</li>
 <li>bosses e novas regiões não criam pausa obrigatória: Avançar e Adaptativo atravessam esses marcos normalmente. O desbloqueio aparece no relatório, sem interromper o idle;</li>
-<li>quando a Stamina de um Bud não basta para a próxima tentativa, a política gratuita pausa. Com VIP e Plot de Recuperação reservado, aplica-se a rotação definida no Ponto 7.</li>
+<li>quando a Stamina de um Bud não basta para a próxima tentativa, a política gratuita pausa e aguarda a ação Retornar e Recuperar. Com VIP, aplica-se a rotação automática opcional definida no Ponto 7.</li>
 </ul>
 <h3>10.2 Recompensas e leitura de eficiência</h3>
 <ul>
@@ -1921,15 +1923,22 @@
 <div class="layer"><b>Bud</b><p>Personagem persistente com espécie, elemento, níveis, atributos, Núcleo Arcano e Totem.</p></div>
 </div>
 <h3>13.1 Jardim</h3>
+<div class="grid three">
+<div class="card good"><div class="metric">1</div><div class="metric-label">Jardim principal</div></div>
+<div class="card blue"><div class="metric">3</div><div class="metric-label">Plots iniciais</div></div>
+<div class="card violet"><div class="metric">49</div><div class="metric-label">Plots no cap, em grade 7×7</div></div>
+</div>
 <ul>
 <li>a conta começa com <strong>um Jardim e três Plots</strong>;</li>
-<li>novos Jardins e novas vagas de Plot são liberados pelo Nível do Jardineiro;</li>
+<li>o Nível do Jardineiro libera novas vagas até o cap inicial de <strong>49 Plots</strong>;</li>
+<li>existe um único Jardim de gameplay; novas áreas visuais futuras não criam capacidade, elemento ou bônus próprios;</li>
 <li>o Jardim não altera combate, Farm XP, qualidade, velocidade, afinidade ou resultados de um Bud;</li>
 <li>não existe especialização permanente de Jardim no Alpha: sua identidade visual e funcional vem dos Plots instalados e dos processos em execução;</li>
 <li>irrigação, reservatórios e melhorias de velocidade pertencem à <strong>Infraestrutura de Cultivo da conta</strong>, não a um Jardim específico;</li>
-<li>limites máximos, custos e curva de expansão permanecem para balanceamento.</li>
+<li>custos, níveis e ordem exata das 46 expansões permanecem para balanceamento.</li>
 </ul>
-<p>Infraestrutura de Cultivo é uma progressão gratuita de conta: requer Nível do Jardineiro e materiais do jogo, acelera processos temporizados e alcança <strong>+30%</strong> de velocidade operacional na configuração inicial. Ela é compartilhada por todos os Jardins, soma-se ao +10% VIP e não concede poder de batalha.</p>
+<p>Infraestrutura de Cultivo é uma progressão gratuita de conta: requer Nível do Jardineiro e materiais do jogo, acelera processos temporizados e alcança <strong>+30%</strong> de velocidade operacional na configuração inicial. Ela alcança todos os Plots, soma-se ao +10% VIP e não concede poder de batalha.</p>
+<div class="statement"><strong>Plot limita trabalho simultâneo, não coleção.</strong> Buds sem Plot permanecem no elenco da conta e podem ser organizados, negociados ou usados em presets. A coleção não possui cap prático visível na primeira fase do jogo.</div>
 <h3>13.2 Plot</h3>
 <p>Cada Plot ocupa exatamente uma vaga de Jardim e recebe uma única semente em Germinação ou um único Bud alocado. Ele afeta exclusivamente o processo que ocorre nele: Germinação, Cultivo ou Recuperação de Stamina.</p>
 <ul><li>Plot Simples é o baseline neutro, sem afinidade elemental;</li><li>Plots elementais aplicam a Matriz de Afinidade de Cultivo definida no Ponto 7; a afinidade pode deslocar probabilidades de nascimento e a produtividade do Cultivo, sem bloquear espécies nem garantir resultados;</li>
@@ -1941,14 +1950,15 @@
 <div class="card good"><strong>Liberdade acima de bloqueio:</strong><p>O jogo permite escolhas ruins, emergenciais e experimentais. O sistema mostra a consequência; não esconde o botão.</p></div>
 <h3>13.3 Alocação, movimentação e integridade</h3>
 <ul>
-<li>Plots pertencem à infraestrutura da conta e podem ser instalados em qualquer Jardim com vaga livre;</li>
-<li>um Bud ou Plot livre pode ser movido sem custo entre Jardins; a movimentação não redefine seus dados, níveis, afinidade, qualidade ou raridade;</li>
+<li>Plots pertencem à infraestrutura da conta e ocupam posições reorganizáveis dentro da grade 7×7;</li>
+<li>um Bud ou Plot livre pode ser reposicionado sem custo; a movimentação não redefine dados, níveis, afinidade, qualidade ou raridade;</li>
 <li>Germinação, Cultivo e Recuperação ficam vinculados ao Plot até concluir, pausar ou serem cancelados pelas regras do processo;</li>
-<li>um Bud em processo ativo, PvE em andamento ou formação ativa não pode ser realocado para contornar alocação exclusiva;</li>
-<li>um Plot reservado para a rotação VIP PvE → Recuperação → PvE continua indisponível para os demais processos;</li>
+<li>um Bud em processo ativo ou PvE em andamento não pode ser realocado para contornar alocação exclusiva;</li>
+<li>ativar um time PvE reserva um Plot vinculado por Bud, até sete; cada reserva permanece indisponível para os demais processos até o retorno;</li>
+<li>presets PvE e snapshots PvP não criam reserva; somente a atividade PvE real trava Buds e Plots;</li>
 <li>negociabilidade de Plots, caso exista, será definida com o mercado; este ponto não presume que sejam negociáveis.</li>
 </ul>
-<p>Farm continua offline para todos após o processo começar. Cuidados manuais, automação VIP, Fertilizantes e a rotação de Recuperação obedecem ao Ponto 7; Jardim e Plot não criam uma segunda regra para esses sistemas.</p>
+<p>Farm continua offline para todos após o processo começar. Cuidados manuais, automação VIP, Fertilizantes, presets e retorno do PvE obedecem ao Ponto 7; Jardim e Plot não criam uma segunda regra para esses sistemas.</p>
 </section><section id="nascimento">
 <span class="tag blue">Cultivo, descoberta e segurança</span>
 <span class="review-state rs-validation">Em validação</span>
@@ -2271,32 +2281,42 @@
 <table>
 <thead><tr><th>Estado</th><th>O que faz</th><th>O que não faz</th></tr></thead>
 <tbody>
-<tr><td><strong>Equipe ativa</strong></td><td>Participa de PvE e representa o jogador no PvP.</td><td>Não ocupa plot nem produz no jardim.</td></tr>
+<tr><td><strong>Equipe PvE ativa</strong></td><td>Participa de PvE e mantém seu Plot vinculado reservado.</td><td>Não produz nem recupera enquanto estiver em atividade.</td></tr>
 <tr><td><strong>Farmando</strong></td><td>Gera recursos e Farm XP.</td><td>Não luta nem recupera em velocidade máxima.</td></tr>
 <tr><td><strong>Recuperando</strong></td><td>Restaura Stamina no Plot e prepara o Bud para voltar às batalhas.</td><td>Não produz recursos relevantes.</td></tr>
 <tr><td><strong>Treinando</strong></td><td>Ganha progresso direcionado.</td><td>Não participa da formação ativa.</td></tr>
 <tr><td><strong>Processo especial</strong></td><td>Treinamento especial, ritual, reset, Calibração ou outra atividade de sistema.</td><td>Fica indisponível até conclusão.</td></tr>
 </tbody>
 </table>
+<p>Constar em preset PvE ou snapshot PvP não é estado operacional e pode coexistir com Farm, Recuperação ou outro preset. A alocação exclusiva começa somente quando o time PvE é realmente ativado.</p>
 <p>Trocas devem ser claras e rápidas, mas podem respeitar cooldowns ou compromissos quando houver risco econômico. O jogo deve mostrar sempre onde o Bud está e quando voltará a ficar disponível.</p>
 </section>
 <section id="pvp">
 <span class="tag red">Competição assíncrona</span>
 <span class="review-state rs-provisional">Provisório</span>
 <h2>19. PvP assíncrono</h2>
-<div class="statement" data-canonical="pvp-formation-role"><strong>Não existe formação defensiva separada.</strong> A formação ativa do jogador é simultaneamente sua formação de ataque e de defesa.</div>
+<div class="statement" data-canonical="pvp-formation-role"><strong>PvP usa snapshots próprios.</strong> Eles são composições salvas e resolvidas pelo servidor, sem reservar Bud, Plot ou Stamina e sem interromper Farm ou PvE.</div>
 <ul data-canonical="pvp-asynchronous-scope">
 <li>o PvP assíncrono existe para farm e teste de composição;</li>
 <li>o PvP assíncrono não gera ranking;</li>
 <li>o PvP com ranking não pode ser assíncrono;</li>
 <li>o formato do PvP ranqueado será definido na revisão específica do sistema.</li>
 </ul>
-<p>A formação ativa do jogador também funciona como defesa. Não será necessário montar outra equipe e prender mais sete Buds em uma segunda composição.</p>
+<h3>19.1 Slots e snapshot ativo</h3>
 <ul>
-<li>o servidor registra um snapshot válido da formação ativa;</li>
+<li>o jogador gratuito salva até <strong>três snapshots PvP</strong>; o VIP salva até <strong>sete</strong>;</li>
+<li>somente um snapshot fica ativo como defesa por vez;</li>
+<li>os demais são composições salvas para troca rápida e podem ser escolhidos em ataques sem substituir automaticamente a defesa;</li>
+<li>um mesmo Bud pode aparecer em vários snapshots PvP e presets PvE, inclusive simultaneamente;</li>
+<li>cada composição aceita de um a sete Buds individuais válidos e não permite repetir o mesmo espécime dentro do próprio time.</li>
+</ul>
+<h3>19.2 Independência operacional</h3>
+<ul>
+<li>salvar, editar ou ativar snapshot não remove Bud do Jardim, não bloqueia Plot, não consome Stamina e não altera presets PvE;</li>
+<li>o servidor registra versão autoritativa da formação, posições, build e status válidos dos Buds escalados;</li>
 <li>o combate é resolvido pelo mesmo game core do PvE;</li>
 <li>o defensor não precisa estar online;</li>
-<li>mudanças na formação atualizam o snapshot conforme regras de cooldown;</li>
+<li>mudanças posteriores no Bud real só alcançam o snapshot quando ele for atualizado, respeitando o cooldown de atualização;</li>
 <li>o resultado oficial nunca é decidido pelo cliente;</li>
 <li>replays permitem entender derrota, meta e bugs.</li>
 </ul>
@@ -2361,7 +2381,7 @@
 <h2>22. O que o protótipo precisa provar</h2>
 <p>O protótipo não precisa conter toda a profundidade do Codex. Ele precisa comprovar que as decisões principais são divertidas antes de multiplicarmos conteúdo.</p>
 <div class="grid">
-<div class="card good"><h3>Entrar cedo</h3><ul><li>formação de sete em 1–2–1–2–1;</li><li>combate automático determinístico;</li><li>Battle Level e Farm Level estruturados para cap 100;</li><li>Battle Level com seis atributos;</li><li>Farm Level com seis atributos;</li><li>separação entre atributos distribuíveis e status derivados;</li><li>raridade e Vigor fixo de 50 a 500;</li><li>um Jardim inicial com três Plots;</li><li>Plots elementais;</li><li>Bud, Núcleo e Totem;</li><li>nove espécies no Alpha, uma por elemento;</li><li>Basic Attack e Power Move fixos por espécie;</li><li>RNG controlado de Power Move e Desvio Perfeito;</li><li>nove tipos e matriz completa;</li><li>políticas PvE Estável, Avançar, Recuar e Adaptativo;</li><li>sessão online gratuita, expedição offline VIP e rotação PvE → Recuperação → PvE com Plot reservado;</li><li>sementes elementais com resultado individual resolvido apenas no brotar e pool de espécies atual;</li><li>plantio em Plots comuns e elementais;</li><li>um conjunto mínimo de água e adubo alterando probabilidades;</li><li>criação do Bud autoritativa e idempotente no servidor durante o brotar;</li></ul></div>
+<div class="card good"><h3>Entrar cedo</h3><ul><li>formação de sete em 1–2–1–2–1;</li><li>combate automático determinístico;</li><li>Battle Level e Farm Level estruturados para cap 100;</li><li>Battle Level com seis atributos;</li><li>Farm Level com seis atributos;</li><li>separação entre atributos distribuíveis e status derivados;</li><li>raridade e Vigor fixo de 50 a 500;</li><li>um Jardim 7×7, começando com três Plots e preparado para 49;</li><li>Plots elementais;</li><li>Bud, Núcleo e Totem;</li><li>nove espécies no Alpha, uma por elemento;</li><li>Basic Attack e Power Move fixos por espécie;</li><li>RNG controlado de Power Move e Desvio Perfeito;</li><li>nove tipos e matriz completa;</li><li>três presets PvE e três snapshots PvP no Free, escaláveis para sete com VIP;</li><li>reserva de um Plot por Bud somente pelo time PvE ativo;</li><li>políticas PvE Estável, Avançar, Recuar e Adaptativo;</li><li>sessão online gratuita, expedição offline VIP e rotação PvE → Recuperação → PvE;</li><li>sementes elementais com resultado individual resolvido apenas no brotar e pool de espécies atual;</li><li>plantio em Plots comuns e elementais;</li><li>um conjunto mínimo de água e adubo alterando probabilidades;</li><li>criação do Bud autoritativa e idempotente no servidor durante o brotar;</li></ul></div>
 <div class="card danger"><h3>Entrar depois</h3><ul><li>mercado RMT aberto;</li><li>breeding ou genética;</li><li>guildas complexas;</li><li>PvP em tempo real;</li><li>dezenas de mapas;</li><li>múltiplos sistemas de vizinhança;</li><li>cadeia completa de Síntese, Calibração, Fusão e Ascensão;</li><li>toda a ferramenta premium de Calibração;</li><li>todos os assets finais.</li></ul></div>
 </div>
 <h3>22.1 Métricas de verdade</h3>
@@ -2374,6 +2394,7 @@
 <li>a alocação entre time e jardim gera decisão, não irritação;</li>
 <li>o sistema de tipos é aprendido sem depender de decorar uma planilha.</li>
 <li>o jogador entende os quatro modos PvE sem tutorial longo e reconhece quando encontrou uma fase sustentável;</li>
+<li>presets e snapshots permitem trocar composições sem bloquear coleção, Farm ou PvP indevidamente;</li>
 <li>o relatório de expedição explica ganhos reais por hora sem esconder multiplicadores de recompensa;</li>
 <li>o plantio cria decisão real sobre plot e insumos sem transformar a melhor receita em escolha automática;</li><li>a revelação do Bud gera expectativa sem parecer manipulada ou opaca;</li><li>jogadores compreendem que bônus alteram probabilidades, mas não garantem resultados;</li></ul>
 </section>
@@ -2432,11 +2453,12 @@
 <div class="decision"><div><strong>Fronteira PvP</strong><p>Retorno e Rebrota existem somente no PvE; no PvP, Bud derrotado permanece fora até o encerramento.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Formação</strong><p>Sete Buds no desenho 1–2–1–2–1.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Políticas PvE</strong><p>Estável, Avançar, Recuar e Adaptativo são gratuitos desde a primeira fase; a política define somente a próxima fase, enquanto derrota, XP, drops e encerramento seguem o Ponto 9.</p></div><span class="status s-defined">Definido</span></div>
-<div class="decision"><div><strong>Autonomia VIP no PvE</strong><p>Com Plot de Recuperação reservado, o VIP pode executar PvE → Recuperação → PvE automaticamente e usar 2× visual sem alterar resultados.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Autonomia VIP no PvE</strong><p>Um Plot vinculado fica reservado por Bud do time PvE ativo; no Free, retorno e Recuperação são manuais. VIP pode automatizar PvE → Recuperação → PvE e usar 2× visual sem alterar resultados.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Campanha de mapas</strong><p>14 mapas e 139 fases: Inicial → 9 específicos → 3 mistos → Convergência Elemental. Mapas regulares possuem oito fases principais, uma nona normal ou Elite obrigatória e um boss; os mistos liberam ao concluir seus três específicos e a Convergência encerra com nove bosses fortalecidos em sequência.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Tipos e counters</strong><p>Nove elementos em matriz simétrica; multiplicadores afetam somente dano ofensivo. Neutro não é elemento, e inimigos possuem no máximo um elemento ativo.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Carry</strong><p>Buds veteranos podem elevar Buds atrasados em fases anteriores.</p></div><span class="status s-rule">Regra-base</span></div>
-<div class="decision"><div><strong>Jardins e Plots</strong><p>A conta começa com um Jardim e três Plots; Jardins organizam Plots, sem bônus próprios. Plots afetam apenas processos locais, e expansão vem do Nível do Jardineiro.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Jardim e Plots</strong><p>Um Jardim principal em grade 7×7 começa com três Plots e expande até 49. Plots limitam processos simultâneos, nunca coleção, presets ou snapshots.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Presets e snapshots</strong><p>Free salva três presets PvE e três snapshots PvP; VIP salva sete de cada. Apenas o time PvE ativo reserva Buds e Plots; um único snapshot PvP fica ativo como defesa.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Infraestrutura de Cultivo</strong><p>Progressão gratuita de conta fornece até +30% de velocidade operacional; VIP soma +10%, para máximo inicial de 1,40× em processos autorizados, nunca no PvE real.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Attachments</strong><p>Apenas Núcleo Arcano e Totem são equipáveis e possuem raridade própria.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Origem dos attachments</strong><p>Núcleos e Totens completos nunca são drops; todos nascem por Síntese.</p></div><span class="status s-defined">Definido</span></div>
@@ -2450,8 +2472,8 @@
 <div class="decision"><div><strong>Reroll</strong><p>Todos os atributos e passivas podem ser rerrolados; não existe hierarquia principal/secundária.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Primeira tentativa</strong><p>Cada Bud possui uma rerrolagem gratuita por categoria antes do consumo de reagente premium.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Ponte Cash–Gold</strong><p>Reagentes de Cash podem ser vendidos por jogadores no marketplace em Gold.</p></div><span class="status s-defined">Definido</span></div>
-<div class="decision"><div><strong>Alocação</strong><p>Bud no time não fica simultaneamente no Jardim; processos ativos ficam vinculados ao Plot até seu encerramento.</p></div><span class="status s-defined">Definido</span></div>
-<div class="decision"><div><strong>PvP</strong><p>A formação ativa também representa a defesa assíncrona.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Alocação</strong><p>O time PvE ativo reserva um Plot por Bud, até sete; processos ativos ficam presos ao Plot até encerrar. Presets e snapshots salvos não criam alocação.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>PvP</strong><p>Snapshots próprios são independentes de Farm, Stamina e PvE; o servidor mantém um snapshot defensivo ativo, atualizado sob cooldown.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Tipos</strong><p>Nove afinidades com matriz rigorosamente simétrica.</p></div><span class="status s-rule">Proposta-base</span></div>
 <div class="decision"><div><strong>Wiki</strong><p>Informação essencial no jogo e profundidade em wiki externa.</p></div><span class="status s-defined">Definido</span></div>
 </div>
@@ -2479,7 +2501,7 @@
 <li><strong>Desmontagem:</strong> materiais elegíveis, exceções, arredondamentos e percentuais definitivos de jogador normal e VIP.</li>
 <li><strong>Reroll:</strong> custos, escalada, limites, materiais de gameplay e nomes definitivos dos reagentes de Cash.</li>
 <li><strong>Tipos:</strong> calibração dos multiplicadores no simulador, lore e nomes definitivos.</li>
-<li><strong>Jardins:</strong> quantidade máxima, custos e curvas de expansão, além dos tiers e requisitos da Infraestrutura de Cultivo.</li>
+<li><strong>Jardim:</strong> custos, níveis e curva das 46 expansões de Plot, além dos tiers e requisitos da Infraestrutura de Cultivo.</li>
 <li><strong>Conteúdo de Plots e Cultivo:</strong> mapeamento final da Matriz de Afinidade, qualidade, raridade, pools, quantidades, receitas, requisitos regionais, coeficientes K e normalização visual do FP.</li>
 
 <li><strong>PvP:</strong> ligas, energia, matchmaking, replays e recompensas.</li>

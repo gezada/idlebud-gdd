@@ -95,7 +95,7 @@ DOCS = [
         "label": "GDD",
         "description": "The living source of truth for Idle Bud's systems, rules, progression and gameplay decisions.",
         "href": "./gdd/",
-        "status": "Available · v15",
+        "status": "Available · v17",
         "live": True,
         "icon": "G",
     },
@@ -230,8 +230,9 @@ def repair_gdd_navigation(gdd_path: Path) -> None:
         if point is not None:
             section_ids[point] = id_match.group("id")
 
-    if section_ids.get(8) != "pve-training":
-        raise RuntimeError("Point 8 section id was not resolved as #pve-training.")
+    expected_points = set(range(1, 25))
+    if set(section_ids) != expected_points:
+        raise RuntimeError(f"Top-level GDD sections are invalid: {sorted(section_ids)}")
 
     clickable_pattern = re.compile(
         r"<(?P<tag>a|button)\b(?P<attrs>[^>]*)>(?P<body>.*?)</(?P=tag)>",
@@ -276,7 +277,7 @@ def repair_gdd_navigation(gdd_path: Path) -> None:
 
     text = clickable_pattern.sub(repair_clickable, text)
 
-    missing_buttons = sorted(set(range(1, 9)) - seen_point_buttons)
+    missing_buttons = sorted(expected_points - seen_point_buttons)
     if missing_buttons:
         raise RuntimeError(f"Top-level GDD navigation buttons not found: {missing_buttons}")
 
@@ -297,9 +298,8 @@ def repair_gdd_navigation(gdd_path: Path) -> None:
     if broken:
         raise RuntimeError(f"Broken internal GDD anchors after repair: {broken}")
 
-    point8_links = [target for point, _, target in rewrites if point == 8]
-    if "#pve-training" not in text and not point8_links:
-        raise RuntimeError("Point 8 navigation was not linked to #pve-training.")
+    if "#pve-training" not in text:
+        raise RuntimeError("A seção de treinamento PvE não foi encontrada.")
 
     marker = "<!-- gdd-navigation-validated -->"
     if marker not in text:

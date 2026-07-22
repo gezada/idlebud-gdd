@@ -30,6 +30,30 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # The readable v17 source is the only published GDD input.
+          python3 -m py_compile scripts/build_site.py scripts/build_docs_portal.py
+          python3 scripts/build_site.py _site
+          cmp gdd-source/index.html _site/gdd/index.html
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          gdd = Path('_site/gdd/index.html').read_text(encoding='utf-8')
+          portal = Path('_site/index.html').read_text(encoding='utf-8')
+          assert 'Game Design Document · v17' in gdd
+          assert '<title>Idle Bud — Game Design Document v17</title>' in gdd
+          assert 'Idle Bud — Game Design Document v17</footer>' in gdd
+          assert 'Available · v17' in portal
+          headings = re.findall(r'<h2>\s*(\d+)\.\s*.*?</h2>', gdd, re.S)
+          assert headings == [str(n) for n in range(1, 25)]
+          ids = re.findall(r'\bid=["\']([^"\']+)["\']', gdd)
+          assert len(ids) == len(set(ids))
+          targets = re.findall(r'href=["\']#([^"\']+)["\']', gdd)
+          assert set(targets) <= set(ids)
+          assert gdd.count('id="battlefield-formation"') == 1
+          assert gdd.count('id="pve-training"') == 1
+          PY
+          exit 0
           mkdir -p _site/gdd /tmp/gdd-build
           cat payload/*.txt \
             | tr -d '\n\r\t ' \

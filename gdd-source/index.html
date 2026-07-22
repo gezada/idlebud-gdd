@@ -1775,30 +1775,43 @@
 </section>
 <section id="mapas">
 <span class="tag">Campanha por regiões</span>
-<span class="review-state rs-provisional">Provisório</span>
-<h2>11. Mapas, fases e troca natural de elenco</h2>
-<p>A campanha deve lembrar a sensação de progressão por regiões de jogos como Grand Chase: mapas visuais, sequências de fases, identidade clara, chefes e mudança de ecossistema. A referência é estrutural, não uma cópia de combate ou propriedade intelectual.</p>
-<div class="timeline">
-<div class="step"><h4>Região</h4><p>Um bioma, narrativa, duas predominâncias elementais e uma identidade de inimigos.</p></div>
-<div class="step"><h4>Fases</h4><p>Aproximadamente dez etapas capazes de sustentar a mesma composição por um período coerente.</p></div>
-<div class="step"><h4>Elites e desvios</h4><p>Rotas opcionais, materiais especiais e desafios de função.</p></div>
-<div class="step"><h4>Chefe</h4><p>Valida compreensão do mapa e força o jogador a ajustar algo além do level bruto.</p></div>
-<div class="step"><h4>Próxima região</h4><p>Novas predominâncias tornam desejável substituir parte do time.</p></div>
+<span class="review-state rs-defined">Definido</span>
+<h2>11. Mapas, fases e progressão de elenco</h2>
+<p>A campanha é uma trilha de domínio elemental: começa legível, ensina um problema por vez e termina exigindo leitura ampla de composição, formação, counter e eficiência. A referência a campanhas por regiões, fases e chefes é estrutural; Idle Bud preserva seu próprio combate e identidade.</p>
+<div class="grid four">
+<div class="card good"><div class="metric">14</div><div class="metric-label">mapas na campanha inicial</div></div>
+<div class="card blue"><div class="metric">140</div><div class="metric-label">fases no total</div></div>
+<div class="card"><div class="metric">10</div><div class="metric-label">fases por mapa</div></div>
+<div class="card violet"><div class="metric">1 → 9 → 3 → 1</div><div class="metric-label">inicial, específicos, mistos e final</div></div>
 </div>
-<h3>11.1 Sem proibição de tipos</h3>
-<p>Nenhuma planta será impedida de entrar em uma fase por causa de seu tipo. Um time desfavorável ainda pode vencer por level, itemização, formação ou sinergia. O mapa influencia eficiência; não cria paredes artificiais.</p>
-<div class="statement">O jogador troca a equipe porque a próxima região pede outra resposta — não porque uma tela bloqueou suas plantas.</div>
-<p>Bosses e novas regiões são marcos de descoberta, não bloqueios de automação. Uma política PvE que avança continua atravessando-os; o relatório posterior destaca os desbloqueios para que o jogador avalie o novo ecossistema quando quiser.</p>
-<h3>11.2 Expansão de mapas, caminhos, ligas e materiais</h3>
-<p>A estrutura final de mapas, ligas, caminhos alternativos e tiers ainda será desenhada em um brainstorming próprio. Entretanto, o jogo já deve nascer preparado para se expandir nessas quatro direções:</p>
+<div class="timeline">
+<div class="step"><h4>Inicial</h4><p>Um mapa fácil apresenta inimigos comuns e introduz os nove elementos aos poucos.</p></div>
+<div class="step"><h4>Específicos</h4><p>Nove mapas intermediários, um por elemento, transformam counter e elenco em aprendizado prático.</p></div>
+<div class="step"><h4>Mistos</h4><p>Três mapas difíceis combinam três elementos predominantes e validam domínio de composição.</p></div>
+<div class="step"><h4>Convergência Elemental</h4><p>O mapa final reúne os nove elementos ao longo da jornada e conclui a campanha.</p></div>
+</div>
+<h3>11.1 Estrutura fixa de cada mapa</h3>
+<p>Todo mapa possui dez fases. As fases 1 a 8 são principais. A fase 9 é uma fase principal normal ou uma Elite obrigatória. A fase 10 é o boss. Elites e bosses podem aparecer com ou sem lacaios, conforme a identidade do encontro.</p>
+<div class="statement"><strong>Elite não é desvio opcional para o jogador.</strong> Quando um mapa possuir Elite, ela ocupa a nona fase e precisa ser vencida para alcançar o boss; quando não possuir, a nona fase é principal.</div>
+<p>O boss valida o entendimento do mapa sem criar uma parede artificial. A primeira vitória libera o próximo conteúdo e concede Conhecimento; repetições rendem componentes de boss. A lista exata de bosses, lacaios, drops e quantidades pertence ao Bestiário e ao balanceamento posterior.</p>
+<h3>11.2 Ordem, desbloqueios e dificuldade</h3>
+<p>Depois de concluir o mapa inicial, os nove mapas específicos ficam disponíveis para que o jogador escolha por qual elemento deseja aprender. Eles são intermediários: ainda há inimigos comuns, mas o elemento do mapa é a ameaça dominante e o foco da solução.</p>
+<p>Cada mapa misto está associado a três mapas específicos. Ele é liberado assim que os três específicos correspondentes forem concluídos. Os mistos são difíceis e possuem três elementos inimigos predominantes: dois criam pressão de counter e o terceiro complementa a combinação. Isso pede repertório de elenco, sem impor um Bud ou tipo específico.</p>
+<p>Ao vencer os três mapas mistos, o jogador desbloqueia a <strong>Convergência Elemental</strong>. Esse mapa final é a prova de maestria: todos os nove elementos são distribuídos pelas suas dez fases e pelo desafio do boss, sem concentrar os nove em uma única batalha confusa.</p>
+<div class="statement"><strong>Fácil de começar, difícil de masterizar:</strong> primeiro aprende-se cada elemento isoladamente; depois, aprende-se a responder a combinações; por fim, domina-se o conjunto.</div>
+<h3>11.3 Elenco, autonomia e descoberta</h3>
+<p>Nenhuma planta será impedida de entrar em uma fase por causa de seu tipo. Um time desfavorável ainda pode vencer por level, itemização, formação ou sinergia. O mapa influencia eficiência; não cria proibições de acesso.</p>
+<p>O jogador troca a equipe usando seus times pré-montados ou a área de times. Nesta etapa, não haverá uma UX especial que interrompa a expedição para sugerir ou forçar uma troca.</p>
+<p>Bosses, mapas e desbloqueios são marcos de descoberta, não bloqueios de automação. Uma política PvE que avança continua atravessando-os; o relatório posterior destaca os resultados e conteúdos liberados para avaliação quando o jogador retornar.</p>
+<h3>11.4 Materiais e expansão territorial</h3>
+<p>Cada mapa distribui recursos universais, recursos de sua região e, no máximo, uma família de recursos da região imediatamente anterior. Assim, a campanha abre novas cadeias produtivas sem tornar materiais antigos descartáveis ou exigir uma lista excessiva de drops por fase.</p>
 <ul>
-<li>novas regiões introduzem matérias-primas, essências, moldes e conhecimentos próprios;</li>
-<li>caminhos e desvios permitem buscar famílias diferentes de componentes;</li>
-<li>ligas, dificuldades ou tiers futuros elevam risco, qualidade dos materiais e variedade de receitas;</li>
-<li>materiais antigos continuam aparecendo em crafts avançados para que regiões anteriores não morram;</li>
-<li>chefes podem liberar categorias de pesquisa, receitas, moldes ou componentes exclusivos.</li>
+<li>primeiras vitórias de boss liberam progresso e Conhecimento;</li>
+<li>repetições de boss fornecem componentes próprios;</li>
+<li>materiais regionais, essências, moldes, receitas e linhas de pesquisa mantêm ligação clara com a exploração;</li>
+<li>nomes dos mapas, biomas, famílias inimigas, trios dos mistos e tabelas de loot serão definidos junto do Bestiário, crafting e balanceamento.</li>
 </ul>
-<p>As regras completas não estão fechadas. O princípio é que a progressão territorial também seja uma progressão de itemização: avançar no mundo abre novas cadeias produtivas, não apenas inimigos com números maiores.</p>
+<p>Campanhas, regiões, ligas e tiers futuros podem expandir o mundo depois dessa estrutura. A regra permanece: progresso territorial deve abrir escolhas de itemização e de elenco, não apenas inimigos com números maiores.</p>
 </section>
 <section id="tipos">
 <span class="tag violet">Sistema elemental</span>
@@ -2407,7 +2420,7 @@
 <div class="decision"><div><strong>Formação</strong><p>Sete plantas no desenho 1–2–1–2–1.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Políticas PvE</strong><p>Estável, Avançar, Recuar e Adaptativo são gratuitos desde a primeira fase; a política define somente a próxima fase, enquanto derrota, XP, drops e encerramento seguem o Ponto 9.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Autonomia VIP no PvE</strong><p>Com Plot de Recuperação reservado, o VIP pode executar PvE → Recuperação → PvE automaticamente e usar 2× visual sem alterar resultados.</p></div><span class="status s-defined">Definido</span></div>
-<div class="decision"><div><strong>Mapas</strong><p>Predominâncias elementais incentivam troca sem proibir plantas.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Campanha de mapas</strong><p>14 mapas e 140 fases: Inicial → 9 específicos → 3 mistos → Convergência Elemental. Cada mapa possui oito fases principais, uma nona normal ou Elite obrigatória e um boss; os mistos liberam ao concluir seus três específicos.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Carry</strong><p>Plantas veteranas podem elevar plantas atrasadas em fases anteriores.</p></div><span class="status s-rule">Regra-base</span></div>
 <div class="decision"><div><strong>Jardins</strong><p>Múltiplos jardins; capacidade de plots cresce com upgrade.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Estrutura</strong><p>Jardim → Plot → Planta. “Espaço” é apenas capacidade de plots.</p></div><span class="status s-defined">Definido</span></div>
@@ -2448,7 +2461,7 @@
 <li><strong>Calibração de Farm XP e Stamina:</strong> curvas de XP, limites antiabuso, custos finais por atividade e ajustes de recuperação após testes.</li>
 <li><strong>Núcleo e Totem:</strong> famílias, receitas, moldes, materiais, atributos, passivas e mercado.</li>
 <li><strong>Forja:</strong> fórmulas, chances, falhas, compatibilidades e custos exatos de Síntese, Calibração, Fusão e Ascensão.</li>
-<li><strong>Pesquisa e mapas:</strong> árvores de conhecimento, ligas, caminhos, tiers e progressão regional de materiais.</li>
+<li><strong>Pesquisa e mapas:</strong> nomes, biomas, trios elementais dos mapas mistos, famílias inimigas, bosses, tabelas de loot, árvores de conhecimento, ligas, caminhos, tiers e progressão regional de materiais.</li>
 <li><strong>Bestiário:</strong> famílias regionais, inimigos neutros, inimigos elementais, bosses, minibosses, drops e testes com dois ou três elementos.</li>
 <li><strong>Desmontagem:</strong> materiais elegíveis, exceções, arredondamentos e percentuais definitivos de jogador normal e VIP.</li>
 <li><strong>Reroll:</strong> custos, escalada, limites, materiais de gameplay e nomes definitivos dos reagentes de Cash.</li>

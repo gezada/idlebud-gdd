@@ -14,7 +14,7 @@ O portal centraliza:
 
 - **Game Design Document** — documento vivo disponível em `/gdd/`;
 - **Economy** — TBD;
-- **Enemies, Drops & Craft** — TBD;
+- **Enemies, Drops, Itemization & Forge** — TBD;
 - **Technology Guidelines** — TBD.
 
 ## Publicação

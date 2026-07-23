@@ -267,7 +267,7 @@ jobs:
               './gdd/',
               'Economy',
               './economy/',
-              'Enemies, Drops &amp; Craft',
+              'Enemies, Drops, Itemization &amp; Forge',
               './enemies-drops-craft/',
               'Technology Guidelines',
               './technology-guidelines/',
@@ -278,7 +278,7 @@ jobs:
 
           for path, title in [
               ('_site/economy/index.html', 'Economy'),
-              ('_site/enemies-drops-craft/index.html', 'Enemies, Drops &amp; Craft'),
+              ('_site/enemies-drops-craft/index.html', 'Enemies, Drops, Itemization &amp; Forge'),
               ('_site/technology-guidelines/index.html', 'Technology Guidelines'),
           ]:
               placeholder = Path(path).read_text(encoding='utf-8')

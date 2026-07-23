@@ -109,9 +109,9 @@ DOCS = [
         "icon": "$",
     },
     {
-        "title": "Enemies, Drops & Craft",
-        "label": "Enemies, Drops & Craft",
-        "description": "Enemy catalog, encounter rewards, itemization, drop tables, materials, recipes and crafting progression.",
+        "title": "Enemies, Drops, Itemization & Forge",
+        "label": "Enemies, Drops, Itemization & Forge",
+        "description": "Enemy catalog, encounter rewards, itemization, attachments, passives, drop tables, materials and Forge progression.",
         "href": "./enemies-drops-craft/",
         "status": "TBD",
         "live": False,
@@ -353,8 +353,8 @@ def main() -> None:
             "This document will define currencies, sinks, faucets, marketplace rules, RMT controls and seasonal economic balance.",
         ),
         "enemies-drops-craft": (
-            "Enemies, Drops & Craft",
-            "This document will define enemies, encounters, itemization, drops, materials, recipes and crafting progression.",
+            "Enemies, Drops, Itemization & Forge",
+            "This document will define enemies, encounters, itemization, attachments, passives, drops, materials, recipes and Forge progression.",
         ),
         "technology-guidelines": (
             "Technology Guidelines",
@@ -380,7 +380,7 @@ def main() -> None:
         assert item.is_file() and item.stat().st_size > 0, f"Missing portal artifact: {item}"
 
     home = (site / "index.html").read_text(encoding="utf-8")
-    for phrase in ["Game Design Document", "Economy", "Enemies, Drops &amp; Craft", "Technology Guidelines"]:
+    for phrase in ["Game Design Document", "Economy", "Enemies, Drops, Itemization &amp; Forge", "Technology Guidelines"]:
         assert phrase in home, f"Missing portal entry: {phrase}"
 
     gdd = gdd_path.read_text(encoding="utf-8")

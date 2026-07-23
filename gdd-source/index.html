@@ -444,7 +444,7 @@
 <div aria-label="Loop de nascimento de novos Buds" class="birth-loop">
 <div class="viz-node"><strong>Explorar e farmar</strong><span>Obter sementes e insumos</span></div>
 <div class="birth-arrow">→</div>
-<div class="viz-node"><strong>Preparar o plantio</strong><span>Escolher plot, água, adubo e tratamento</span></div>
+<div class="viz-node"><strong>Preparar o plantio</strong><span>Escolher Plot, água e Fertilizantes</span></div>
 <div class="birth-arrow">→</div>
 <div class="viz-node"><strong>Germinar</strong><span>Aguardar o ciclo comprometido</span></div>
 <div class="birth-arrow">→</div>
@@ -600,7 +600,7 @@
 
 <h3>5.5 Sementes e pool atual</h3>
 <p>Enquanto houver uma única espécie em determinado elemento, a semente desse elemento inevitavelmente gera aquele Bud. Ainda assim, espécie, raridade, Vigor e demais valores individuais são resolvidos e persistidos pelo servidor somente no nascimento.</p>
-<p>Sementes antigas utilizam a pool de espécies disponível no momento em que brotam. Portanto, guardar sementes antes de uma expansão é uma estratégia legítima dos jogadores, não um exploit.</p>
+<p>Sementes antigas utilizam a pool de espécies disponível no momento em que são <strong>plantadas</strong>. Portanto, guardar sementes antes de uma expansão é uma estratégia legítima dos jogadores, não um exploit; depois do plantio, a pool fica congelada até o nascimento.</p>
 
 <h3>5.6 Cap e continuidade</h3>
 <ul>
@@ -926,22 +926,24 @@
 <li>um Bud não pode batalhar, cultivar ou recuperar-se simultaneamente;</li>
 <li>cada processo utiliza três etapas, com dois checkpoints de cuidado;</li>
 <li>quando um checkpoint termina, o processo aguarda interação sem destruir a semente, o Bud ou o resultado;</li>
-<li>a ação básica é regar; Fertilizantes são opcionais;</li>
-<li>antes da Germinação, o jogador seleciona semente e Plot, garante a água básica do processo e pode preparar insumos opcionais, como Fertilizantes ou tratamentos de solo futuramente suportados.</li>
+<li>Água é obrigatória para Germinação e Recuperação de Stamina: sem ela, o processo não avança para a próxima etapa;</li>
+<li>Fertilizantes são opcionais e exclusivos da Germinação na primeira temporada;</li>
+<li>antes da Germinação, o jogador seleciona semente, Plot, água e os Fertilizantes autorizados para os checkpoints.</li>
 </ul>
 
 <h3>7.5 Germinação em três etapas</h3>
 <div class="formula">Plantar semente → Germinação 1/3: Enraizamento → Germinação 2/3: Bloom → Germinação 3/3: Nascimento e Revelação do Bud</div>
 <table>
-<thead><tr><th>Etapa</th><th>Função</th></tr></thead>
+<thead><tr><th>Etapa</th><th>Duração-base</th><th>Função</th></tr></thead>
 <tbody>
-<tr><td><strong>Enraizamento — 1/3</strong></td><td>Inicia o desenvolvimento da semente e termina no primeiro checkpoint de cuidado.</td></tr>
-<tr><td><strong>Bloom — 2/3</strong></td><td>Etapa intermediária da Germinação; termina no segundo checkpoint e aceita Fertilizantes compatíveis.</td></tr>
-<tr><td><strong>Nascimento e Revelação — 3/3</strong></td><td>Somente aqui o servidor calcula, cria, registra e revela o novo Bud.</td></tr>
+<tr><td><strong>Enraizamento — 1/3</strong></td><td>20 min</td><td>Inicia o desenvolvimento da semente e termina no primeiro checkpoint de cuidado.</td></tr>
+<tr><td><strong>Bloom — 2/3</strong></td><td>20 min</td><td>Etapa intermediária da Germinação; termina no segundo checkpoint e aceita Fertilizantes compatíveis.</td></tr>
+<tr><td><strong>Nascimento e Revelação — 3/3</strong></td><td>20 min</td><td>O servidor calcula, cria e persiste o Bud ao terminar esta etapa; a revelação do jogador apenas apresenta o resultado já definido.</td></tr>
 </tbody>
 </table>
-<p>No Nascimento e Revelação são definidos espécie, raridade, Vigor, Pontos Inatos de Batalha, Pontos Inatos de Cultivo e demais valores individuais. Nada fica pré-gerado ou escondido dentro da semente.</p>
-<p>Regas, Fertilizantes e demais insumos válidos deslocam probabilidades, mas nunca garantem um resultado específico. O cálculo final é autoritativo, atômico, idempotente e auditável pelo servidor.</p>
+<div class="formula">Tempo-base de Germinação = 3 × 20 min = 60 min</div>
+<p>No Nascimento são definidos espécie, raridade, Vigor, Pontos Inatos de Batalha, Pontos Inatos de Cultivo, ID e registro de origem. Nada fica pré-gerado ou escondido dentro da semente. A configuração válida do plantio e sua pool de espécies ficam congeladas no início; o roll acontece somente ao fim da terceira etapa.</p>
+<p>Água permite o avanço das etapas. Plot e Fertilizantes deslocam probabilidades de raridade e Vigor, mas nunca garantem um resultado específico; Pontos Inatos permanecem 100% aleatórios e independentes. O cálculo final é autoritativo, atômico, idempotente e auditável pelo servidor.</p>
 
 <h3>7.6 Planos e Ciclos de Cultivo</h3>
 <p>Depois de nascer, o Bud pode executar um <strong>Plano de Cultivo</strong>. Cada execução completa é um <strong>Ciclo de Cultivo</strong>.</p>
@@ -1050,43 +1052,43 @@
 </ul>
 
 <h3>7.11 Fertilizantes</h3>
-<p>Fertilizantes são consumíveis opcionais aplicáveis nos dois checkpoints de cuidado. A rega básica sempre permite continuar sem consumir Fertilizante.</p>
+<p>Fertilizantes são consumíveis opcionais da <strong>Germinação</strong>, aplicáveis nos dois checkpoints de cuidado. Água permite continuar o processo sem Fertilizante; Fertilizante existe para alterar a qualidade esperada do nascimento.</p>
 <ul>
 <li>limite inicial: <strong>um Fertilizante por checkpoint</strong> e <strong>dois por processo completo</strong>;</li>
-<li>cada tipo declara em quais processos e etapas pode ser usado;</li>
-<li>o mesmo tipo pode ser utilizado duas vezes quando permitido, respeitando os caps;</li>
+<li>o mesmo perfil pode ser utilizado duas vezes, mas sua segunda aplicação entrega somente <strong>50% do efeito</strong>;</li>
+<li>dois perfis diferentes aplicam seus efeitos completos;</li>
 <li>o item é consumido na aplicação;</li>
-<li>Fertilizantes alteram probabilidades ou valores esperados, mas não garantem resultados;</li>
-<li>Fertilizantes especializados são fortes em um objetivo e não concedem bônus aos demais;</li>
+<li>todos os perfis afetam raridade e Vigor; a diferença é a distribuição do orçamento entre os dois eixos;</li>
+<li>Fertilizantes deslocam probabilidades, mas não removem faixas, não garantem resultado e não ultrapassam os hard caps do nascimento;</li>
 <li>VIP não recebe Fertilizantes exclusivos, potência adicional ou limite maior; apenas pode automatizar o uso autorizado.</li>
 </ul>
 <table>
-<thead><tr><th>Exemplo conceitual</th><th>Função</th></tr></thead>
+<thead><tr><th>Perfil de Germinação</th><th>Orçamento de Raridade</th><th>Orçamento de Vigor</th><th>Função</th></tr></thead>
 <tbody>
-<tr><td><strong>Fertilizante Simples</strong></td><td>Pequeno aumento geral entre os efeitos válidos do processo.</td></tr>
-<tr><td><strong>Fertilizante de Raridade</strong></td><td>Aplicável ao Bloom; aumenta apenas a probabilidade de raridades superiores.</td></tr>
-<tr><td><strong>Fertilizante de Vigor</strong></td><td>Desloca a distribuição de Vigor no nascimento, sem garantir valor específico.</td></tr>
-<tr><td><strong>Fertilizante de Colheita</strong></td><td>Aumenta quantidade no Ciclo de Cultivo.</td></tr>
-<tr><td><strong>Fertilizante de Qualidade</strong></td><td>Melhora resultados dentro da pool válida.</td></tr>
-<tr><td><strong>Fertilizante de Recuperação</strong></td><td>Reduz o tempo de Recuperação de Stamina.</td></tr>
+<tr><td><strong>Foco em Raridade</strong></td><td><strong>80%</strong></td><td>20%</td><td>Favorece raridades superiores, mantendo um ganho menor de Vigor.</td></tr>
+<tr><td><strong>Foco em Vigor</strong></td><td>20%</td><td><strong>80%</strong></td><td>Favorece faixas maiores de Vigor, mantendo um ganho menor de raridade.</td></tr>
+<tr><td><strong>Equilibrado</strong></td><td><strong>50%</strong></td><td><strong>50%</strong></td><td>Distribui igualmente o orçamento entre os dois eixos.</td></tr>
 </tbody>
 </table>
-<p>Catálogo definitivo, receitas, raridades, valores e potência de cada Fertilizante permanecem como conteúdo de balanceamento.</p>
+<p>O catálogo inicial possui somente esses três perfis. Receitas, tiers, valores, potência numérica do orçamento e hard caps finais permanecem para simulação e balanceamento.</p>
 
 <h3>7.12 Operação manual e benefícios VIP</h3>
 <div class="grid">
-<div class="card"><h4>Jogador gratuito</h4><ul><li>inicia cada processo;</li><li>realiza os dois cuidados;</li><li>conclui nascimento, colheita ou recuperação;</li><li>inicia manualmente o próximo processo;</li><li>desenvolve Infraestrutura de Cultivo com progresso e materiais do jogo, até <strong>+30% de velocidade operacional</strong> na configuração inicial;</li><li>um processo de fazenda já iniciado continua seu tempo mesmo com a sessão fechada; em um checkpoint que exige ação manual, ele apenas aguarda e nada é perdido.</li></ul></div>
-<div class="card good"><h4>Jogador VIP</h4><ul><li>possui todas as melhorias gratuitas de Infraestrutura de Cultivo;</li><li>cuidados automáticos, inclusive offline;</li><li>nascimento e revelação automáticos, quando habilitados;</li><li>colheita automática e repetição do mesmo Plano;</li><li>conclusão automática da Recuperação;</li><li>uso automático de Fertilizantes previamente autorizados e disponíveis;</li><li>rotação PvE → Recuperação → PvE com Plot reservado;</li><li><strong>+10% de velocidade operacional adicional</strong>.</li></ul></div>
+<div class="card"><h4>Jogador gratuito</h4><ul><li>inicia cada processo;</li><li>realiza os dois cuidados;</li><li>revela e confirma cada nascimento;</li><li>inicia manualmente o próximo processo;</li><li>desenvolve Infraestrutura de Cultivo com progresso e materiais do jogo, até <strong>+30% de velocidade operacional</strong> na configuração inicial;</li><li>um processo de fazenda já iniciado continua seu tempo mesmo com a sessão fechada; em um checkpoint que exige ação manual, ele apenas aguarda e nada é perdido.</li></ul></div>
+<div class="card good"><h4>Jogador VIP</h4><ul><li>possui todas as melhorias gratuitas de Infraestrutura de Cultivo;</li><li>define por processo se prefere cuidados, plantio, nascimento e revelação manuais ou automáticos;</li><li>pode repetir uma Receita de Germinação pré-autorizada, com semente, água, Fertilizantes, próxima ação e limite de repetições definidos pelo jogador;</li><li>pode enviar automaticamente o Bud recém-nascido a um Plano de Cultivo pré-configurado;</li><li>colheita automática e repetição do mesmo Plano;</li><li>conclusão automática da Recuperação;</li><li>rotação PvE → Recuperação → PvE com Plot reservado;</li><li><strong>+10% de velocidade operacional adicional</strong> fora da Germinação.</li></ul></div>
 </div>
 <div class="formula">Velocidade operacional máxima inicial = 1 + 30% de Infraestrutura + 10% VIP = 1,40×</div>
 <ul>
 <li>Infraestrutura e VIP somam percentuais antes de converter velocidade em tempo; com +25% de Infraestrutura e VIP, a velocidade operacional é 1,35×, não 1,25× × 1,10×;</li>
-<li>o bônus operacional vale para processos temporizados autorizados por seus próprios sistemas: Germinação, Cultivo, Recuperação e, quando definidos, Pesquisa e Forja;</li>
+<li>na Germinação, o VIP usa uma exceção deliberada: <strong>Tempo VIP = (Tempo-base × 0,50) ÷ Velocidade de Infraestrutura</strong>. O +10% VIP global não se soma a essa fórmula;</li>
+<li>com Infraestrutura máxima, a Germinação de 60 min leva aproximadamente 46 min no Free e 23 min no VIP;</li>
+<li>o bônus operacional global vale para Cultivo, Recuperação e, quando definidos, Pesquisa e Forja;</li>
 <li>não acelera a lógica do PvE, ganhos, drops, Stamina, consumo ou resultados de batalha; o 2× VIP do PvE continua apenas visual;</li>
 <li>uso automático de Fertilizantes nunca vem ativado por padrão;</li>
 <li>VIP não aumenta diretamente raridade, Vigor, qualidade ou potência dos Fertilizantes;</li>
 <li>VIP não concede materiais exclusivos, não aumenta o limite de Fertilizantes e não cria Plot gratuito;</li>
 <li>VIP continua dependente de sementes, materiais, Planos, regiões e requisitos já desbloqueados;</li>
+<li>se uma Receita de Germinação ou um Plano pós-nascimento ficar inválido ou sem recurso, a automação entra em <strong>Aguardando Ajuste</strong>: o Plot e o Bud permanecem travados, nenhum item adicional é consumido e o jogador recebe aviso para corrigir a configuração.</li>
 <li>a combinação foi desenhada para um VIP de baixo preço, com teto comercial atualmente desejado de <strong>R$ 9,99</strong>.</li>
 </ul>
 
@@ -1937,15 +1939,15 @@
 <li>irrigação, reservatórios e melhorias de velocidade compõem a <strong>Infraestrutura de Cultivo integrada ao Jardim</strong>; são melhorias permanentes da conta e alcançam todos os Plots instalados;</li>
 <li>custos, níveis e ordem exata das 46 expansões permanecem para balanceamento.</li>
 </ul>
-<p>Infraestrutura de Cultivo é uma progressão gratuita de conta: requer Nível do Jardineiro e materiais do jogo, acelera processos temporizados e alcança <strong>+30%</strong> de velocidade operacional na configuração inicial. Ela alcança todos os Plots, soma-se ao +10% VIP e não concede poder de batalha.</p>
+<p>Infraestrutura de Cultivo é uma progressão gratuita de conta: requer Nível do Jardineiro e materiais do jogo, acelera processos temporizados e alcança <strong>+30%</strong> de velocidade operacional na configuração inicial. Ela alcança todos os Plots, soma-se ao +10% VIP nos processos gerais e, na Germinação VIP, entra antes da regra de metade do tempo. Nunca concede poder de batalha.</p>
 <div class="statement"><strong>Plot limita trabalho simultâneo, não coleção.</strong> Buds sem Plot permanecem no elenco da conta e podem ser organizados, negociados ou usados em presets. A coleção não possui cap prático visível na primeira fase do jogo.</div>
 <h3>13.2 Plot</h3>
 <p>Cada Plot ocupa exatamente uma vaga de Jardim e recebe uma única semente em Germinação ou um único Bud alocado. Ele afeta exclusivamente o processo que ocorre nele: Germinação, Cultivo ou Recuperação de Stamina.</p>
-<ul><li>Plot Simples é o baseline neutro, sem afinidade elemental;</li><li>Plots elementais aplicam a Matriz de Afinidade de Cultivo definida no Ponto 7; a afinidade pode deslocar probabilidades de nascimento e a produtividade do Cultivo, sem bloquear espécies nem garantir resultados;</li>
+<ul><li>Plot Simples é o baseline neutro, sem afinidade elemental;</li><li>na Germinação, Plots elementais usam uma Matriz própria de <strong>Semente → Plot</strong>, distinta da afinidade <strong>Bud → Plot</strong> do Cultivo; ela desloca as probabilidades de raridade e Vigor, sem bloquear espécies nem garantir resultados;</li>
 <li>tipo, qualidade, raridade e bônus do Plot nunca alteram ataque, defesa, HP, skills, counter, CP, Poder de Confronto ou resultado de batalha;</li>
-<li>qualidade e raridade do Plot podem modificar os três processos locais; coeficientes, faixas e hard caps serão definidos no conteúdo de Plots;</li>
+<li>qualidade e raridade do Plot podem modificar os três processos locais; na Germinação, seus efeitos se limitam a raridade e Vigor, nunca a espécie ou Pontos Inatos;</li>
 <li>um Plot de Gelo favorece Buds de Gelo e tipos próximos conforme sua afinidade; um Bud incompatível continua elegível;</li>
-<li>Adaptação do Bud mitiga penalidades e amplifica bônus conforme as fórmulas do Ponto 7, sem transformar incompatibilidade em bloqueio.</li>
+<li>Adaptação do Bud participa somente da afinidade de Cultivo após o nascimento; ela nunca interfere na Germinação.</li>
 </ul>
 <div class="card good"><strong>Liberdade acima de bloqueio:</strong><p>O jogo permite escolhas ruins, emergenciais e experimentais. O sistema mostra a consequência; não esconde o botão.</p></div>
 <h3>13.3 Alocação, movimentação e integridade</h3>
@@ -1953,6 +1955,7 @@
 <li>as vagas liberadas pertencem permanentemente à conta; os Plots instalados ocupam posições reorganizáveis dentro da grade 7×7;</li>
 <li>um Bud ou Plot livre pode ser reposicionado sem custo; a movimentação não redefine dados, níveis, afinidade, qualidade ou raridade;</li>
 <li>Germinação, Cultivo e Recuperação ficam vinculados ao Plot até concluir, pausar ou serem cancelados pelas regras do processo;</li>
+<li>ao concluir um nascimento, o Bud entra automaticamente na coleção e o Plot é liberado, salvo quando uma automação VIP válida iniciar imediatamente o Plano de Cultivo pré-configurado;</li>
 <li>um Bud em processo ativo ou PvE em andamento não pode ser realocado para contornar alocação exclusiva;</li>
 <li>ativar um time PvE reserva um Plot vinculado por Bud, até sete; cada reserva permanece indisponível para os demais processos até o retorno;</li>
 <li>presets PvE e snapshots PvP não criam reserva; somente a atividade PvE real trava Buds e Plots;</li>
@@ -1974,82 +1977,88 @@
 </ul>
 </section><section id="nascimento">
 <span class="tag blue">Cultivo, descoberta e segurança</span>
-<span class="review-state rs-validation">Em validação</span>
+<span class="review-state rs-defined">Definido</span>
 <h2>14. Cultivo e nascimento de Buds</h2>
-<p>Todo novo Bud começa como uma <strong>semente obtida por drop</strong>. A semente não contém um personagem pré-calculado esperando para ser descoberto: ela representa uma oportunidade de nascimento que será preparada pelo jogador e resolvida pelo servidor somente no momento em que brotar.</p>
-<div class="statement"><strong>A semente revela o tipo. O cultivo molda as probabilidades. O brotar revela o Bud.</strong></div>
+<p>Todo Bud nasce de uma semente. A semente informa seu elemento e a pool elegível, mas não contém um personagem escondido: o servidor cria o espécime somente ao concluir a terceira etapa da Germinação.</p>
+<div class="statement"><strong>A semente define a possibilidade. O plantio congela a receita. O servidor cria o Bud no nascimento.</strong></div>
 <h3>14.1 Ciclo da semente</h3>
 <span class="review-state rs-defined">Definido</span>
 <div aria-label="Jornada de uma semente até se tornar um Bud" class="seed-journey">
-<div class="seed-stage"><span class="seed-icon">✦</span><strong>Drop</strong><small>Uma semente elemental entra no inventário.</small></div>
+<div class="seed-stage"><span class="seed-icon">✦</span><strong>Obter</strong><small>Uma semente elemental entra no inventário.</small></div>
 <div class="seed-line">→</div>
-<div class="seed-stage"><span class="seed-icon">◉</span><strong>Escolha</strong><small>O jogador seleciona o plot e os insumos.</small></div>
+<div class="seed-stage"><span class="seed-icon">◉</span><strong>Planejar</strong><small>O jogador seleciona Plot, água e Fertilizantes.</small></div>
 <div class="seed-line">→</div>
-<div class="seed-stage"><span class="seed-icon">♒</span><strong>Plantio</strong><small>Água, adubo e tratamento são comprometidos.</small></div>
+<div class="seed-stage"><span class="seed-icon">♒</span><strong>Plantio</strong><small>O servidor congela a Receita de Germinação.</small></div>
 <div class="seed-line">→</div>
 <div class="seed-stage"><span class="seed-icon">⌛</span><strong>Germinação</strong><small>O plot fica ocupado durante o ciclo.</small></div>
 <div class="seed-line">→</div>
-<div class="seed-stage"><span class="seed-icon">♧</span><strong>Brotar</strong><small>O servidor cria e revela o novo Bud.</small></div>
+<div class="seed-stage"><span class="seed-icon">♧</span><strong>Nascer</strong><small>O servidor cria, registra e revela o novo Bud.</small></div>
 </div>
-<p>Depois de brotar, o Bud passa a existir como espécime individual e persistente. O ciclo de formação da primeira temporada termina em Semente → Germinação → Nascimento do Bud. A partir daí, ele poderá permanecer no Plot, ser transferido para outro Plot, retornar ao elenco, entrar no esquadrão, treinar, recuperar ou seguir as demais regras de alocação.</p>
+<div class="grid three">
+<div class="card"><h4>Germinação regular</h4><p><strong>60 min base:</strong> três etapas de 20 min, com dois checkpoints.</p></div>
+<div class="card good"><h4>Germinação VIP</h4><p><strong>50% do tempo</strong> após a Infraestrutura: aproximadamente 23 min com Infraestrutura máxima.</p></div>
+<div class="card blue"><h4>Tutorial</h4><p><strong>3 sementes escalonadas</strong>, cada uma em três etapas curtas de 1 min.</p></div>
+</div>
+<ul><li>no tutorial, o jogador escolhe o elemento da primeira semente; após a primeira batalha, escolhe mais dois elementos distintos entre si e do primeiro;</li><li>sementes tutoriais usam RNG normal e contam para a Proteção de Raridade;</li><li>Água é obrigatória para avançar a Germinação; Fertilizantes são opcionais;</li><li>Germinação nunca falha: toda semente concluída gera um Bud.</li></ul>
+<p>Depois de nascer, o Bud entra automaticamente na coleção e libera o Plot, salvo quando uma automação VIP válida inicia imediatamente o Plano de Cultivo configurado.</p>
 <h3>14.2 O que é conhecido antes e depois</h3>
 <span class="review-state rs-defined">Definido</span>
 <div class="grid">
 <div class="card blue">
-<h4>Antes de brotar</h4>
+<h4>Congelado no plantio</h4>
 <ul>
 <li>tipo elemental da semente;</li>
-<li>qualidade e regras dos insumos escolhidos;</li>
-<li>plot utilizado e sua afinidade;</li>
+<li>família e versão da pool de espécies;</li>
+<li>Plot, água, Fertilizantes e regras válidas da receita;</li>
 <li>tempo estimado do ciclo;</li>
-<li>distribuição de probabilidades aplicável, quando a interface puder exibi-la.</li>
+<li>distribuições de raridade e Vigor, inclusive Proteção de Raridade.</li>
 </ul>
 </div>
 <div class="card good">
-<h4>Revelado no brotar</h4>
+<h4>Revelado no nascimento</h4>
 <ul>
 <li>espécie exata do Bud dentro daquele tipo;</li>
 <li>raridade;</li>
 <li>Vigor;</li>
-
-
+<li>24 Pontos Inatos de Batalha e 24 de Cultivo;</li>
+<li>ID, temporada, origem e certidão de nascimento.</li>
 </ul>
 </div>
 </div>
-<p>A semente de Água gera um Bud de Água, mas não informa antecipadamente qual espécie aquática nascerá, nem sua raridade ou Vigor. A descoberta precisa acontecer no nascimento.</p>
+<p>Sementes guardadas usam a pool disponível quando são plantadas; uma semente já plantada mantém essa pool congelada mesmo que o catálogo mude. Ao fim da terceira etapa, o servidor cria e persiste o resultado; clicar em revelar apenas o apresenta, sem nova rolagem.</p>
 <h3>14.3 Preparação do plantio</h3>
-<span class="review-state rs-provisional">Provisório</span>
-<p>Antes da germinação, o jogador escolhe quanto deseja investir. Itens de maior qualidade deslocam as probabilidades para resultados melhores, mas não garantem um Bud específico, uma raridade determinada ou Vigor máximo.</p>
+<span class="review-state rs-defined">Definido</span>
+<p>Antes da Germinação, o jogador cria uma Receita de Germinação. Plot e Fertilizantes deslocam as probabilidades de raridade e Vigor, mas nunca garantem espécie, raridade ou Vigor máximo.</p>
 <div class="grid four">
-<div class="card"><h4>Semente</h4><p>Define o elemento do futuro Bud. A espécie é sorteada entre as espécies daquele elemento disponíveis no momento do nascimento.</p></div>
-<div class="card"><h4>Plot</h4><p>Aplica sua própria qualidade, afinidade elemental e modificadores locais ao processo.</p></div>
-<div class="card"><h4>Água</h4><p>Recurso de cultivo com qualidades distintas. Sua função exata pode favorecer Vigor, estabilidade do resultado ou outra variável.</p></div>
-<div class="card"><h4>Adubo e solo</h4><p>Insumos dropáveis e/ou craftáveis que podem favorecer raridade, piso de qualidade, tempo ou outras dimensões.</p></div>
+<div class="card"><h4>Semente</h4><p>Define elemento, família da pool e espécies elegíveis; não carrega Bud pré-gerado.</p></div>
+<div class="card"><h4>Plot</h4><p>Aplica afinidade própria de Semente → Plot e modificadores locais de raridade e Vigor.</p></div>
+<div class="card"><h4>Água</h4><p>É requisito operacional de Germinação e Recuperação. Sem água, a etapa não avança; ela não melhora RNG.</p></div>
+<div class="card"><h4>Fertilizantes</h4><p>Aplicam orçamento de raridade e Vigor nos dois checkpoints, conforme os três perfis do Ponto 7.</p></div>
 </div>
-<p>Água, adubos, tratamentos de solo e demais insumos terão fontes, tiers, receitas e efeitos detalhados no brainstorming específico de cultivo e itemização. A direção atual é evitar que todos façam apenas “mais chance de tudo bom”; cada família deve criar uma decisão distinta.</p>
-<h3>14.4 Afinidade de Cultivo</h3>
-<span class="review-state rs-validation">Em validação</span>
-<p>A relação entre semente e plot utiliza uma <strong>Matriz de Afinidade de Cultivo</strong>. Ela pode beber da roda elemental de combate, mas será balanceada separadamente porque germinação e batalha cumprem funções diferentes.</p>
+<p>Pontos Inatos são dois rolls independentes, com total fixo de 24 pontos por ficha. Semente, Plot, água, Fertilizantes, Infraestrutura e VIP nunca interferem neles.</p>
+<h3>14.4 Afinidade de Germinação</h3>
+<span class="review-state rs-defined">Definido</span>
+<p>A relação entre semente e Plot utiliza uma <strong>Matriz própria de Semente → Plot</strong>. Ela compartilha os nove elementos como linguagem do universo, mas não reutiliza os multiplicadores de produtividade do Farm e não recebe Adaptação (ADA), pois o Bud ainda não existe.</p>
 <div aria-label="Exemplo conceitual de afinidades de cultivo" class="affinity-visual">
 <div class="affinity-case neutral-case">
 <span class="affinity-title">Plot Comum</span>
 <strong>Baseline neutro</strong>
 <div class="prob-track"><span style="width:50%"></span></div>
-<small>1,00× como referência. Não melhora nem piora.</small>
+<small>1,00× como referência. Não desloca raridade nem Vigor.</small>
 </div>
 <div class="affinity-arrow">→</div>
 <div class="affinity-case good-case">
 <span class="affinity-title">Mesmo tipo</span>
 <strong>Afinidade favorável</strong>
 <div class="prob-track"><span style="width:68%"></span></div>
-<small>Desloca moderadamente a distribuição para cima.</small>
+<small>Desloca as distribuições de raridade e Vigor para cima.</small>
 </div>
 <div class="affinity-arrow">↔</div>
 <div class="affinity-case soft-case">
 <span class="affinity-title">Tipo próximo</span>
 <strong>Afinidade parcial</strong>
 <div class="prob-track"><span style="width:57%"></span></div>
-<small>Pode gerar bônus leve ou penalidade pequena.</small>
+<small>Aplica deslocamento intermediário definido pela matriz.</small>
 </div>
 <div class="affinity-arrow">→</div>
 <div class="affinity-case bad-case">
@@ -2060,57 +2069,85 @@
 </div>
 </div>
 <div class="grid three">
-<div class="card good"><h4>Mesmo tipo</h4><p>Semente de Água em Plot de Água recebe a melhor compatibilidade ordinária.</p></div>
-<div class="card blue"><h4>Tipo relacionado</h4><p>Semente de Água em Plot de Gelo pode receber efeito intermediário, por proximidade temática.</p></div>
-<div class="card danger"><h4>Tipo adverso</h4><p>Semente de Água em Plot de Fogo sofre penalidade relevante, sem perder a possibilidade de nascer excelente.</p></div>
+<div class="card good"><h4>Mesmo elemento</h4><p>Semente de Água em Plot de Água recebe a melhor compatibilidade ordinária para raridade e Vigor.</p></div>
+<div class="card blue"><h4>Elemento relacionado</h4><p>Semente de Água em Plot de Gelo recebe efeito intermediário, conforme a matriz própria de Germinação.</p></div>
+<div class="card danger"><h4>Elemento adverso</h4><p>Semente de Água em Plot de Fogo sofre penalidade relevante, sem perder qualquer resultado possível.</p></div>
 </div>
 <ul>
 <li>nenhum plot impede o plantio de uma semente;</li>
 <li>nenhuma incompatibilidade reduz raridade, Vigor ou espécie a probabilidade zero;</li>
 <li>nenhuma combinação garante raridade, Vigor ou espécie em 100%;</li>
 <li>plots comuns são a referência simples e neutra do sistema;</li>
-<li>distâncias, relações e multiplicadores finais serão fechados depois de simulação.</li>
+<li>qualidade e raridade do Plot também podem deslocar raridade e Vigor, nunca espécie ou Pontos Inatos;</li>
+<li>distâncias, relações e coeficientes finais serão fechados depois de simulação.</li>
 </ul>
 <h3>14.5 Distribuição de probabilidades</h3>
-<span class="review-state rs-open">Em aberto</span>
-<p>O sistema não soma uma única barra genérica de “sorte”. Ele parte de distribuições-base e permite que diferentes decisões modifiquem dimensões distintas.</p>
-<div class="formula">Distribuição final = base da semente + afinidade do plot + qualidade dos insumos + regras da temporada</div>
+<span class="review-state rs-defined">Definido</span>
+<p>O sistema não soma uma única barra genérica de “sorte”. Espécie, raridade, Vigor e Pontos Inatos são dimensões separadas, apresentadas de forma simples e calculadas integralmente no servidor.</p>
+<div class="formula">Distribuição pré-proteção = Base da pool + Afinidade/qualidade do Plot + Fertilizantes válidos</div>
 <table>
 <thead><tr><th>Dimensão</th><th>Influências possíveis</th><th>Estado</th></tr></thead>
 <tbody>
-<tr><td><strong>Raridade</strong></td><td>Adubo, tratamento do solo e qualidade do plot.</td><td>Funções exatas em aberto.</td></tr>
-<tr><td><strong>Vigor</strong></td><td>Água, estabilidade do cultivo, qualidade dos insumos e plot.</td><td>Funções exatas em aberto.</td></tr>
-<tr><td><strong>Espécie</strong></td><td>Tabela de espécies do tipo e origem do drop.</td><td>Distribuição em aberto.</td></tr>
-<tr><td><strong>Tempo</strong></td><td>Infraestrutura do jardim, plot, irrigação e itens aceleradores.</td><td>Balanceamento em aberto.</td></tr>
+<tr><td><strong>Raridade</strong></td><td>Plot, Fertilizantes e Proteção de Raridade.</td><td>Estrutura definida; pesos calibráveis.</td></tr>
+<tr><td><strong>Vigor</strong></td><td>Plot e Fertilizantes.</td><td>Estrutura definida; pesos calibráveis.</td></tr>
+<tr><td><strong>Espécie</strong></td><td>Pool congelada no plantio.</td><td>Distribuição por pool calibrável.</td></tr>
+<tr><td><strong>Pontos Inatos</strong></td><td>Rolls independentes com total fixo.</td><td>Definido; sem modificadores externos.</td></tr>
+<tr><td><strong>Tempo</strong></td><td>Infraestrutura e regra específica de Germinação VIP.</td><td>Definido; coeficientes futuros calibráveis.</td></tr>
 
 </tbody>
 </table>
-<p>Os números apresentados ao jogador devem ser honestos e compreensíveis. Quando ele melhora receita de plantio, plot ou insumos, a interface precisa mostrar quais faixas subiram e quais diminuíram, sem prometer um resultado individual.</p>
-<h3>14.6 Brotar autoritativo e proteção contra exploração</h3>
+<p>Os números apresentados ao jogador devem ser honestos e compreensíveis. A Receita de Germinação mostra quais faixas subiram e quais diminuíram, sem prometer resultado individual e sem esconder a Proteção de Raridade.</p>
+<h3>14.6 Proteção de Raridade</h3>
 <span class="review-state rs-defined">Definido</span>
+<p>A Proteção de Raridade é um contador anti-azar visível. Ela protege apenas o acesso a <strong>Rara ou superior</strong>; não altera espécie, Vigor, Pontos Inatos, Épica ou Lendária.</p>
+<div class="formula">F = min(10, nascimentos consecutivos abaixo de Rara) &nbsp;|&nbsp; S = (F ÷ 10)⁴ &nbsp;|&nbsp; Δ = (P<sub>Comum</sub> + P<sub>Incomum</sub>) × S</div>
+<table>
+<thead><tr><th>Faixa após Proteção</th><th>Fórmula</th><th>Resultado</th></tr></thead>
+<tbody>
+<tr><td><strong>Comum</strong></td><td>P<sub>Comum</sub> × (1 − S)</td><td>Reduzida gradualmente.</td></tr>
+<tr><td><strong>Incomum</strong></td><td>P<sub>Incomum</sub> × (1 − S)</td><td>Reduzida gradualmente.</td></tr>
+<tr><td><strong>Rara</strong></td><td>P<sub>Rara</sub> + Δ</td><td>Recebe toda a proteção acumulada.</td></tr>
+<tr><td><strong>Épica e Lendária</strong></td><td>Inalteradas</td><td>Nunca são infladas pela Proteção.</td></tr>
+</tbody>
+</table>
+<ul>
+<li>a Proteção pertence à conta e é separada por elemento e família de pool;</li>
+<li>após Comum ou Incomum, o contador sobe; após Rara, Épica ou Lendária, ele zera;</li>
+<li>com F = 10, o próximo nascimento garante Rara ou superior, nunca Épica ou Lendária;</li>
+<li>cancelamentos não alteram o contador; sementes tutoriais contam normalmente;</li>
+<li>a interface exibe o progresso, por exemplo: <strong>Proteção de Raridade — Fogo: 6/10</strong>;</li>
+<li>o valor 10 e o expoente 4 são baseline do Alpha e serão validados por simulação, sem mudar a regra estrutural.</li>
+</ul>
+<div class="statement"><strong>A Proteção combate azar extremo, não compra resultado.</strong> Ela é aplicada depois de Plot e Fertilizantes e antes do roll final de raridade.</div>
+
+<h3>14.7 Nascimento autoritativo, automação e mercado</h3>
 <div aria-label="Fluxo seguro de germinação decidido pelo servidor" class="server-roll">
-<div class="server-side client-side"><strong>Cliente</strong><span>Escolhe semente, plot e insumos</span></div>
+<div class="server-side client-side"><strong>Cliente</strong><span>Escolhe receita e automação</span></div>
 <div class="server-arrow">→</div>
-<div class="server-side"><strong>Servidor</strong><span>Valida, consome e registra os insumos comprometidos</span></div>
+<div class="server-side"><strong>Servidor</strong><span>Valida, congela e registra o plantio</span></div>
 <div class="server-arrow">→</div>
-<div class="server-side"><strong>Germinação</strong><span>O resultado ainda não existe como Bud oculto</span></div>
+<div class="server-side"><strong>Etapa 3</strong><span>Rola, cria, persiste e atualiza a Proteção</span></div>
 <div class="server-arrow">→</div>
-<div class="server-side result-side"><strong>Brotar</strong><span>Servidor rola, cria, persiste e revela o Bud uma única vez</span></div>
+<div class="server-side result-side"><strong>Revelação</strong><span>Apresenta o mesmo resultado uma única vez</span></div>
 </div>
 <ul>
 <li>o Bud não é pré-gerado quando a semente cai;</li>
 <li>o cliente nunca recebe espécie, raridade, Vigor, seed aleatória oficial ou resultado oculto;</li>
-<li>os insumos e as condições válidas são comprometidos e registrados antes do ciclo;</li>
-<li>a criação do Bud e o consumo final da semente devem ocorrer numa operação atômica e idempotente;</li>
-<li>cada nascimento recebe um registro auditável com origem, regras, insumos e versão da temporada;</li>
+<li>pool, Plot, água, Fertilizantes e regras válidas são comprometidos e registrados no plantio;</li>
+<li>a criação do Bud, o consumo final da semente e a atualização da Proteção ocorrem em uma operação atômica e idempotente;</li>
+<li>cada nascimento recebe um registro auditável com origem, pool, regras, insumos, Proteção e versão da temporada;</li>
 <li>cancelar, recarregar, trocar de dispositivo ou repetir uma chamada não pode gerar outra rolagem;</li>
-<li>o resultado só é produzido e persistido pelo servidor quando o brotar é concluído.</li>
+<li>o resultado é produzido e persistido apenas ao concluir a terceira etapa; revelar depois não altera esse resultado;</li>
+<li>o VIP escolhe manual ou automático por processo e pode repetir apenas a Receita de Germinação pré-autorizada, até o limite configurado ou faltar requisito;</li>
+<li>o VIP pode iniciar Farm automaticamente no mesmo Plot com um Plano pós-nascimento pré-configurado; se a ação for inválida ou faltar recurso, o sistema entra em <strong>Aguardando Ajuste</strong>, trava Plot e Bud quando existente, não consome item adicional e exige correção manual;</li>
+<li>sementes podem circular no marketplace por Gold e, conforme o futuro documento de economia, por moeda de Cash conversível; semente em Germinação nunca pode ser transferida ou listada.</li>
 </ul>
-<div class="card warn"><strong>Regra de segurança:</strong><p>Não existe “Bud escondido dentro da semente” para ser descoberto por inspeção, datamining ou manipulação do cliente.</p></div>
-<h3>14.7 Estado atual da decisão</h3>
+<div class="card warn"><strong>Regra de segurança:</strong><p>Não existe “Bud escondido dentro da semente” para ser descoberto por inspeção, datamining ou manipulação do cliente. A primeira descoberta recebe revelação completa; duplicatas e resultados automáticos podem usar cartão curto, resumo e atalho para a ficha.</p></div>
+
+<h3>14.8 Estado da decisão</h3>
 <div class="grid">
-<div class="card good"><h4>Definido</h4><ul><li>sementes são obtidas por drop;</li><li>apenas o elemento é conhecido antes do nascimento;</li><li>a semente ocupa um plot durante a germinação;</li><li>plot e insumos alteram probabilidades;</li><li>a espécie usa a pool disponível no momento do nascimento, inclusive para sementes obtidas anteriormente;</li><li>o resultado nasce no servidor somente ao brotar;</li><li>nenhum bônus garante e nenhuma penalidade bloqueia completamente.</li></ul></div>
-<div class="card warn"><h4>A definir</h4><ul><li>fontes e taxas de drop;</li><li>negociabilidade das sementes;</li><li>tempos de germinação;</li><li>catálogo e origem de água, adubos e tratamentos;</li><li>matriz completa de Afinidade de Cultivo;</li><li>fórmulas, tiers, limites, pity e probabilidades;</li><li>animação, UX e ritmo da revelação.</li></ul></div>
+<div class="card good"><h4>Definido</h4><ul><li>três etapas de 20 min, sem falha total;</li><li>pool congelada no plantio e roll no fim da etapa 3;</li><li>Matriz própria Semente → Plot, sem ADA;</li><li>Água obrigatória; três perfis de Fertilizante para raridade e Vigor;</li><li>Proteção de Raridade transparente e auditável;</li><li>VIP configurável, 50% do tempo de Germinação e automação de receita/Farm;</li><li>três sementes tutoriais escalonadas e elementos distintos;</li><li>sementes contam para a Proteção e podem entrar no mercado futuro.</li></ul></div>
+<div class="card warn"><h4>Calibrar depois</h4><ul><li>fontes e taxas de drop das sementes;</li><li>coeficientes da Matriz de Germinação e qualidade dos Plots;</li><li>distribuições-base de raridade, Vigor e espécies;</li><li>potência numérica, tiers, receitas e oferta dos Fertilizantes;</li><li>validação estatística de F = 10 e do expoente 4;</li><li>taxas, limites e regras de moeda do mercado de sementes.</li></ul></div>
 </div>
 </section>
 <section id="equipamentos">
@@ -2175,7 +2212,7 @@
 <table>
 <thead><tr><th>Classe de drop</th><th>Função</th><th>Origem provável</th></tr></thead>
 <tbody>
-<tr><td><strong>Sementes elementais</strong></td><td>Originam novos Buds; revelam apenas o tipo antes da germinação.</td><td>Fases, mapas, desafios, eventos e outras fontes futuras.</td></tr><tr><td><strong>Matérias-primas</strong></td><td>Base recorrente de refino, Síntese, Calibração, Fusão e Ascensão.</td><td>Cultivo, fases, elites e atividades comuns.</td></tr><tr><td><strong>Insumos de cultivo</strong></td><td>Água, adubos, tratamentos e componentes que alteram germinação, tempo e probabilidades.</td><td>Cultivo, fases, crafting, pesquisa e comércio.</td></tr>
+<tr><td><strong>Sementes elementais</strong></td><td>Originam novos Buds; revelam apenas o elemento antes da Germinação.</td><td>Fases, mapas, desafios, eventos e outras fontes futuras.</td></tr><tr><td><strong>Matérias-primas</strong></td><td>Base recorrente de refino, Síntese, Calibração, Fusão e Ascensão.</td><td>Cultivo, fases, elites e atividades comuns.</td></tr><tr><td><strong>Insumos de cultivo</strong></td><td>Água obrigatória e três perfis de Fertilizante para Germinação.</td><td>Cultivo, fases, crafting, pesquisa e comércio.</td></tr>
 <tr><td><strong>Essências regionais</strong></td><td>Conectam o attachment ao tipo, bioma, tier ou família desejada.</td><td>Mapas e caminhos específicos.</td></tr>
 <tr><td><strong>Conhecimento</strong></td><td>Abre famílias de pesquisa, processos e receitas.</td><td>Progressão, exploração, desafios e chefes.</td></tr>
 <tr><td><strong>Receitas e moldes</strong></td><td>Definem o que pode ser sintetizado e influenciam a distribuição de qualidade.</td><td>Pesquisa, chefes, eventos e conteúdo avançado.</td></tr>
@@ -2354,7 +2391,7 @@
 <p>Este Codex não redefine a economia global já estabelecida pela Idle Lovers. Ele identifica onde o design do primeiro jogo cria demanda, consumo e diferenciação de ativos.</p>
 <div class="grid">
 <div class="card good"><h3>Fontes de desejo</h3><ul><li>Buds veteranos, raros e com Vigor alto;</li><li>sementes elementais e insumos de cultivo de alta qualidade;</li><li>Núcleos Arcanos e Totens sintetizados com bons rolls;</li><li>receitas, moldes e componentes de chefe;</li><li>Plots de alta qualidade;</li><li>materiais e ferramentas de Calibração;</li><li>lendários nomeados, itens sazonais e históricos.</li></ul></div>
-<div class="card warn"><h3>Sinks naturais</h3><ul><li>plantio, água, adubos, tratamentos e tentativas de germinação;</li><li>Síntese, Calibração, Fusão e Ascensão de Núcleos/Totens;</li><li>perdas de crafting e desmontagem parcial;</li><li>desbloqueio de vagas e melhoria de Plots;</li><li>formação de um elenco amplo até o cap.</li></ul></div>
+<div class="card warn"><h3>Sinks naturais</h3><ul><li>plantio, água, Fertilizantes e tentativas de Germinação;</li><li>Síntese, Calibração, Fusão e Ascensão de Núcleos/Totens;</li><li>perdas de crafting e desmontagem parcial;</li><li>desbloqueio de vagas e melhoria de Plots;</li><li>formação de um elenco amplo até o cap.</li></ul></div>
 </div>
 <h3>21.1 Plots no marketplace</h3>
 <p>Plots não iniciais são ativos negociáveis entre jogadores por Gold. A transação transfere o mesmo Plot com suas propriedades e melhorias locais permanentes; vagas desbloqueadas e Infraestrutura de Cultivo continuam vinculadas à conta e não integram a venda.</p>
@@ -2364,7 +2401,15 @@
 <li>o comprador pode armazenar o Plot sem vaga livre, mas precisa de uma vaga desbloqueada e desocupada para instalá-lo;</li>
 <li>listagem, cancelamento e transferência devem ser autoritativos, atômicos e protegidos contra duplicação.</li>
 </ul>
-<h3>21.2 Regra-base da Calibração</h3>
+<h3>21.2 Sementes no marketplace</h3>
+<p>Sementes são ativos de coleção e produção; elas não são caixas com Bud pré-definido. Quando o marketplace for liberado, poderão circular por Gold e, conforme o Documento de Economia, por moeda de Cash conversível.</p>
+<ul>
+<li>a negociação transfere a semente real, seu elemento e sua origem, sem revelar espécie, raridade, Vigor ou Pontos Inatos futuros;</li>
+<li>semente em Germinação fica bloqueada até conclusão ou cancelamento e nunca pode ser listada, transferida ou duplicada;</li>
+<li>Proteção de Raridade pertence à conta compradora e não acompanha a semente;</li>
+<li>taxas, limites, saque, moeda e elegibilidade final para mercado de valor real pertencem ao Documento de Economia.</li>
+</ul>
+<h3>21.3 Regra-base da Calibração</h3>
 <p>Depois das tentativas gratuitas, uma operação de Calibração exige duas partes: um item ou material específico definido pelo gameplay e um reagente premium comprado com Cash, provisoriamente chamado de <strong>Pó Arcano</strong>.</p>
 <div class="formula">Item/material do jogo + Pó Arcano → operação de Calibração</div>
 <ul>
@@ -2377,7 +2422,7 @@
 <li>quem compra o reagente em Cash pode listá-lo no marketplace e vendê-lo por Gold.</li>
 </ul>
 <p>Esse desenho cria uma ponte direta entre Cash e economia local sem transformar Cash em Gold por conversão automática. Um jogador compra conveniência; outro pode obtê-la usando Gold ao negociar com ele.</p>
-<h3>21.3 Ferramentas premium de Calibração</h3>
+<h3>21.4 Ferramentas premium de Calibração</h3>
 <p>Os nomes abaixo são provisórios, mas já representam funções desejadas. A intenção atual é que essas ferramentas de Calibração sejam vendidas na loja de Cash e possam circular no marketplace por Gold.</p>
 <table>
 <thead><tr><th>Item provisório</th><th>Função</th></tr></thead>
@@ -2393,7 +2438,7 @@
 </table>
 <p>Custos, limites, escalada de preço, obtenção dos materiais de gameplay e combinações permitidas da Calibração serão fechados no brainstorming específico de itemização e loja de Cash. As regras completas de Síntese, Fusão, Ascensão, pesquisa e desmontagem também permanecem para essa etapa.</p>
 <p>Plots já estão aprovados para circulação por Gold. A negociabilidade dos demais ativos, a eventual entrada de Plots no mercado de valor real e o momento de liberação de cada categoria continuam sujeitos às regras do Documento de Fundação e à validação gradual do MVP.</p>
-<h3>21.4 Transparência da expedição</h3>
+<h3>21.5 Transparência da expedição</h3>
 <p>XP por hora, materiais por hora, Stamina gasta e taxa de vitória são leituras de resultado real recente, não multiplicadores ocultos de recompensa. A economia remunera inimigos definitivamente derrotados e conclusões de fase conforme o Ponto 9; a política PvE apenas decide a próxima tentativa.</p>
 </section>
 <section id="mvp">
@@ -2402,7 +2447,7 @@
 <h2>22. O que o protótipo precisa provar</h2>
 <p>O protótipo não precisa conter toda a profundidade do Codex. Ele precisa comprovar que as decisões principais são divertidas antes de multiplicarmos conteúdo.</p>
 <div class="grid">
-<div class="card good"><h3>Entrar cedo</h3><ul><li>formação de sete em 1–2–1–2–1;</li><li>combate automático determinístico;</li><li>Battle Level e Farm Level estruturados para cap 100;</li><li>Battle Level com seis atributos;</li><li>Farm Level com seis atributos;</li><li>separação entre atributos distribuíveis e status derivados;</li><li>raridade e Vigor fixo de 50 a 500;</li><li>um Jardim 7×7, começando com três Plots e preparado para 49;</li><li>Plots elementais;</li><li>Bud, Núcleo e Totem;</li><li>nove espécies no Alpha, uma por elemento;</li><li>Basic Attack e Power Move fixos por espécie;</li><li>RNG controlado de Power Move e Desvio Perfeito;</li><li>nove tipos e matriz completa;</li><li>três presets PvE e três snapshots PvP no Free, escaláveis para sete com VIP;</li><li>reserva de um Plot por Bud somente pelo time PvE ativo;</li><li>políticas PvE Estável, Avançar, Recuar e Adaptativo;</li><li>sessão online gratuita, expedição offline VIP e rotação PvE → Recuperação → PvE;</li><li>sementes elementais com resultado individual resolvido apenas no brotar e pool de espécies atual;</li><li>plantio em Plots comuns e elementais;</li><li>um conjunto mínimo de água e adubo alterando probabilidades;</li><li>criação do Bud autoritativa e idempotente no servidor durante o brotar;</li></ul></div>
+<div class="card good"><h3>Entrar cedo</h3><ul><li>formação de sete em 1–2–1–2–1;</li><li>combate automático determinístico;</li><li>Battle Level e Farm Level estruturados para cap 100;</li><li>Battle Level com seis atributos;</li><li>Farm Level com seis atributos;</li><li>separação entre atributos distribuíveis e status derivados;</li><li>raridade e Vigor fixos de 50 a 500;</li><li>um Jardim 7×7, começando com três Plots e preparado para 49;</li><li>Plots elementais;</li><li>Bud, Núcleo e Totem;</li><li>nove espécies no Alpha, uma por elemento;</li><li>Basic Attack e Power Move fixos por espécie;</li><li>RNG controlado de Power Move e Desvio Perfeito;</li><li>nove tipos e matriz completa;</li><li>três presets PvE e três snapshots PvP no Free, escaláveis para sete com VIP;</li><li>reserva de um Plot por Bud somente pelo time PvE ativo;</li><li>políticas PvE Estável, Avançar, Recuar e Adaptativo;</li><li>sessão online gratuita, expedição offline VIP e rotação PvE → Recuperação → PvE;</li><li>três sementes tutoriais escalonadas, de elementos distintos;</li><li>Germinação em três etapas de 20 min, sem falha total;</li><li>pool congelada no plantio, roll autoritativo no fim da etapa 3 e Proteção de Raridade;</li><li>plantio em Plots comuns e elementais, com Água obrigatória;</li><li>três perfis de Fertilizante para raridade e Vigor;</li><li>criação do Bud autoritativa e idempotente no servidor durante o nascimento;</li></ul></div>
 <div class="card danger"><h3>Entrar depois</h3><ul><li>marketplace entre jogadores, incluindo Plots, e mercado RMT aberto;</li><li>breeding ou genética;</li><li>guildas complexas;</li><li>PvP em tempo real;</li><li>dezenas de mapas;</li><li>múltiplos sistemas de vizinhança;</li><li>cadeia completa de Síntese, Calibração, Fusão e Ascensão;</li><li>toda a ferramenta premium de Calibração;</li><li>todos os assets finais.</li></ul></div>
 </div>
 <h3>22.1 Métricas de verdade</h3>
@@ -2427,11 +2472,23 @@
 <div class="decision"><div><strong>Fantasia central</strong><p>O jogador é um Jardineiro que cultiva Buds, administra seu Jardim e forma esquadrões para explorar, batalhar, criar e negociar.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Nomenclatura do universo</strong><p>Bud é o personagem mágico treinável completo; Jardineiro é o papel-base do jogador; Budmaster é um reconhecimento de alto prestígio.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Budmasters</strong><p>Vários jogadores podem conquistar o título pelo desempenho amplo; o primeiro do ranking geral é o Budmaster da Temporada.</p></div><span class="status s-defined">Definido</span></div>
-<div class="decision"><div><strong>Tom do jogo</strong><p>Lúdico, carismático e fantástico, sem tratamento infantil ou exigência de lore individual profunda.</p></div><span class="status s-defined">Definido</span></div><div class="decision"><div><strong>Identidade do Bud</strong><p>Cada Bud é um espécime único e persistente; nascimento, progressão, build atual e proveniência acompanham o indivíduo.</p></div><span class="status s-defined">Definido</span></div><div class="decision"><div><strong>Espécies da primeira temporada</strong><p>Toda espécie regular possui exatamente um elemento e pode nascer em qualquer raridade e em toda a faixa permitida de Vigor, sob as mesmas regras de cultivo.</p></div><span class="status s-defined">Definido</span></div><div class="decision"><div><strong>Nome e apelido</strong><p>O nome oficial pertence à espécie; o apelido é privado da conta, alterável e nunca aparece para terceiros ou no mercado.</p></div><span class="status s-defined">Definido</span></div><div class="decision"><div><strong>Budgram</strong><p>Catálogo geral de espécies descobertas, status-base, golpes e fontes; função definida e nome provisório.</p></div><span class="status s-rule">Nome provisório</span></div><div class="decision"><div><strong>Registro individual</strong><p>A ficha do Bud separa leitura rápida de dados históricos expansíveis; o backend preserva proveniência e proprietários anteriores.</p></div><span class="status s-defined">Definido</span></div><div class="decision"><div><strong>Transferência</strong><p>A negociação transfere o Bud real com progressão, história, configuração e direitos gratuitos já consumidos; não cria uma cópia limpa.</p></div><span class="status s-defined">Definido</span></div><div class="decision"><div><strong>Reset por grupo</strong><p>Batalha, Cultivo e Habilidades possuem resets independentes: uma utilização gratuita por Bud e por grupo; novos usos são liberados para VIP.</p></div><span class="status s-defined">Definido</span></div><div class="decision"><div><strong>Bestiário</strong><p>Inimigos podem ser neutros ou elementais e incluir animais, máquinas, alienígenas e outras ameaças; regras detalhadas permanecem em construção.</p></div><span class="status s-rule">Em construção</span></div><div class="decision"><div><strong>Loop principal</strong><p>O elenco opera em Alocar → Produzir/Batalhar → Coletar → Avaliar → Desenvolver → Realocar, em paralelo ao loop de nascimento.</p></div><span class="status s-defined">Definido</span></div><div class="decision"><div><strong>Sementes</strong><p>Novos Buds começam como sementes obtidas por drop; antes do brotar, apenas o tipo é conhecido.</p></div><span class="status s-defined">Definido</span></div><div class="decision"><div><strong>Germinação</strong><p>Semente, plot e insumos moldam probabilidades sem garantir ou bloquear completamente raridade, Vigor ou espécie.</p></div><span class="status s-rule">Regra-base</span></div><div class="decision"><div><strong>Brotar autoritativo</strong><p>O Bud só é calculado, criado e persistido pelo servidor ao concluir a germinação; não existe resultado oculto pré-gerado na semente.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Tom do jogo</strong><p>Lúdico, carismático e fantástico, sem tratamento infantil ou exigência de lore individual profunda.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Identidade do Bud</strong><p>Cada Bud é um espécime único e persistente; nascimento, progressão, build atual e proveniência acompanham o indivíduo.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Espécies da primeira temporada</strong><p>Toda espécie regular possui exatamente um elemento e pode nascer em qualquer raridade e em toda a faixa permitida de Vigor, sob as mesmas regras de cultivo.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Nome e apelido</strong><p>O nome oficial pertence à espécie; o apelido é privado da conta, alterável e nunca aparece para terceiros ou no mercado.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Budgram</strong><p>Catálogo geral de espécies descobertas, status-base, golpes e fontes; função definida e nome provisório.</p></div><span class="status s-rule">Nome provisório</span></div>
+<div class="decision"><div><strong>Registro individual</strong><p>A ficha do Bud separa leitura rápida de dados históricos expansíveis; o backend preserva proveniência e proprietários anteriores.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Transferência</strong><p>A negociação transfere o Bud real com progressão, história, configuração e direitos gratuitos já consumidos; não cria uma cópia limpa.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Reset por grupo</strong><p>Batalha, Cultivo e Habilidades possuem resets independentes: uma utilização gratuita por Bud e por grupo; novos usos são liberados para VIP.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Bestiário</strong><p>Inimigos podem ser neutros ou elementais e incluir animais, máquinas, alienígenas e outras ameaças; regras detalhadas permanecem em construção.</p></div><span class="status s-rule">Em construção</span></div>
+<div class="decision"><div><strong>Loop principal</strong><p>O elenco opera em Alocar → Produzir/Batalhar → Coletar → Avaliar → Desenvolver → Realocar, em paralelo ao loop de nascimento.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Sementes</strong><p>Novos Buds começam como sementes elementais; no plantio, a Receita exibe pool, Plot, água, Fertilizantes e probabilidades, sem resultado pré-gerado.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Germinação</strong><p>Três etapas de 20 min, dois checkpoints, Água obrigatória e nenhuma falha total; Plot e Fertilizantes moldam raridade e Vigor sem garantir resultado.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Nascimento autoritativo</strong><p>O Bud é calculado, criado e persistido ao fim da terceira etapa; a revelação apenas apresenta o resultado, sem nova rolagem.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Progressão individual</strong><p>Cada Bud sobe Battle Level e Farm Level e distribui separadamente Atributos de Batalha e Atributos de Cultivo.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Kit da espécie</strong><p>Cada espécie possui Basic Attack e Power Move próprios e fixos, sem árvore, pontos, troca de movimentos ou barra de energia.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Espécies do Alpha</strong><p>Nove espécies, uma por elemento. Expansões futuras entram em conjuntos completos de nove, sem calendário prometido.</p></div><span class="status s-defined">Definido</span></div>
-<div class="decision"><div><strong>Pool das sementes</strong><p>Sementes usam a pool disponível no momento do nascimento, mesmo quando foram obtidas antes da chegada de espécies novas.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Pool das sementes</strong><p>Sementes usam a pool disponível no plantio, mesmo quando foram obtidas antes de espécies novas; a pool fica congelada durante a Germinação.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>RNG de combate</strong><p>Raridade, Vigor e SOR podem elevar Power Move e Desvio Perfeito sob tetos de balanceamento.</p></div><span class="status s-rule">Regra-base</span></div>
 <div class="decision"><div><strong>Progressão do Jardineiro</strong><p>O nível da conta libera estrutura e complexidade; mapas liberam conteúdo; VIP amplia eficiência, capacidade e conforto sem aumentar diretamente os status dos Buds.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Cap inicial</strong><p>Battle Level e Farm Level chegam ao 100 na primeira temporada, sem XP excedente armazenado.</p></div><span class="status s-defined">Definido</span></div>
@@ -2451,7 +2508,10 @@
 <div class="decision"><div><strong>ADA</strong><p>Mitiga até 60% das penalidades e amplia até 20% do bônus positivo, sempre com retorno decrescente e sem alterar o Plot Simples.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Planos de Cultivo</strong><p>Alpha parte de Cultivo Básico, Elemental e Regional, com durações de 1h30, 6h e 12h e pools progressivas ligadas ao PvE.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Stamina</strong><p>Somente batalhas consomem Stamina; base 100, custos previsíveis por atividade e recuperação total em até 60 minutos antes de REC e VIP.</p></div><span class="status s-defined">Definido</span></div>
-<div class="decision"><div><strong>Fertilizantes</strong><p>Um por checkpoint e dois por processo; são opcionais, especializados, não garantem resultados e podem ter uso automatizado pelo VIP.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Fertilizantes</strong><p>Na Germinação existem três perfis: Raridade 80/20, Vigor 20/80 e Equilibrado 50/50. Dois iguais têm segundo efeito de 50%; perfis diferentes aplicam efeito completo.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Proteção de Raridade</strong><p>Contador visível por conta, elemento e família de pool desloca Comum/Incomum para Rara após azar consecutivo; em 10 falhas, garante Rara ou superior sem afetar Épica, Lendária, espécie, Vigor ou Pontos Inatos.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Tutorial de sementes</strong><p>Três sementes escalonadas, de elementos distintos escolhidos pelo jogador, ensinam a Germinação curta; usam RNG normal e contam para a Proteção de Raridade.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Automação VIP de Germinação</strong><p>VIP escolhe manual ou automático por processo e repete somente receita, itens, próxima ação e limite pré-autorizados. Receita ou Plano inválido trava o fluxo em Aguardando Ajuste, sem consumo adicional.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Farm offline</strong><p>Processos agrícolas já iniciados continuam offline para todos; o Free realiza cuidados e próximos processos manualmente, enquanto o VIP automatiza etapas, Fertilizantes autorizados e ciclos de Recuperação.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>FP — Farming Power</strong><p>Poder de Cultivo resume produção, qualidade, velocidade, economia, adaptação, recuperação e Stamina sem considerar VIP ou efeitos temporários.</p></div><span class="status s-defined">Definido</span></div>
 
@@ -2480,8 +2540,9 @@
 <div class="decision"><div><strong>Carry</strong><p>Buds veteranos podem elevar Buds atrasados em fases anteriores.</p></div><span class="status s-rule">Regra-base</span></div>
 <div class="decision"><div><strong>Jardim e Plots</strong><p>O único Jardim da conta usa grade 7×7, começa com três Plots e expande até 49 vagas permanentes. Plots limitam processos simultâneos, nunca coleção, presets ou snapshots.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Negociação de Plots</strong><p>Vagas e os três Plots iniciais ficam vinculados à conta; demais Plots vazios podem circular por Gold preservando propriedades e melhorias. Infraestrutura de Cultivo nunca acompanha a venda.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Negociação de sementes</strong><p>Sementes podem circular por Gold e, sob regras futuras de economia, por moeda de Cash conversível. Germinação bloqueia transferência; Proteção de Raridade pertence à conta, não à semente.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Presets e snapshots</strong><p>Free salva três presets PvE e três snapshots PvP; VIP salva sete de cada. Apenas o time PvE ativo reserva Buds e Plots; um único snapshot PvP fica ativo como defesa.</p></div><span class="status s-defined">Definido</span></div>
-<div class="decision"><div><strong>Infraestrutura de Cultivo</strong><p>Progressão gratuita de conta fornece até +30% de velocidade operacional; VIP soma +10%, para máximo inicial de 1,40× em processos autorizados, nunca no PvE real.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Infraestrutura de Cultivo</strong><p>Progressão gratuita de conta fornece até +30% de velocidade operacional; VIP soma +10% nos processos autorizados, exceto Germinação, que usa metade do tempo após a Infraestrutura. Nunca afeta PvE real.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Attachments</strong><p>Apenas Núcleo Arcano e Totem são equipáveis e possuem raridade própria.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Origem dos attachments</strong><p>Núcleos e Totens completos nunca são drops; todos nascem por Síntese.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Forja</strong><p>Síntese, Calibração, Fusão e Ascensão formam os quatro pilares do crafting.</p></div><span class="status s-defined">Definido</span></div>
@@ -2506,8 +2567,8 @@
 <h2>24. Questões em aberto</h2>
 <ol>
 <li><strong>Espécies iniciais:</strong> nomes, status-base, Basic Attack, Power Move e função de cada um dos nove Buds do Alpha.</li>
-<li><strong>Sementes:</strong> fontes, taxas de drop, vínculo, negociabilidade e tabelas de espécies por tipo.</li>
-<li><strong>Conteúdo de Germinação e Fertilizantes:</strong> tempos finais por semente, catálogo, receitas, raridades, valores e potência probabilística de cada insumo.</li>
+<li><strong>Sementes:</strong> fontes, taxas de drop, vínculo, famílias de pool, tabelas de espécies por elemento e regras econômicas de negociação.</li>
+<li><strong>Conteúdo de Germinação e Fertilizantes:</strong> coeficientes da Matriz Semente → Plot, pesos-base de raridade/Vigor, receitas, tiers, valores, oferta e potência probabilística dos três perfis.</li>
 <li><strong>Budgram:</strong> nome definitivo, descoberta, desbloqueios, busca, filtros, silhuetas e integração com a ficha individual.</li>
 <li><strong>Registro individual:</strong> hierarquia visual, dados públicos, tooltips, expansão e possíveis regras futuras para mostrar proprietários anteriores.</li>
 <li><strong>Movimentos:</strong> efeitos, números, animações, frequência-base e limites de Basic Attack e Power Move.</li>
@@ -2524,11 +2585,11 @@
 <li><strong>Reroll:</strong> custos, escalada, limites, materiais de gameplay e nomes definitivos dos reagentes de Cash.</li>
 <li><strong>Tipos:</strong> calibração dos multiplicadores no simulador, lore e nomes definitivos.</li>
 <li><strong>Jardim:</strong> custos, níveis e curva das 46 expansões de Plot, além dos tiers e requisitos da Infraestrutura de Cultivo.</li>
-<li><strong>Conteúdo de Plots e Cultivo:</strong> mapeamento final da Matriz de Afinidade, qualidade, raridade, pools, quantidades, receitas, requisitos regionais, coeficientes K e normalização visual do FP.</li>
+<li><strong>Conteúdo de Plots e Cultivo:</strong> mapeamento final da Matriz Bud → Plot, qualidade, raridade, pools, quantidades, receitas, requisitos regionais, coeficientes K e normalização visual do FP.</li>
 
 <li><strong>PvP:</strong> ligas, energia, matchmaking, replays e recompensas.</li>
 <li><strong>Budmaster:</strong> critérios, pesos por sistema, quantidade de classificados, desempates e recompensas sazonais.</li>
-<li><strong>Mercado:</strong> momento de liberação dos Plots, taxas, limites de listagem, cooldowns, histórico de preço, demais ativos elegíveis e possível acesso futuro ao mercado de valor real.</li>
+<li><strong>Mercado:</strong> momento de liberação de Plots e sementes, taxas, limites de listagem, cooldowns, histórico de preço, moeda de Cash conversível, saque, demais ativos elegíveis e possível acesso futuro ao mercado de valor real.</li>
 </ol>
 <div class="statement">A revisão seguirá ponto a ponto. Identidade, apelidos, proveniência, transferência e resets por grupo já possuem regras definidas; nomes provisórios, interface, fórmulas e conteúdo detalhado serão fechados nos capítulos correspondentes.</div>
 </section>

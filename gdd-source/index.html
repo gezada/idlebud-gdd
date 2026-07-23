@@ -433,7 +433,7 @@
 </div>
 <div class="grid three">
 <div class="card"><h4>Alocar</h4><p>O Jardineiro decide quais Buds entram no esquadrão, quais ocupam plots e quais ficam em recuperação, treinamento ou outras atividades futuras.</p></div>
-<div class="card"><h4>Produzir e batalhar</h4><p>O Jardim produz e recupera enquanto o esquadrão percorre fases idle. Farm e PvE usam alocação exclusiva; o PvP assíncrono utiliza snapshots e não interrompe essas atividades.</p></div>
+<div class="card"><h4>Produzir e batalhar</h4><p>O Jardim produz e recupera enquanto o esquadrão percorre fases idle. Farm e PvE usam alocação exclusiva; presets de PvP não interrompem essas atividades.</p></div>
 <div class="card"><h4>Coletar</h4><p>O jogador recebe XP, materiais, sementes, insumos, conhecimento, progresso de mapas e resultados competitivos.</p></div>
 <div class="card"><h4>Avaliar</h4><p>Ele identifica gargalos: time travado, Bud atrasado, falta de recurso, plot inadequado, semente promissora ou item que deve ser usado, vendido, guardado ou destruído.</p></div>
 <div class="card"><h4>Desenvolver</h4><p>O valor coletado retorna ao sistema por níveis, atributos, Infraestrutura de Cultivo, plots, pesquisa e Forja.</p></div>
@@ -640,7 +640,7 @@
 <p>Alguns recursos podem permanecer exclusivos do VIP porque ampliam a operação sem remover do jogador gratuito o acesso ao conteúdo principal:</p>
 <ul>
 <li>filas adicionais de germinação, recuperação, pesquisa ou Forja;</li>
-<li>sete presets PvE e sete snapshots PvP salvos, contra três de cada para o jogador gratuito;</li><li>controle opcional de simulação PvE em 2×, alternável em tempo real enquanto o VIP estiver ativo;</li>
+<li>sete presets PvE e sete presets PvP salvos, contra três de cada para o jogador gratuito;</li><li>controle opcional de simulação PvE em 2×, alternável em tempo real enquanto o VIP estiver ativo;</li>
 <li>progresso PvE offline por até <strong>8 horas</strong>, com resumo ao retornar;</li>
 <li>mais slots simultâneos de venda no marketplace;</li>
 <li>filtros, organização e ferramentas avançadas de gestão;</li>
@@ -1104,7 +1104,7 @@
 <li>no Free, pausa, troca ou Stamina insuficiente exigem a ação manual <strong>Retornar e Recuperar</strong> para enviar os Buds aos Plots e iniciar Recuperação;</li>
 <li>no VIP, a rotação PvE → Recuperação → PvE pode executar retorno, cuidados, conclusão e retomada automaticamente quando habilitada;</li>
 <li>o Bud não abandona batalha em andamento; falha de vínculo, Plot ocupado ou configuração inválida pausa a automação com diagnóstico claro;</li>
-<li>PvP usa snapshots separados e nunca cria, remove ou altera essa reserva de Plot.</li>
+<li>presets PvP são separados e nunca criam, removem ou alteram essa reserva de Plot.</li>
 </ul>
 
 <h3>7.14 FP — Farming Power / Poder de Cultivo</h3>
@@ -1889,7 +1889,7 @@
 </table>
 <p class="small">Esses são parâmetros explícitos e configuráveis do combate. Podem ser recalibrados no simulador, mas a simetria da matriz deve ser preservada.</p>
 <h3>12.2 Escopo do multiplicador</h3>
-<p>O multiplicador elemental afeta somente o dano causado por ataques e habilidades ofensivas, de Buds e inimigos. Ele não altera cura, escudo, buffs, debuffs, duração de controle, drops ou recompensas.</p>
+<p>O multiplicador elemental afeta somente o dano causado por ataques e Power Moves ofensivos, de Buds e inimigos. Ele não altera cura, escudo, buffs, debuffs, duração de controle, drops ou recompensas.</p>
 <p>Inimigos podem ser Neutros, sem elemento associado; Neutro não é um décimo elemento. Todo inimigo, miniboss ou boss possui no máximo um elemento ativo no Alpha. Não existem combinações de dois ou três elementos ativos simultaneamente.</p>
 <h3>12.3 Matriz completa</h3>
 <div class="table-wrap">
@@ -1912,7 +1912,7 @@
 </div>
 <p class="small"><strong>Legenda:</strong> MF = Muito Forte · F = Forte · N = Neutro · W = Fraco · MW = Muito Fraco.</p>
 <h3>12.4 Leitura temática</h3>
-<p>O círculo não precisa obedecer física literal. Ele representa como essas forças mágicas interagem dentro do universo. A coerência final virá da lore, dos efeitos visuais e dos nomes das habilidades. O importante é que o jogador aprenda uma regra previsível, que todos os tipos tenham o mesmo valor estrutural e que nenhuma afinidade vire escolha obrigatória universal.</p>
+<p>O círculo não precisa obedecer física literal. Ele representa como essas forças mágicas interagem dentro do universo. A coerência final virá da lore, dos efeitos visuais e dos nomes dos Power Moves e passivas. O importante é que o jogador aprenda uma regra previsível, que todos os tipos tenham o mesmo valor estrutural e que nenhuma afinidade vire escolha obrigatória universal.</p>
 </section>
 <section id="jardins">
 <span class="tag">Arquitetura de cultivo</span>
@@ -1944,7 +1944,7 @@
 <h3>13.2 Plot</h3>
 <p>Cada Plot ocupa exatamente uma vaga de Jardim e recebe uma única semente em Germinação ou um único Bud alocado. Ele afeta exclusivamente o processo que ocorre nele: Germinação, Cultivo ou Recuperação de Stamina.</p>
 <ul><li>Plot Simples é o baseline neutro, sem afinidade elemental;</li><li>na Germinação, Plots elementais usam uma Matriz própria de <strong>Semente → Plot</strong>, distinta da afinidade <strong>Bud → Plot</strong> do Cultivo; ela desloca as probabilidades de raridade e Vigor, sem bloquear espécies nem garantir resultados;</li>
-<li>tipo, qualidade, raridade e bônus do Plot nunca alteram ataque, defesa, HP, skills, counter, CP, Poder de Confronto ou resultado de batalha;</li>
+<li>tipo, qualidade, raridade e bônus do Plot nunca alteram ataque, defesa, HP, Power Moves, counter, CP, Poder de Confronto ou resultado de batalha;</li>
 <li>qualidade e raridade do Plot podem modificar os três processos locais; na Germinação, seus efeitos se limitam a raridade e Vigor, nunca a espécie ou Pontos Inatos;</li>
 <li>um Plot de Gelo favorece Buds de Gelo e tipos próximos conforme sua afinidade; um Bud incompatível continua elegível;</li>
 <li>Adaptação do Bud participa somente da afinidade de Cultivo após o nascimento; ela nunca interfere na Germinação.</li>
@@ -1958,7 +1958,7 @@
 <li>ao concluir um nascimento, o Bud entra automaticamente na coleção e o Plot é liberado, salvo quando uma automação VIP válida iniciar imediatamente o Plano de Cultivo pré-configurado;</li>
 <li>um Bud em processo ativo ou PvE em andamento não pode ser realocado para contornar alocação exclusiva;</li>
 <li>ativar um time PvE reserva um Plot vinculado por Bud, até sete; cada reserva permanece indisponível para os demais processos até o retorno;</li>
-<li>presets PvE e snapshots PvP não criam reserva; somente a atividade PvE real trava Buds e Plots;</li>
+<li>presets PvE e PvP não criam reserva; somente a atividade PvE real trava Buds e Plots;</li>
 <li>um Plot só pode ser removido ou negociado quando estiver vazio, sem processo ativo, Bud alocado ou reserva PvE.</li>
 </ul>
 <p>Farm continua offline para todos após o processo começar. Cuidados manuais, automação VIP, Fertilizantes, presets e retorno do PvE obedecem ao Ponto 7; Jardim e Plot não criam uma segunda regra para esses sistemas.</p>
@@ -2152,49 +2152,74 @@
 </section>
 <section id="equipamentos">
 <span class="tag violet">Dois attachments por Bud</span>
-<span class="review-state rs-provisional">Provisório</span>
+<span class="review-state rs-defined">Definido</span>
 <h2>15. Bud, Núcleo Arcano e Totem</h2>
-<p>O Bud é um personagem completo. A itemização equipável fica concentrada em apenas dois attachments: Núcleo Arcano e Totem. Ambos são produzidos por crafting; inimigos e processos de Cultivo não entregam versões completas prontas.</p>
+<p>O Bud é um personagem completo. A itemização equipável fica concentrada em somente dois attachments: Núcleo Arcano e Totem. Ambos são produzidos pela Forja; inimigos e processos de Cultivo não entregam versões completas prontas.</p>
 <div class="grid three">
 <div class="card good">
 <h3>1. Bud</h3>
 <p>É a fundação persistente da build.</p>
-<ul><li>espécie, tipo, raridade e Vigor;</li><li>Battle e Farm Level;</li><li>atributos distribuídos e status derivados;</li><li>skills e escolhas de progressão.</li></ul>
+<ul><li>espécie, elemento, raridade e Vigor imutáveis;</li><li>Battle e Farm Level;</li><li>atributos distribuídos e status derivados;</li><li>Basic Attack e Power Move fixos da espécie.</li></ul>
 </div>
 <div class="card violet">
 <h3>2. Núcleo Arcano</h3>
-<p>Attachment trocável que molda a fonte de poder e a parte técnica.</p>
-<ul><li>dano físico ou mágico;</li><li>afinidade e penetração;</li><li>energia, crítico e velocidade;</li><li>modificadores de skill;</li><li>atributos, passivas e reroll.</li></ul>
+<p>Esfera mágica que flutua próxima ao Bud, em um dos seus lados.</p>
+<ul><li>um dos nove elementos, fixo no item;</li><li>atributos diretos de Combate e Cultivo;</li><li>passivas do pool próprio de Núcleo e elemento;</li><li>raridade, Calibração e Ascensão.</li></ul>
 </div>
 <div class="card blue">
 <h3>3. Totem</h3>
-<p>Attachment trocável de especialização estratégica.</p>
-<ul><li>bônus de formação;</li><li>proteções e resistências;</li><li>sinergias de equipe;</li><li>efeitos situacionais e counters;</li><li>atributos, passivas e reroll.</li></ul>
+<p>Totem que flutua próximo ao Bud, no lado oposto ao Núcleo Arcano.</p>
+<ul><li>um dos nove elementos, fixo no item;</li><li>atributos diretos de Combate e Cultivo;</li><li>passivas do pool próprio de Totem e elemento;</li><li>efeitos individuais, defensivos e de formação elegíveis.</li></ul>
 </div>
 </div>
-<div class="statement"><strong>O Bud é a fundação. O Núcleo é a fonte de poder. O Totem é a especialização estratégica.</strong></div>
-<h3>15.1 Raridade dos attachments</h3>
-<p>Núcleo e Totem possuem raridades próprias, independentes da raridade do Bud. A raridade altera principalmente a quantidade de passivas e a faixa de níveis que elas podem alcançar. O catálogo de passivas possíveis continua o mesmo em todas as raridades.</p>
+<div class="statement"><strong>O Bud define quem luta; Núcleo e Totem ampliam sua ficha, sem criar skills, energia, ataques novos ou troca de movimentos.</strong></div>
+<h3>15.1 Equipamento, elemento e pools</h3>
+<p>Cada Bud pode usar simultaneamente <strong>um Núcleo Arcano e um Totem</strong>, ou deixar qualquer slot vazio. Cada attachment é um ativo único e só pode equipar um Bud por vez. Os dois tipos podem alterar qualquer atributo permitido, inclusive com bônus em uma frente e penalidade em outra; a diferença estrutural entre eles é o conjunto de passivas disponível.</p>
+<ul>
+<li>todo Núcleo e Totem possui exatamente um dos nove elementos e pode equipar qualquer Bud;</li>
+<li>não existe bônus, bloqueio ou punição global por equipar um elemento “errado”;</li>
+<li>o efeito favorável, neutro ou desfavorável de uma combinação resulta de seus atributos e passivas explícitos;</li>
+<li>existem <strong>18 pools de passivas</strong>: nove de Núcleo e nove de Totem, um por elemento; não há pool genérico;</li>
+<li>Totens podem oferecer efeitos de formação somente em batalha. Cada Totem possui no máximo uma aura, e auras do mesmo grupo não acumulam.</li>
+</ul>
+<h3>15.2 Raridade dos attachments</h3>
+<p>Núcleo e Totem possuem raridades próprias, independentes da raridade do Bud. A raridade controla o orçamento de atributos, a quantidade de linhas e a quantidade/faixa de níveis das passivas. Dentro de seu próprio pool de tipo e elemento, todas as raridades concorrem às mesmas passivas; itens melhores possuem mais espaços e tetos maiores.</p>
 <table>
-<thead><tr><th>Raridade do attachment</th><th>Quantidade de passivas</th><th>Níveis possíveis por passiva</th></tr></thead>
+<thead><tr><th>Raridade do attachment</th><th>Linhas de atributo</th><th>Quantidade de passivas</th><th>Níveis possíveis por passiva</th></tr></thead>
 <tbody>
-<tr><td><strong>Comum</strong></td><td>1</td><td>1–3</td></tr>
-<tr><td><strong>Incomum</strong></td><td>1–2</td><td>2–5</td></tr>
-<tr><td><strong>Raro</strong></td><td>2–3</td><td>3–6</td></tr>
-<tr><td><strong>Épico</strong></td><td>3–4</td><td>4–7</td></tr>
-<tr><td><strong>Lendário</strong></td><td>4</td><td>5–8</td></tr>
+<tr><td><strong>Comum</strong></td><td>1</td><td>1</td><td>1–3</td></tr>
+<tr><td><strong>Incomum</strong></td><td>1–2</td><td>1–2</td><td>2–5</td></tr>
+<tr><td><strong>Raro</strong></td><td>2–3</td><td>2–3</td><td>3–6</td></tr>
+<tr><td><strong>Épico</strong></td><td>3–4</td><td>3–4</td><td>4–7</td></tr>
+<tr><td><strong>Lendário</strong></td><td>5</td><td>4</td><td>5–8</td></tr>
 </tbody>
 </table>
-<p>Um Núcleo Comum sintetizado para um Bud de Fogo pode nascer com a melhor passiva possível para aquela build — mas limitada ao nível 3. Um attachment Raro não desbloqueia outro catálogo; ele oferece mais passivas e um teto de nível maior. Isso permite “rolls cagados” valiosos mesmo em itens comuns.</p>
-<p>Passivas usam níveis discretos e legíveis, como I, II, III e assim por diante. Atributos diretos continuam numéricos, como <code>ATK +43</code> ou <code>DEF +28</code>. A dificuldade deve estar na combinação, na raridade, no Vigor e nas probabilidades relevantes — não em comparar casas decimais desnecessárias em cada passiva.</p>
-<h3>15.2 O que é fixo e o que pode ser rerrolado</h3>
+<p>Passivas usam níveis discretos e legíveis, como I, II, III e assim por diante. Atributos não possuem nível: usam valores diretos que entram nas fórmulas existentes, como <code>ATK +43</code> ou <code>DEF +28</code>. A dificuldade está na combinação de linhas, passivas, elemento, raridade e probabilidades relevantes — não em comparar casas decimais desnecessárias.</p>
+<h3>15.3 Orçamento, Combate e Cultivo</h3>
+<p>O orçamento numérico de cada attachment favorece o que mais importa para PvE e PvP: no máximo <strong>80% para Combate</strong> e <strong>20% para Cultivo</strong>. Bônus de Cultivo são valores numéricos claros; no Alpha, passivas condicionais não funcionam fora de batalha.</p>
+<div class="formula">Bônus extra por debuff = menor entre 25% do orçamento-base e 50% do peso normalizado do debuff</div>
+<ul>
+<li>debuffs são possíveis, mas nunca obrigatórios; um item pode ter apenas bônus;</li>
+<li>um debuff pode ampliar a potência de outro modificador, sem elevar o orçamento total além de 25%;</li>
+<li>o mesmo modificador exato não pode repetir no mesmo attachment; versões fixa e percentual de um atributo podem coexistir;</li>
+<li>catálogo, pesos normalizados, faixas de valores e caps por atributo pertencem ao documento <strong>Enemies, Drops, Itemization &amp; Forge</strong>.</li>
+</ul>
+<h3>15.4 O que é fixo e o que pode ser rerrolado</h3>
 <div class="grid">
-<div class="card warn"><h4>Fixo no attachment</h4><ul><li>categoria: Núcleo ou Totem;</li><li>raridade;</li><li>quantidade máxima de passivas permitida pela raridade;</li><li>família, tipo ou afinidade-base quando o sistema futuro exigir.</li></ul></div>
-<div class="card good"><h4>Rerrolável</h4><ul><li>todos os atributos;</li><li>todas as passivas;</li><li>níveis das passivas;</li><li>combinações de atributos e passivas dentro das regras do item.</li></ul></div>
+<div class="card warn"><h4>Fixo na Calibração</h4><ul><li>categoria: Núcleo ou Totem;</li><li>elemento;</li><li>raridade atual;</li><li>pool de passivas que limita seus rerrolls.</li></ul></div>
+<div class="card good"><h4>Calibrável na Forja</h4><ul><li>uma linha de atributo ou o conjunto completo;</li><li>uma passiva, seu nível ou o conjunto completo;</li><li>combinações dentro do pool e do orçamento do item;</li><li>espaços e faixas liberados após Ascensão.</li></ul></div>
 </div>
-<p>Não existe “passiva principal”, “passiva secundária”, “atributo principal” ou “atributo secundário”. São apenas <strong>passivas</strong> e <strong>atributos</strong>, todos sujeitos às operações de reroll que forem permitidas.</p>
-<h3>15.3 Itemização profunda sem seis slots</h3>
-<p>Dois attachments já geram grande espaço de build quando combinados com espécie, elemento, raridade, Vigor, doze atributos distribuíveis, Basic Attack, Power Move, níveis de passiva e rerolls. A profundidade deve vir da qualidade das combinações, não da obrigação de equipar seis peças em dezenas de Buds.</p>
+<p>Calibração sempre consome recursos de gameplay dropáveis e/ou craftáveis. Não existe primeira tentativa gratuita por Bud, e rerroll não altera categoria, elemento ou raridade. A operação pode ser individual ou completa; proteções e catalisadores futuros pertencem à Forja.</p>
+<h3>15.5 Ascensão, presets e mercado</h3>
+<ul>
+<li>Ascensão pode elevar a raridade somente de Núcleo e Totem; Bud nunca muda de raridade;</li>
+<li>em uma Ascensão bem-sucedida, linhas, passivas e níveis atuais são preservados; o novo orçamento, faixas e espaços permanecem latentes até uma Calibração posterior;</li>
+<li>presets PvE e PvP guardam apenas Buds, ordem e posições. Eles sempre resolvem Núcleo, Totem, atributos, passivas e elemento no estado atual do Bud;</li>
+<li>uma alteração se reflete em todos os presets que usam o Bud. No PvE, ela vale na próxima batalha; no PvP, o servidor fixa ambos os times somente durante a luta já iniciada;</li>
+<li>equipar ou desequipar é gratuito fora de batalha. Listar um attachment no mercado o desequipa; listar um Bud devolve seus attachments à Bag e anuncia somente o Bud.</li>
+</ul>
+<h3>15.6 Itemização profunda sem seis slots</h3>
+<p>Dois attachments já geram grande espaço de build quando combinados com espécie, elemento, raridade, Vigor, atributos distribuíveis, linhas numéricas, passivas de nível 1–8, Ascensão e Calibração. A profundidade vem da qualidade das combinações, não da obrigação de equipar seis peças em dezenas de Buds.</p>
 </section>
 <section id="crafting">
 <span class="tag violet">Endgame de itemização</span>
@@ -2205,7 +2230,7 @@
 <h3>16.1 Constituição atual e detalhamento futuro</h3>
 <p>Esta versão fecha a filosofia e os quatro pilares do crafting. Receitas, custos, fórmulas, chances, compatibilidades, quantidades, estações, tempos e tabelas de loot serão definidos integralmente numa etapa específica de itemização.</p>
 <div class="grid">
-<div class="card good"><h4>Já definido</h4><ul><li>attachments completos são exclusivamente craftados;</li><li>materiais e conhecimentos avançam com regiões e tiers;</li><li>resultados possuem aleatoriedade e risco;</li><li>chances relevantes são apresentadas antes da confirmação;</li><li>itens ruins retornam ao ciclo por fusão ou desmontagem;</li><li>passivas usam níveis discretos.</li></ul></div>
+<div class="card good"><h4>Já definido</h4><ul><li>attachments completos são exclusivamente craftados;</li><li>materiais e conhecimentos avançam com regiões e tiers;</li><li>resultados possuem aleatoriedade e risco;</li><li>chances relevantes são apresentadas antes da confirmação;</li><li>itens ruins retornam ao ciclo por fusão ou desmontagem;</li><li>passivas usam níveis discretos; Calibração sempre consome recursos de gameplay.</li></ul></div>
 <div class="card warn"><h4>Será definido depois</h4><ul><li>listas de materiais e receitas;</li><li>porcentagens reais e pity systems;</li><li>custos de Gold, Cash e reagentes;</li><li>regras exatas de falha;</li><li>compatibilidade entre famílias;</li><li>tempo, filas, estações e limites.</li></ul></div>
 </div>
 <h3>16.2 O que o mundo entrega</h3>
@@ -2237,9 +2262,9 @@
 <h3>16.4 Os quatro rituais da Forja</h3>
 <div class="grid four">
 <div class="card good"><h3>Síntese</h3><p>É o crafting de origem. Combina receita ou molde, materiais e componentes para criar um novo Núcleo Arcano ou Totem com raridade, atributos e passivas rolados.</p></div>
-<div class="card blue"><h3>Calibração</h3><p>Trabalha um attachment já existente. Rerrola atributos, passivas ou níveis conforme a operação escolhida e as ferramentas disponíveis.</p></div>
+<div class="card blue"><h3>Calibração</h3><p>Trabalha um attachment já existente. Rerrola uma propriedade ou um conjunto completo, dentro de seu tipo, elemento, pool e orçamento, consumindo recursos de gameplay.</p></div>
 <div class="card violet"><h3>Fusão</h3><p>Destrói dois attachments compatíveis para gerar um terceiro. O resultado pode herdar qualidades, mudar de direção, sair melhor ou sair pior.</p></div>
-<div class="card warn"><h3>Ascensão</h3><p>Tenta elevar a raridade de um attachment por meio de sacrifícios e materiais avançados. A tentativa possui risco e consequências visíveis.</p></div>
+<div class="card warn"><h3>Ascensão</h3><p>Tenta elevar a raridade de um attachment por meio de sacrifícios e materiais avançados. Em sucesso, preserva as propriedades atuais e libera capacidade latente para Calibração; a tentativa possui risco e consequências visíveis.</p></div>
 </div>
 <div class="formula">Farmar → pesquisar → refinar → Síntese → avaliar → equipar, vender, Calibrar, Fundir, Ascender ou desmontar</div>
 <h3>16.5 Risco, falha e consequência</h3>
@@ -2250,7 +2275,7 @@
 <tr><td><strong>Síntese</strong></td><td>O attachment nasce em diferentes raridades, com combinações e níveis variados.</td><td>Distribuição de raridade, famílias possíveis e propriedades elegíveis.</td></tr>
 <tr><td><strong>Calibração</strong></td><td>O resultado pode melhorar, piorar ou apenas mudar lateralmente a build.</td><td>Propriedade afetada, itens consumidos e proteções aplicadas.</td></tr>
 <tr><td><strong>Fusão</strong></td><td>Os dois itens são consumidos e o novo pode combinar, perder ou substituir propriedades.</td><td>Chances de herança, faixas de resultado e destinos de falha.</td></tr>
-<tr><td><strong>Ascensão</strong></td><td>A raridade pode subir; na falha, materiais podem ser consumidos e o item pode permanecer, mudar ou sofrer outra consequência definida pela receita.</td><td>Chance de sucesso e cada resultado possível da falha.</td></tr>
+<tr><td><strong>Ascensão</strong></td><td>A raridade pode subir; no sucesso, as propriedades atuais são preservadas e a nova capacidade exige Calibração para ser aproveitada. Na falha, materiais podem ser consumidos e a receita define a consequência restante.</td><td>Chance de sucesso e cada resultado possível da falha.</td></tr>
 </tbody>
 </table>
 <p>As consequências exatas variarão por receita e tier. O jogo pode ser cruel; não pode ser obscuro.</p>
@@ -2270,7 +2295,7 @@
 <ul>
 <li>atributos diretos continuam numéricos, como <code>ATK +43</code>;</li>
 <li>passivas possuem níveis claros, como Chamas Vorazes I, II ou III;</li>
-<li>todas as raridades acessam o mesmo catálogo de passivas;</li>
+<li>todas as raridades acessam o mesmo catálogo dentro de seu pool de Núcleo/Totem e elemento;</li>
 <li>a raridade altera quantidade de passivas e faixas máximas de nível;</li>
 <li>um item comum pode nascer com a passiva perfeita, mas com teto menor.</li>
 </ul>
@@ -2338,35 +2363,35 @@
 <tr><td><strong>Processo especial</strong></td><td>Treinamento especial, ritual, reset, Calibração ou outra atividade de sistema.</td><td>Fica indisponível até conclusão.</td></tr>
 </tbody>
 </table>
-<p>Constar em preset PvE ou snapshot PvP não é estado operacional e pode coexistir com Farm, Recuperação ou outro preset. A alocação exclusiva começa somente quando o time PvE é realmente ativado.</p>
+<p>Constar em preset PvE ou PvP não é estado operacional e pode coexistir com Farm, Recuperação ou outro preset. A alocação exclusiva começa somente quando o time PvE é realmente ativado.</p>
 <p>Trocas devem ser claras e rápidas, mas podem respeitar cooldowns ou compromissos quando houver risco econômico. O jogo deve mostrar sempre onde o Bud está e quando voltará a ficar disponível.</p>
 </section>
 <section id="pvp">
 <span class="tag red">Competição assíncrona</span>
 <span class="review-state rs-provisional">Provisório</span>
 <h2>19. PvP assíncrono</h2>
-<div class="statement" data-canonical="pvp-formation-role"><strong>PvP usa snapshots próprios.</strong> Eles são composições salvas e resolvidas pelo servidor, sem reservar Bud, Plot ou Stamina e sem interromper Farm ou PvE.</div>
+<div class="statement" data-canonical="pvp-formation-role"><strong>PvP usa presets próprios.</strong> Eles são composições salvas e resolvidas pelo servidor, sem reservar Bud, Plot ou Stamina e sem interromper Farm ou PvE.</div>
 <ul data-canonical="pvp-asynchronous-scope">
 <li>o PvP assíncrono existe para farm e teste de composição;</li>
 <li>o PvP assíncrono não gera ranking;</li>
 <li>o PvP com ranking não pode ser assíncrono;</li>
 <li>o formato do PvP ranqueado será definido na revisão específica do sistema.</li>
 </ul>
-<h3>19.1 Slots e snapshot ativo</h3>
+<h3>19.1 Slots e preset ativo</h3>
 <ul>
-<li>o jogador gratuito salva até <strong>três snapshots PvP</strong>; o VIP salva até <strong>sete</strong>;</li>
-<li>somente um snapshot fica ativo como defesa por vez;</li>
+<li>o jogador gratuito salva até <strong>três presets PvP</strong>; o VIP salva até <strong>sete</strong>;</li>
+<li>somente um preset fica ativo como defesa por vez;</li>
 <li>os demais são composições salvas para troca rápida e podem ser escolhidos em ataques sem substituir automaticamente a defesa;</li>
-<li>um mesmo Bud pode aparecer em vários snapshots PvP e presets PvE, inclusive simultaneamente;</li>
+<li>um mesmo Bud pode aparecer em vários presets PvP e PvE, inclusive simultaneamente;</li>
 <li>cada composição aceita de um a sete Buds individuais válidos e não permite repetir o mesmo espécime dentro do próprio time.</li>
 </ul>
 <h3>19.2 Independência operacional</h3>
 <ul>
-<li>salvar, editar ou ativar snapshot não remove Bud do Jardim, não bloqueia Plot, não consome Stamina e não altera presets PvE;</li>
-<li>o servidor registra versão autoritativa da formação, posições, build e status válidos dos Buds escalados;</li>
+<li>salvar, editar ou ativar preset não remove Bud do Jardim, não bloqueia Plot, não consome Stamina e não altera presets PvE;</li>
+<li>o preset guarda Buds, formação e posições; Núcleo, Totem, atributos, passivas e elementos são sempre resolvidos no estado vivo atual de cada Bud;</li>
 <li>o combate é resolvido pelo mesmo game core do PvE;</li>
 <li>o defensor não precisa estar online;</li>
-<li>mudanças posteriores no Bud real só alcançam o snapshot quando ele for atualizado, respeitando o cooldown de atualização;</li>
+<li>qualquer alteração em Bud ou attachment alcança todos os presets que o utilizam. Quando uma luta inicia, o servidor fixa os dois times somente para resolver aquela partida; alterações posteriores valem para a próxima;</li>
 <li>o resultado oficial nunca é decidido pelo cliente;</li>
 <li>replays permitem entender derrota, meta e bugs.</li>
 </ul>
@@ -2376,7 +2401,7 @@
 <span class="tag blue">Conhecimento como sistema</span>
 <span class="review-state rs-provisional">Provisório</span>
 <h2>20. Informação dentro e fora do jogo</h2>
-<p>Um jogo com muitos Buds, tipos, itens, Plots, skills e patches precisa de informação excelente. A comunidade deve conseguir aprender sem depender de adivinhação, mas ainda ter espaço para descobrir combinações.</p>
+<p>Um jogo com muitos Buds, tipos, itens, Plots, passivas e patches precisa de informação excelente. A comunidade deve conseguir aprender sem depender de adivinhação, mas ainda ter espaço para descobrir combinações.</p>
 <div class="grid three">
 <div class="card"><h3>Interface</h3><p>Informação imediata para tomar a decisão atual: counters, Stamina, ganhos por hora, drops e taxa de vitória.</p></div>
 <div class="card"><h3>Codex interno</h3><p>Buds conhecidos, elementos, itens, regiões, inimigos e histórico desbloqueado.</p></div>
@@ -2410,24 +2435,21 @@
 <li>taxas, limites, saque, moeda e elegibilidade final para mercado de valor real pertencem ao Documento de Economia.</li>
 </ul>
 <h3>21.3 Regra-base da Calibração</h3>
-<p>Depois das tentativas gratuitas, uma operação de Calibração exige duas partes: um item ou material específico definido pelo gameplay e um reagente premium comprado com Cash, provisoriamente chamado de <strong>Pó Arcano</strong>.</p>
-<div class="formula">Item/material do jogo + Pó Arcano → operação de Calibração</div>
+<p>Toda operação de Calibração exige recursos obtidos por drops, crafting ou ambos. Não existe tentativa gratuita por Bud, categoria ou attachment: melhorar uma propriedade é parte real do loop de Forja.</p>
+<div class="formula">Recursos do jogo + componentes de Forja → Calibração individual ou completa</div>
 <ul>
-<li>cada Bud possui uma primeira rerrolagem gratuita de <strong>atributos</strong>;</li>
-<li>cada Bud possui uma primeira rerrolagem gratuita de <strong>passivas</strong>;</li>
-<li>se novas categorias de reroll forem criadas, cada possibilidade pode receber sua própria primeira tentativa gratuita;</li>
-<li>a tentativa gratuita não consome Pó Arcano nem o custo regular da operação;</li>
-<li>o direito gratuito é registrado por Bud e categoria e não se renova ao trocar Núcleo ou Totem;</li>
-<li>as operações seguintes exigem os componentes definidos;</li>
-<li>quem compra o reagente em Cash pode listá-lo no marketplace e vendê-lo por Gold.</li>
+<li>a operação pode rerrolar uma linha de atributo, uma passiva, um nível de passiva ou o conjunto correspondente;</li>
+<li>o custo pertence ao attachment e à operação, nunca ao Bud que o equipa;</li>
+<li>Calibração preserva categoria, elemento e raridade do attachment;</li>
+<li>catalisadores de Gold, Cash ou marketplace, se adotados no Documento de Economia, complementam o custo de gameplay e nunca o substituem.</li>
 </ul>
-<p>Esse desenho cria uma ponte direta entre Cash e economia local sem transformar Cash em Gold por conversão automática. Um jogador compra conveniência; outro pode obtê-la usando Gold ao negociar com ele.</p>
+<p>Esse desenho mantém materiais, chefes, regiões e crafting relevantes. A eventual ponte entre Cash e Gold continua pertencendo ao Documento de Economia, sem conversão automática.</p>
 <h3>21.4 Ferramentas premium de Calibração</h3>
 <p>Os nomes abaixo são provisórios, mas já representam funções desejadas. A intenção atual é que essas ferramentas de Calibração sejam vendidas na loja de Cash e possam circular no marketplace por Gold.</p>
 <table>
 <thead><tr><th>Item provisório</th><th>Função</th></tr></thead>
 <tbody>
-<tr><td><strong>Pó Arcano</strong></td><td>Reagente-base exigido nas rerrolagens após a tentativa gratuita.</td></tr>
+<tr><td><strong>Pó Arcano</strong></td><td>Catalisador opcional de Calibração, sem substituir os recursos regulares de gameplay.</td></tr>
 <tr><td><strong>Selante Arcano</strong></td><td>Bloqueia uma propriedade para que ela não seja alterada durante a operação.</td></tr>
 <tr><td><strong>Memória Mística</strong></td><td>Permite recuperar ou escolher entre o resultado anterior e o novo.</td></tr>
 <tr><td><strong>Catalisador Maior</strong></td><td>Garante um piso mínimo para o nível de uma passiva rerrolada.</td></tr>
@@ -2447,7 +2469,7 @@
 <h2>22. O que o protótipo precisa provar</h2>
 <p>O protótipo não precisa conter toda a profundidade do Codex. Ele precisa comprovar que as decisões principais são divertidas antes de multiplicarmos conteúdo.</p>
 <div class="grid">
-<div class="card good"><h3>Entrar cedo</h3><ul><li>formação de sete em 1–2–1–2–1;</li><li>combate automático determinístico;</li><li>Battle Level e Farm Level estruturados para cap 100;</li><li>Battle Level com seis atributos;</li><li>Farm Level com seis atributos;</li><li>separação entre atributos distribuíveis e status derivados;</li><li>raridade e Vigor fixos de 50 a 500;</li><li>um Jardim 7×7, começando com três Plots e preparado para 49;</li><li>Plots elementais;</li><li>Bud, Núcleo e Totem;</li><li>nove espécies no Alpha, uma por elemento;</li><li>Basic Attack e Power Move fixos por espécie;</li><li>RNG controlado de Power Move e Desvio Perfeito;</li><li>nove tipos e matriz completa;</li><li>três presets PvE e três snapshots PvP no Free, escaláveis para sete com VIP;</li><li>reserva de um Plot por Bud somente pelo time PvE ativo;</li><li>políticas PvE Estável, Avançar, Recuar e Adaptativo;</li><li>sessão online gratuita, expedição offline VIP e rotação PvE → Recuperação → PvE;</li><li>três sementes tutoriais escalonadas, de elementos distintos;</li><li>Germinação em três etapas de 20 min, sem falha total;</li><li>pool congelada no plantio, roll autoritativo no fim da etapa 3 e Proteção de Raridade;</li><li>plantio em Plots comuns e elementais, com Água obrigatória;</li><li>três perfis de Fertilizante para raridade e Vigor;</li><li>criação do Bud autoritativa e idempotente no servidor durante o nascimento;</li></ul></div>
+<div class="card good"><h3>Entrar cedo</h3><ul><li>formação de sete em 1–2–1–2–1;</li><li>combate automático determinístico;</li><li>Battle Level e Farm Level estruturados para cap 100;</li><li>Battle Level com seis atributos;</li><li>Farm Level com seis atributos;</li><li>separação entre atributos distribuíveis e status derivados;</li><li>raridade e Vigor fixos de 50 a 500;</li><li>um Jardim 7×7, começando com três Plots e preparado para 49;</li><li>Plots elementais;</li><li>Bud, Núcleo e Totem;</li><li>nove espécies no Alpha, uma por elemento;</li><li>Basic Attack e Power Move fixos por espécie;</li><li>RNG controlado de Power Move e Desvio Perfeito;</li><li>nove tipos e matriz completa;</li><li>três presets PvE e três presets PvP no Free, escaláveis para sete com VIP;</li><li>reserva de um Plot por Bud somente pelo time PvE ativo;</li><li>políticas PvE Estável, Avançar, Recuar e Adaptativo;</li><li>sessão online gratuita, expedição offline VIP e rotação PvE → Recuperação → PvE;</li><li>três sementes tutoriais escalonadas, de elementos distintos;</li><li>Germinação em três etapas de 20 min, sem falha total;</li><li>pool congelada no plantio, roll autoritativo no fim da etapa 3 e Proteção de Raridade;</li><li>plantio em Plots comuns e elementais, com Água obrigatória;</li><li>três perfis de Fertilizante para raridade e Vigor;</li><li>criação do Bud autoritativa e idempotente no servidor durante o nascimento;</li></ul></div>
 <div class="card danger"><h3>Entrar depois</h3><ul><li>marketplace entre jogadores, incluindo Plots, e mercado RMT aberto;</li><li>breeding ou genética;</li><li>guildas complexas;</li><li>PvP em tempo real;</li><li>dezenas de mapas;</li><li>múltiplos sistemas de vizinhança;</li><li>cadeia completa de Síntese, Calibração, Fusão e Ascensão;</li><li>toda a ferramenta premium de Calibração;</li><li>todos os assets finais.</li></ul></div>
 </div>
 <h3>22.1 Métricas de verdade</h3>
@@ -2460,7 +2482,7 @@
 <li>a alocação entre time e jardim gera decisão, não irritação;</li>
 <li>o sistema de tipos é aprendido sem depender de decorar uma planilha.</li>
 <li>o jogador entende os quatro modos PvE sem tutorial longo e reconhece quando encontrou uma fase sustentável;</li>
-<li>presets e snapshots permitem trocar composições sem bloquear coleção, Farm ou PvP indevidamente;</li>
+<li>presets permitem trocar composições sem bloquear coleção, Farm ou PvP indevidamente;</li>
 <li>o relatório de expedição explica ganhos reais por hora sem esconder multiplicadores de recompensa;</li>
 <li>o plantio cria decisão real sobre plot e insumos sem transformar a melhor receita em escolha automática;</li><li>a revelação do Bud gera expectativa sem parecer manipulada ou opaca;</li><li>jogadores compreendem que bônus alteram probabilidades, mas não garantem resultados;</li></ul>
 </section>
@@ -2479,7 +2501,7 @@
 <div class="decision"><div><strong>Budgram</strong><p>Catálogo geral de espécies descobertas, status-base, golpes e fontes; função definida e nome provisório.</p></div><span class="status s-rule">Nome provisório</span></div>
 <div class="decision"><div><strong>Registro individual</strong><p>A ficha do Bud separa leitura rápida de dados históricos expansíveis; o backend preserva proveniência e proprietários anteriores.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Transferência</strong><p>A negociação transfere o Bud real com progressão, história, configuração e direitos gratuitos já consumidos; não cria uma cópia limpa.</p></div><span class="status s-defined">Definido</span></div>
-<div class="decision"><div><strong>Reset por grupo</strong><p>Batalha, Cultivo e Habilidades possuem resets independentes: uma utilização gratuita por Bud e por grupo; novos usos são liberados para VIP.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Reset por grupo</strong><p>Batalha e Cultivo possuem resets independentes: uma utilização gratuita por Bud e por grupo; novos usos são liberados para VIP.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Bestiário</strong><p>Inimigos podem ser neutros ou elementais e incluir animais, máquinas, alienígenas e outras ameaças; regras detalhadas permanecem em construção.</p></div><span class="status s-rule">Em construção</span></div>
 <div class="decision"><div><strong>Loop principal</strong><p>O elenco opera em Alocar → Produzir/Batalhar → Coletar → Avaliar → Desenvolver → Realocar, em paralelo ao loop de nascimento.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Sementes</strong><p>Novos Buds começam como sementes elementais; no plantio, a Receita exibe pool, Plot, água, Fertilizantes e probabilidades, sem resultado pré-gerado.</p></div><span class="status s-defined">Definido</span></div>
@@ -2538,12 +2560,12 @@
 <div class="decision"><div><strong>Campanha de mapas</strong><p>14 mapas e 139 fases: Inicial → 9 específicos → 3 mistos → Convergência Elemental. Mapas regulares possuem oito fases principais, uma nona normal ou Elite obrigatória e um boss; os mistos liberam ao concluir seus três específicos e a Convergência encerra com nove bosses fortalecidos em sequência.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Tipos e counters</strong><p>Nove elementos em matriz simétrica; multiplicadores afetam somente dano ofensivo. Neutro não é elemento, e inimigos possuem no máximo um elemento ativo.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Carry</strong><p>Buds veteranos podem elevar Buds atrasados em fases anteriores.</p></div><span class="status s-rule">Regra-base</span></div>
-<div class="decision"><div><strong>Jardim e Plots</strong><p>O único Jardim da conta usa grade 7×7, começa com três Plots e expande até 49 vagas permanentes. Plots limitam processos simultâneos, nunca coleção, presets ou snapshots.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Jardim e Plots</strong><p>O único Jardim da conta usa grade 7×7, começa com três Plots e expande até 49 vagas permanentes. Plots limitam processos simultâneos, nunca coleção ou presets.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Negociação de Plots</strong><p>Vagas e os três Plots iniciais ficam vinculados à conta; demais Plots vazios podem circular por Gold preservando propriedades e melhorias. Infraestrutura de Cultivo nunca acompanha a venda.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Negociação de sementes</strong><p>Sementes podem circular por Gold e, sob regras futuras de economia, por moeda de Cash conversível. Germinação bloqueia transferência; Proteção de Raridade pertence à conta, não à semente.</p></div><span class="status s-defined">Definido</span></div>
-<div class="decision"><div><strong>Presets e snapshots</strong><p>Free salva três presets PvE e três snapshots PvP; VIP salva sete de cada. Apenas o time PvE ativo reserva Buds e Plots; um único snapshot PvP fica ativo como defesa.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Presets</strong><p>Free salva três presets PvE e três PvP; VIP salva sete de cada. Presets guardam somente seleção, ordem e posições e sempre usam o estado atual dos Buds e attachments. Apenas o time PvE ativo reserva Buds e Plots; um preset PvP fica ativo como defesa.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Infraestrutura de Cultivo</strong><p>Progressão gratuita de conta fornece até +30% de velocidade operacional; VIP soma +10% nos processos autorizados, exceto Germinação, que usa metade do tempo após a Infraestrutura. Nunca afeta PvE real.</p></div><span class="status s-defined">Definido</span></div>
-<div class="decision"><div><strong>Attachments</strong><p>Apenas Núcleo Arcano e Totem são equipáveis e possuem raridade própria.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Attachments</strong><p>Apenas Núcleo Arcano e Totem são equipáveis. Cada Bud usa até um de cada; os dois possuem raridade e elemento próprios, mas não criam skills ou ataques novos.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Origem dos attachments</strong><p>Núcleos e Totens completos nunca são drops; todos nascem por Síntese.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Forja</strong><p>Síntese, Calibração, Fusão e Ascensão formam os quatro pilares do crafting.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Risco de crafting</strong><p>Fusão, Ascensão e demais processos podem falhar ou produzir resultados piores e laterais, com consequências exibidas antes da tentativa.</p></div><span class="status s-defined">Definido</span></div>
@@ -2551,12 +2573,11 @@
 <div class="decision"><div><strong>Pesquisa</strong><p>O jogador direciona conhecimento para famílias de itens e técnicas, sem depender de aleatoriedade universal.</p></div><span class="status s-rule">Regra-base</span></div>
 <div class="decision"><div><strong>Desmontagem</strong><p>Retorno parcial provisório de 20% para contas normais e 40% para VIP, nunca 100%.</p></div><span class="status s-rule">Base provisória</span></div>
 <div class="decision"><div><strong>Lendários nomeados</strong><p>São craftados e abrem builds por passivas exclusivas, sem depender apenas de números maiores.</p></div><span class="status s-defined">Definido</span></div>
-<div class="decision"><div><strong>Passivas</strong><p>Mesmo catálogo em todas as raridades; quantidade e faixa de níveis mudam.</p></div><span class="status s-rule">Base provisória</span></div>
-<div class="decision"><div><strong>Reroll</strong><p>Todos os atributos e passivas podem ser rerrolados; não existe hierarquia principal/secundária.</p></div><span class="status s-defined">Definido</span></div>
-<div class="decision"><div><strong>Primeira tentativa</strong><p>Cada Bud possui uma rerrolagem gratuita por categoria antes do consumo de reagente premium.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Passivas</strong><p>Dezoito pools separados por Núcleo/Totem e elemento; dentro de cada pool, raridade altera quantidade e faixa de níveis, não o catálogo elegível.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Reroll</strong><p>Atributos, passivas e níveis podem ser calibrados individualmente ou em conjunto; toda operação consome recursos de gameplay e preserva tipo, elemento e raridade.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Ponte Cash–Gold</strong><p>Reagentes de Cash podem ser vendidos por jogadores no marketplace em Gold.</p></div><span class="status s-defined">Definido</span></div>
-<div class="decision"><div><strong>Alocação</strong><p>O time PvE ativo reserva um Plot por Bud, até sete; processos ativos ficam presos ao Plot até encerrar. Presets e snapshots salvos não criam alocação.</p></div><span class="status s-defined">Definido</span></div>
-<div class="decision"><div><strong>PvP</strong><p>Snapshots próprios são independentes de Farm, Stamina e PvE; o servidor mantém um snapshot defensivo ativo, atualizado sob cooldown.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Alocação</strong><p>O time PvE ativo reserva um Plot por Bud, até sete; processos ativos ficam presos ao Plot até encerrar. Presets salvos não criam alocação.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>PvP</strong><p>Presets PvP são independentes de Farm, Stamina e PvE. O servidor resolve o estado vivo atual dos Buds ao iniciar cada luta e fixa apenas aquela partida.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Tipos</strong><p>Nove afinidades com matriz rigorosamente simétrica.</p></div><span class="status s-rule">Proposta-base</span></div>
 <div class="decision"><div><strong>Wiki</strong><p>Informação essencial no jogo e profundidade em wiki externa.</p></div><span class="status s-defined">Definido</span></div>
 </div>

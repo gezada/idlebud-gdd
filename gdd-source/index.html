@@ -639,11 +639,12 @@
 <h4>5.7.3 Benefícios exclusivos de VIP</h4>
 <p>Alguns recursos podem permanecer exclusivos do VIP porque ampliam a operação sem remover do jogador gratuito o acesso ao conteúdo principal:</p>
 <ul>
-<li>filas adicionais de germinação, recuperação, pesquisa ou Forja;</li>
+<li>filas adicionais de germinação e recuperação;</li>
 <li>sete presets PvE e sete presets PvP salvos, contra três de cada para o jogador gratuito;</li><li>controle opcional de simulação PvE em 2×, alternável em tempo real enquanto o VIP estiver ativo;</li>
 <li>progresso PvE offline por até <strong>8 horas</strong>, com resumo ao retornar;</li>
 <li>mais slots simultâneos de venda no marketplace;</li>
 <li>filtros, organização e ferramentas avançadas de gestão;</li>
+<li>retorno maior de materiais elegíveis na Desmontagem da Forja;</li>
 <li>resets de Atributos de Batalha e de Cultivo após o direito gratuito de cada grupo;</li>
 <li>maior duração máxima de progresso offline.</li>
 </ul>
@@ -652,10 +653,8 @@
 <p>Outros sistemas continuam disponíveis para todos, mas podem operar de forma mais eficiente com VIP ativo:</p>
 <ul>
 <li>germinação e recuperação;</li>
-<li>crafting, pesquisa e processos da Forja;</li>
 <li>ganho de XP do Jardineiro;</li>
 <li>produção e ciclos do Jardim;</li>
-<li>desmontagem e recuperação de materiais;</li>
 <li>outros tempos e limites operacionais definidos no balanceamento.</li>
 </ul>
 <p>O VIP não ignora requisitos de nível, mapa, materiais, receitas ou progressão. Ele melhora a execução de sistemas aos quais a conta já possui acesso.</p>
@@ -667,7 +666,7 @@
 <li>os quatro modos de expedição PvE — Estável, Avançar, Recuar e Adaptativo — são base gratuita desde a primeira fase;</li>
 <li>VIP não concede Battle Level, Farm Level ou atributos diretamente aos Buds;</li>
 <li>VIP não substitui exploração, materiais, requisitos de mapa ou domínio dos sistemas;</li>
-<li>a vantagem deve ser forte e perceptível, mas concentrada em eficiência, paralelismo, automação e conforto.</li>
+<li>a vantagem deve ser forte e perceptível, concentrada em eficiência, paralelismo, automação e conforto; a Desmontagem de 40% contra 20% é a exceção econômica deliberada da Forja.</li>
 </ul>
 <div class="statement"><strong>Sem VIP, o jogo funciona por inteiro. Com VIP, a operação fica significativamente mais rápida, ampla e confortável.</strong></div>
 
@@ -1082,7 +1081,7 @@
 <li>Infraestrutura e VIP somam percentuais antes de converter velocidade em tempo; com +25% de Infraestrutura e VIP, a velocidade operacional é 1,35×, não 1,25× × 1,10×;</li>
 <li>na Germinação, o VIP usa uma exceção deliberada: <strong>Tempo VIP = (Tempo-base × 0,50) ÷ Velocidade de Infraestrutura</strong>. O +10% VIP global não se soma a essa fórmula;</li>
 <li>com Infraestrutura máxima, a Germinação de 60 min leva aproximadamente 46 min no Free e 23 min no VIP;</li>
-<li>o bônus operacional global vale para Cultivo, Recuperação e, quando definidos, Pesquisa e Forja;</li>
+<li>o bônus operacional global vale para Cultivo e Recuperação; Pesquisa, refinamento e rituais da Forja são instantâneos;</li>
 <li>não acelera a lógica do PvE, ganhos, drops, Stamina, consumo ou resultados de batalha; o 2× VIP do PvE continua apenas visual;</li>
 <li>uso automático de Fertilizantes nunca vem ativado por padrão;</li>
 <li>VIP não aumenta diretamente raridade, Vigor, qualidade ou potência dos Fertilizantes;</li>
@@ -2223,84 +2222,36 @@
 </section>
 <section id="crafting">
 <span class="tag violet">Endgame de itemização</span>
-<span class="review-state rs-provisional">Provisório</span>
+<span class="review-state rs-defined">Definido</span>
 <h2>16. Forja: drops, pesquisa e crafting</h2>
-<p>A Forja organiza a camada macro de itemização do jogo. A inspiração funcional combina a cadeia produtiva de V Rising — explorar, obter materiais, desbloquear conhecimento, refinar, fabricar, fundir e reciclar — com a profundidade de atributos, passivas e rerolls de Corepunk.</p>
-<div class="statement"><strong>Núcleos Arcanos e Totens nunca caem completos.</strong> O mundo entrega recursos, conhecimento e componentes. O attachment nasce quando o jogador decide arriscar materiais na Forja.</div>
-<h3>16.1 Constituição atual e detalhamento futuro</h3>
-<p>Esta versão fecha a filosofia e os quatro pilares do crafting. Receitas, custos, fórmulas, chances, compatibilidades, quantidades, estações, tempos e tabelas de loot serão definidos integralmente numa etapa específica de itemização.</p>
-<div class="grid">
-<div class="card good"><h4>Já definido</h4><ul><li>attachments completos são exclusivamente craftados;</li><li>materiais e conhecimentos avançam com regiões e tiers;</li><li>resultados possuem aleatoriedade e risco;</li><li>chances relevantes são apresentadas antes da confirmação;</li><li>itens ruins retornam ao ciclo por fusão ou desmontagem;</li><li>passivas usam níveis discretos; Calibração sempre consome recursos de gameplay.</li></ul></div>
-<div class="card warn"><h4>Será definido depois</h4><ul><li>listas de materiais e receitas;</li><li>porcentagens reais e pity systems;</li><li>custos de Gold, Cash e reagentes;</li><li>regras exatas de falha;</li><li>compatibilidade entre famílias;</li><li>tempo, filas, estações e limites.</li></ul></div>
-</div>
-<h3>16.2 O que o mundo entrega</h3>
-<table>
-<thead><tr><th>Classe de drop</th><th>Função</th><th>Origem provável</th></tr></thead>
-<tbody>
-<tr><td><strong>Sementes elementais</strong></td><td>Originam novos Buds; revelam apenas o elemento antes da Germinação.</td><td>Fases, mapas, desafios, eventos e outras fontes futuras.</td></tr><tr><td><strong>Matérias-primas</strong></td><td>Base recorrente de refino, Síntese, Calibração, Fusão e Ascensão.</td><td>Cultivo, fases, elites e atividades comuns.</td></tr><tr><td><strong>Insumos de cultivo</strong></td><td>Água obrigatória e três perfis de Fertilizante para Germinação.</td><td>Cultivo, fases, crafting, pesquisa e comércio.</td></tr>
-<tr><td><strong>Essências regionais</strong></td><td>Conectam o attachment ao tipo, bioma, tier ou família desejada.</td><td>Mapas e caminhos específicos.</td></tr>
-<tr><td><strong>Conhecimento</strong></td><td>Abre famílias de pesquisa, processos e receitas.</td><td>Progressão, exploração, desafios e chefes.</td></tr>
-<tr><td><strong>Receitas e moldes</strong></td><td>Definem o que pode ser sintetizado e influenciam a distribuição de qualidade.</td><td>Pesquisa, chefes, eventos e conteúdo avançado.</td></tr>
-<tr><td><strong>Componentes de chefe</strong></td><td>Permitem crafts especiais, lendários nomeados e caminhos de endgame.</td><td>Chefes, ligas e dificuldades superiores.</td></tr>
-<tr><td><strong>Materiais sazonais</strong></td><td>Criam janelas limitadas, variantes históricas e receitas temporárias.</td><td>Temporadas e eventos.</td></tr>
-</tbody>
-</table>
-<p>Núcleos e Totens prontos não pertencem à tabela de loot. Até os attachments mais raros precisam nascer da combinação consciente de receita, molde, materiais e risco.</p>
-<h3>16.3 Pesquisa direcionada</h3>
-<p>Conhecimento não deve desbloquear uma receita aleatória entre todas as possibilidades do jogo. O jogador escolhe a família que deseja desenvolver; a descoberta específica dentro dela ainda pode exigir progressão, sorte ou feitos.</p>
-<div class="grid three">
-<div class="card"><h4>Famílias elementais</h4><p>Núcleos de Fogo, Água, Raio, Gelo e demais afinidades.</p></div>
-<div class="card"><h4>Funções estratégicas</h4><p>Totens defensivos, ofensivos, de suporte, formação ou counter.</p></div>
-<div class="card"><h4>Técnicas avançadas</h4><p>Novos tipos de Síntese, Fusão, Ascensão, preservação e refinamento.</p></div>
-</div>
-<ul>
-<li>regiões liberam novas linhas de pesquisa;</li>
-<li>chefes podem liberar categorias, receitas, moldes ou componentes únicos;</li>
-<li>o jogador escolhe onde investir conhecimento, reduzindo aleatoriedade sem eliminá-la;</li>
-<li>receitas lendárias nomeadas continuam raras e vinculadas a desafios específicos.</li>
-</ul>
-<h3>16.4 Os quatro rituais da Forja</h3>
+<p>A Forja organiza a camada macro de itemização. Ela cria e evolui Núcleos Arcanos e Totens; não cria Buds, não muda Raridade de Bud e não possui cronômetros, filas ou estações físicas. Pesquisa, refinamento e todos os rituais são instantâneos; o custo está nos recursos, Conhecimento, risco e escolhas.</p>
+<div class="statement"><strong>Núcleos Arcanos e Totens nunca caem completos.</strong> O mundo entrega recursos, Conhecimento, receitas e componentes. A Forja transforma esse valor em attachments, sem criar raridades paralelas ou Lendários exclusivos de boss.</div>
+<h3>16.1 Pesquisa, refinamento e conteúdo do mundo</h3>
+<p>Pesquisa é o gasto instantâneo e permanente de Conhecimento para liberar receitas, elementos, técnicas e possibilidades de Forja. Não possui tempo ou reset. Refinamento converte matérias-primas em componentes utilizáveis e também é instantâneo.</p>
+<ul><li>regiões, elites e bosses alimentam a Forja com materiais, Essências, moldes, receitas e Conhecimento;</li><li>tiers de receita, moldes e materiais melhores deslocam chances e abrem técnicas, sem impor teto de Raridade;</li><li>chefes tornam tentativas normais mais viáveis; não criam uma categoria especial de attachment nem passiva exclusiva;</li><li>listas de materiais, receitas, fontes e custos finais pertencem ao documento <strong>Enemies, Drops, Itemization &amp; Forge</strong>.</li></ul>
+<h3>16.2 Síntese e Proteção de Forja</h3>
+<p>Síntese é o craft de origem. Antes de confirmar, o jogador escolhe <strong>Núcleo ou Totem</strong> e um dos nove elementos. Receita, molde, materiais e componentes determinam a distribuição exibida; Raridade, linhas de atributo, passivas e níveis são rolados no resultado. O attachment criado entra na Bag e nunca equipa automaticamente.</p>
+<table><thead><tr><th>Receita</th><th>Comum</th><th>Incomum</th><th>Raro</th><th>Épico</th><th>Lendário</th></tr></thead><tbody><tr><td><strong>Básica</strong></td><td>55%</td><td>30%</td><td>12%</td><td>2,5%</td><td>0,5%</td></tr><tr><td><strong>Superior</strong></td><td>15%</td><td>30%</td><td>35%</td><td>17%</td><td>3%</td></tr><tr><td><strong>Máxima</strong></td><td>2%</td><td>8%</td><td>25%</td><td>40%</td><td>25%</td></tr></tbody></table>
+<p>Até a primeira Síntese pode gerar um Lendário. Receitas avançadas melhoram a probabilidade; não bloqueiam os resultados máximos das receitas básicas.</p>
+<div class="formula">F = mínimo(7, Sínteses consecutivas abaixo de Raro) · S = (F ÷ 7)⁴ · Δ = (P_Comum + P_Incomum) × S</div>
+<div class="formula">Comum' = P_Comum × (1 − S) · Incomum' = P_Incomum × (1 − S) · Raro' = P_Raro + Δ</div>
+<ul><li>a <strong>Proteção de Forja</strong> pertence à conta e tem contador independente por tipo, elemento e tier de receita;</li><li>o contador reseta em Raro, Épico ou Lendário; no sétimo resultado consecutivo abaixo de Raro, a próxima Síntese garante Raro+;</li><li>Épico e Lendário não recebem aumento pela Proteção de Forja.</li></ul>
+<h3>16.3 Os quatro rituais da Forja</h3>
 <div class="grid four">
-<div class="card good"><h3>Síntese</h3><p>É o crafting de origem. Combina receita ou molde, materiais e componentes para criar um novo Núcleo Arcano ou Totem com raridade, atributos e passivas rolados.</p></div>
-<div class="card blue"><h3>Calibração</h3><p>Trabalha um attachment já existente. Rerrola uma propriedade ou um conjunto completo, dentro de seu tipo, elemento, pool e orçamento, consumindo recursos de gameplay.</p></div>
-<div class="card violet"><h3>Fusão</h3><p>Destrói dois attachments compatíveis para gerar um terceiro. O resultado pode herdar qualidades, mudar de direção, sair melhor ou sair pior.</p></div>
-<div class="card warn"><h3>Ascensão</h3><p>Tenta elevar a raridade de um attachment por meio de sacrifícios e materiais avançados. Em sucesso, preserva as propriedades atuais e libera capacidade latente para Calibração; a tentativa possui risco e consequências visíveis.</p></div>
+<div class="card good"><h3>Síntese</h3><p>Cria uma peça nova, com tipo e elemento escolhidos e resultado rolado.</p></div>
+<div class="card blue"><h3>Calibração</h3><p>Rerrola uma propriedade ou conjunto permitido do attachment, sem mudar categoria, elemento ou Raridade.</p></div>
+<div class="card violet"><h3>Fusão</h3><p>Converte três peças idênticas em Raridade, tipo e elemento em uma nova peça da Raridade acima.</p></div>
+<div class="card warn"><h3>Ascensão</h3><p>Tenta elevar uma peça Rara ou Épica, preservando-a no sucesso e aceitando risco real de quebra nas falhas avançadas.</p></div>
 </div>
 <div class="formula">Farmar → pesquisar → refinar → Síntese → avaliar → equipar, vender, Calibrar, Fundir, Ascender ou desmontar</div>
-<h3>16.5 Risco, falha e consequência</h3>
-<p>Crafting de endgame precisa consumir oferta e produzir histórias. Uma tentativa cara não garante automaticamente o melhor resultado.</p>
-<table>
-<thead><tr><th>Operação</th><th>O que pode acontecer</th><th>O que precisa estar visível</th></tr></thead>
-<tbody>
-<tr><td><strong>Síntese</strong></td><td>O attachment nasce em diferentes raridades, com combinações e níveis variados.</td><td>Distribuição de raridade, famílias possíveis e propriedades elegíveis.</td></tr>
-<tr><td><strong>Calibração</strong></td><td>O resultado pode melhorar, piorar ou apenas mudar lateralmente a build.</td><td>Propriedade afetada, itens consumidos e proteções aplicadas.</td></tr>
-<tr><td><strong>Fusão</strong></td><td>Os dois itens são consumidos e o novo pode combinar, perder ou substituir propriedades.</td><td>Chances de herança, faixas de resultado e destinos de falha.</td></tr>
-<tr><td><strong>Ascensão</strong></td><td>A raridade pode subir; no sucesso, as propriedades atuais são preservadas e a nova capacidade exige Calibração para ser aproveitada. Na falha, materiais podem ser consumidos e a receita define a consequência restante.</td><td>Chance de sucesso e cada resultado possível da falha.</td></tr>
-</tbody>
-</table>
-<p>As consequências exatas variarão por receita e tier. O jogo pode ser cruel; não pode ser obscuro.</p>
-<h3>16.6 Probabilidades moldadas pelos componentes</h3>
-<p>Receita, molde, raridade dos componentes, qualidade dos materiais, quantidade investida e catalisadores opcionais alteram a distribuição final. O jogador vê as probabilidades atualizadas antes de confirmar.</p>
-<div class="formula">Melhores entradas não garantem o topo — deslocam a distribuição para resultados melhores.</div>
-<table>
-<thead><tr><th>Cenário ilustrativo</th><th>Comum</th><th>Incomum</th><th>Raro</th><th>Épico</th><th>Lendário</th></tr></thead>
-<tbody>
-<tr><td><strong>Receita e materiais básicos</strong></td><td>55%</td><td>30%</td><td>12%</td><td>3%</td><td>0%</td></tr>
-<tr><td><strong>Molde superior e materiais refinados</strong></td><td>15%</td><td>30%</td><td>35%</td><td>17%</td><td>3%</td></tr>
-<tr><td><strong>Entradas lendárias e componentes máximos</strong></td><td>2%</td><td>8%</td><td>25%</td><td>40%</td><td>25%</td></tr>
-</tbody>
-</table>
-<p class="small">Percentuais exclusivamente demonstrativos. A tabela mostra o comportamento desejado, não o balanceamento final.</p>
-<h3>16.7 Atributos numéricos e passivas discretas</h3>
-<ul>
-<li>atributos diretos continuam numéricos, como <code>ATK +43</code>;</li>
-<li>passivas possuem níveis claros, como Chamas Vorazes I, II ou III;</li>
-<li>todas as raridades acessam o mesmo catálogo dentro de seu pool de Núcleo/Totem e elemento;</li>
-<li>a raridade altera quantidade de passivas e faixas máximas de nível;</li>
-<li>um item comum pode nascer com a passiva perfeita, mas com teto menor.</li>
-</ul>
-<h3>16.8 Desmontagem e retorno parcial</h3>
-<p>Itens ruins não viram lixo. Eles podem ser desmontados para recuperar parte dos materiais elegíveis e alimentar novas tentativas.</p>
+<h3>16.4 Calibração, Fusão e operação de itens</h3>
+<ul><li>Calibração consome recursos dropáveis e/ou craftáveis para rerrolar uma linha de atributo, uma passiva, seu nível ou o conjunto correspondente;</li><li>ela pode agir em attachment equipado desde que não exista batalha em andamento; a alteração vale para a próxima luta de todos os presets;</li><li>Fusão consome <strong>três</strong> attachments da mesma Raridade, tipo e elemento, armazenados na Bag, e cria um novo do mesmo tipo/elemento, uma Raridade acima e com rolls totalmente novos;</li><li>Fusão é garantida e não possui falha; Lendários não fundem para uma Raridade acima;</li><li>Fusão e Desmontagem oferecem desequipar automaticamente os itens quando permitido. Síntese e Fusão sempre entregam o resultado na Bag.</li></ul>
+<h3>16.5 Ascensão: chance, proteção e quebra</h3>
+<p>Ascensão está disponível somente em <strong>Raro → Épico</strong> e <strong>Épico → Lendário</strong>. A chance-base provisória é 45% e 25%, respectivamente. No sucesso, linhas, passivas e níveis atuais são preservados; o novo orçamento, faixas e espaços ficam latentes até uma Calibração posterior.</p>
+<table><thead><tr><th>Falha acumulada no attachment</th><th>Quebra se a tentativa falhar</th></tr></thead><tbody><tr><td>1–3</td><td>0%</td></tr><tr><td>4</td><td>20%</td></tr><tr><td>5</td><td>40%</td></tr><tr><td>6</td><td>60%</td></tr><tr><td>7</td><td>80%</td></tr><tr><td>8+</td><td>95%</td></tr></tbody></table>
+<ul><li>as três primeiras falhas são seguras: materiais são consumidos, mas o attachment permanece;</li><li>da quarta falha em diante, uma falha resolve a chance de quebra correspondente; se quebrar, o attachment e todo valor investido são perdidos, sem resíduo ou retorno;</li><li>o contador pertence ao attachment, é visível, acompanha o marketplace e zera ao ascender com sucesso para a próxima etapa;</li><li>a interface deve exibir chance de sucesso, falhas seguras restantes, risco atual de quebra, custos e consequência antes da confirmação.</li></ul>
+<h3>16.6 Desmontagem e retorno parcial</h3>
+<p>Itens ruins não viram lixo. Eles podem ser desmontados instantaneamente para recuperar parte dos materiais elegíveis e alimentar novas tentativas.</p>
 <table>
 <thead><tr><th>Conta</th><th>Recuperação provisória</th><th>Limite</th></tr></thead>
 <tbody>
@@ -2308,23 +2259,15 @@
 <tr><td><strong>Jogador VIP</strong></td><td>Aproximadamente 40% dos materiais elegíveis.</td><td>Nunca recupera 100%.</td></tr>
 </tbody>
 </table>
-<p>Receitas, conhecimento consumido, componentes exclusivos de chefe, reagentes de Cash e materiais definidos como irrecuperáveis não retornam. Isso preserva perda econômica real e impede ciclos infinitos de reciclagem.</p>
-<h3>16.9 Lendários nomeados e progressão horizontal</h3>
-<p>Attachments lendários nomeados devem abrir builds, não apenas inflar números. Uma receita, memória ou molde especial pode permitir sintetizar um item com passiva exclusiva, mantendo atributos e demais passivas sujeitos às regras da Forja.</p>
-<div class="card violet">
-<strong>Exemplo conceitual — Coração da Tempestade</strong>
-<p>Núcleo Arcano ligado a um chefe de Raio. Sua identidade vem de uma passiva exclusiva capaz de encadear energia entre alvos, não simplesmente de possuir 30% mais ATK que todo item anterior.</p>
-</div>
-<p>Novas temporadas podem introduzir lendários com funções diferentes sem tornar os anteriores automaticamente inúteis.</p>
-<h3>16.10 Operação sem burocracia</h3>
+<p>Receitas, Conhecimento, componentes especiais de boss, reagentes de Cash e materiais definidos como irrecuperáveis não retornam. A quebra de Ascensão nunca gera Desmontagem parcial.</p>
+<h3>16.7 Operação transparente, sem burocracia</h3>
 <ul>
-<li>poucas interfaces ou estações concentram os processos;</li>
-<li>produção em lote e filas evitam repetição manual;</li>
+<li>uma interface concentra Pesquisa, refinamento e os quatro rituais, todos instantâneos;</li>
 <li>materiais podem ser puxados automaticamente do armazenamento elegível;</li>
 <li>a interface compara resultados, chances e custos antes da confirmação;</li>
-<li>o Codex e a wiki exibem receitas, origens, probabilidades e histórico de mudanças.</li>
+<li>o Codex e a wiki exibem receitas, origens, probabilidades, histórico de Ascensão e mudanças de balanceamento.</li>
 </ul>
-<div class="statement">A profundidade vem das decisões e do risco. A interface não precisa imitar o trabalho físico de carregar materiais entre vinte bancadas.</div>
+<div class="statement">A profundidade vem das decisões, dos recursos e do risco. A interface não precisa imitar espera, filas ou o trabalho físico de carregar materiais entre estações.</div>
 </section>
 <section id="bestiario">
 <span class="tag yellow">Em construção</span>
@@ -2415,7 +2358,7 @@
 <h2>21. Pontes com economia, mercado e crafting</h2>
 <p>Este Codex não redefine a economia global já estabelecida pela Idle Lovers. Ele identifica onde o design do primeiro jogo cria demanda, consumo e diferenciação de ativos.</p>
 <div class="grid">
-<div class="card good"><h3>Fontes de desejo</h3><ul><li>Buds veteranos, raros e com Vigor alto;</li><li>sementes elementais e insumos de cultivo de alta qualidade;</li><li>Núcleos Arcanos e Totens sintetizados com bons rolls;</li><li>receitas, moldes e componentes de chefe;</li><li>Plots de alta qualidade;</li><li>materiais e ferramentas de Calibração;</li><li>lendários nomeados, itens sazonais e históricos.</li></ul></div>
+<div class="card good"><h3>Fontes de desejo</h3><ul><li>Buds veteranos, raros e com Vigor alto;</li><li>sementes elementais e insumos de cultivo de alta qualidade;</li><li>Núcleos Arcanos e Totens sintetizados com bons rolls;</li><li>receitas, moldes e componentes de chefe;</li><li>Plots de alta qualidade;</li><li>materiais e ferramentas de Calibração;</li><li>Lendários, itens sazonais e históricos.</li></ul></div>
 <div class="card warn"><h3>Sinks naturais</h3><ul><li>plantio, água, Fertilizantes e tentativas de Germinação;</li><li>Síntese, Calibração, Fusão e Ascensão de Núcleos/Totens;</li><li>perdas de crafting e desmontagem parcial;</li><li>desbloqueio de vagas e melhoria de Plots;</li><li>formação de um elenco amplo até o cap.</li></ul></div>
 </div>
 <h3>21.1 Plots no marketplace</h3>
@@ -2458,7 +2401,7 @@
 <tr><td><strong>Essência de Preservação</strong></td><td>Protege propriedades selecionadas durante uma rerrolagem ampla.</td></tr>
 </tbody>
 </table>
-<p>Custos, limites, escalada de preço, obtenção dos materiais de gameplay e combinações permitidas da Calibração serão fechados no brainstorming específico de itemização e loja de Cash. As regras completas de Síntese, Fusão, Ascensão, pesquisa e desmontagem também permanecem para essa etapa.</p>
+<p>Custos finais, escalada de preço, obtenção dos materiais de gameplay e catálogo de catalisadores de Calibração serão fechados no documento específico de itemização e loja de Cash. As regras estruturais de Síntese, Fusão, Ascensão, Pesquisa e Desmontagem já estão definidas no Ponto 16.</p>
 <p>Plots já estão aprovados para circulação por Gold. A negociabilidade dos demais ativos, a eventual entrada de Plots no mercado de valor real e o momento de liberação de cada categoria continuam sujeitos às regras do Documento de Fundação e à validação gradual do MVP.</p>
 <h3>21.5 Transparência da expedição</h3>
 <p>XP por hora, materiais por hora, Stamina gasta e taxa de vitória são leituras de resultado real recente, não multiplicadores ocultos de recompensa. A economia remunera inimigos definitivamente derrotados e conclusões de fase conforme o Ponto 9; a política PvE apenas decide a próxima tentativa.</p>
@@ -2567,12 +2510,11 @@
 <div class="decision"><div><strong>Infraestrutura de Cultivo</strong><p>Progressão gratuita de conta fornece até +30% de velocidade operacional; VIP soma +10% nos processos autorizados, exceto Germinação, que usa metade do tempo após a Infraestrutura. Nunca afeta PvE real.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Attachments</strong><p>Apenas Núcleo Arcano e Totem são equipáveis. Cada Bud usa até um de cada; os dois possuem raridade e elemento próprios, mas não criam skills ou ataques novos.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Origem dos attachments</strong><p>Núcleos e Totens completos nunca são drops; todos nascem por Síntese.</p></div><span class="status s-defined">Definido</span></div>
-<div class="decision"><div><strong>Forja</strong><p>Síntese, Calibração, Fusão e Ascensão formam os quatro pilares do crafting.</p></div><span class="status s-defined">Definido</span></div>
-<div class="decision"><div><strong>Risco de crafting</strong><p>Fusão, Ascensão e demais processos podem falhar ou produzir resultados piores e laterais, com consequências exibidas antes da tentativa.</p></div><span class="status s-defined">Definido</span></div>
-<div class="decision"><div><strong>Probabilidades</strong><p>Receita, molde, qualidade e quantidade dos componentes alteram chances visíveis de raridade e resultado.</p></div><span class="status s-rule">Regra-base</span></div>
+<div class="decision"><div><strong>Forja</strong><p>Pesquisa, refinamento, Síntese, Calibração, Fusão, Ascensão e Desmontagem são instantâneos; recursos, Conhecimento e risco sustentam o loop.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Síntese e Proteção de Forja</strong><p>O jogador escolhe tipo e elemento; toda Raridade é possível desde a primeira tentativa. Após sete Sínteses abaixo de Raro na mesma combinação de conta/tipo/elemento/tier, a próxima garante Raro+.</p></div><span class="status s-defined">Definido</span></div>
+<div class="decision"><div><strong>Fusão e Ascensão</strong><p>Fusão consome três itens de mesma Raridade/tipo/elemento para gerar outro uma Raridade acima. Ascensão preserva a peça no sucesso e possui três falhas seguras antes de risco crescente de quebra.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Pesquisa</strong><p>O jogador direciona conhecimento para famílias de itens e técnicas, sem depender de aleatoriedade universal.</p></div><span class="status s-rule">Regra-base</span></div>
 <div class="decision"><div><strong>Desmontagem</strong><p>Retorno parcial provisório de 20% para contas normais e 40% para VIP, nunca 100%.</p></div><span class="status s-rule">Base provisória</span></div>
-<div class="decision"><div><strong>Lendários nomeados</strong><p>São craftados e abrem builds por passivas exclusivas, sem depender apenas de números maiores.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Passivas</strong><p>Dezoito pools separados por Núcleo/Totem e elemento; dentro de cada pool, raridade altera quantidade e faixa de níveis, não o catálogo elegível.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Reroll</strong><p>Atributos, passivas e níveis podem ser calibrados individualmente ou em conjunto; toda operação consome recursos de gameplay e preserva tipo, elemento e raridade.</p></div><span class="status s-defined">Definido</span></div>
 <div class="decision"><div><strong>Ponte Cash–Gold</strong><p>Reagentes de Cash podem ser vendidos por jogadores no marketplace em Gold.</p></div><span class="status s-defined">Definido</span></div>
@@ -2599,7 +2541,7 @@
 <li><strong>Battle XP:</strong> curva total por Battle Level, valores fixos finais por inimigo e calibração numérica dos pesos já definidos.</li>
 <li><strong>Calibração de Farm XP e Stamina:</strong> curvas de XP, limites antiabuso, custos finais por atividade e ajustes de recuperação após testes.</li>
 <li><strong>Núcleo e Totem:</strong> famílias, receitas, moldes, materiais, atributos, passivas e mercado.</li>
-<li><strong>Forja:</strong> fórmulas, chances, falhas, compatibilidades e custos exatos de Síntese, Calibração, Fusão e Ascensão.</li>
+<li><strong>Forja:</strong> catálogo de materiais, receitas, fontes, pesos normalizados, catalisadores e custos finais de Síntese, Calibração, Fusão e Ascensão.</li>
 <li><strong>Pesquisa e mapas:</strong> nomes, biomas, trios elementais dos mapas mistos, famílias inimigas, bosses, tabelas de loot, árvores de conhecimento, ligas, caminhos, tiers e progressão regional de materiais.</li>
 <li><strong>Bestiário:</strong> famílias regionais, inimigos neutros, inimigos elementais, bosses, minibosses e drops.</li>
 <li><strong>Desmontagem:</strong> materiais elegíveis, exceções, arredondamentos e percentuais definitivos de jogador normal e VIP.</li>
